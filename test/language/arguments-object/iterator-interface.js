@@ -16,8 +16,8 @@ function TestDirectArgumentsIteratorProperty() {
   assert(descriptor.writable);
   assert.sameValue(descriptor.enumerable, false);
   assert(descriptor.configurable);
-  assert.deepEquals(descriptor.value, [][Symbol.iterator]);
-  assert.deepEquals(arguments[Symbol.iterator], [][Symbol.iterator]);
+  assert.sameValue(descriptor.value, [][Symbol.iterator]);
+  assert.sameValue(arguments[Symbol.iterator], [][Symbol.iterator]);
 }
 TestDirectArgumentsIteratorProperty();
 
@@ -26,13 +26,14 @@ function TestIndirectArgumentsIteratorProperty() {
   var o = arguments;
   assert(o.hasOwnProperty(Symbol.iterator));
   assert.sameValue(o.propertyIsEnumerable(Symbol.iterator), false);
-  assert.deepEquals(o[Symbol.iterator], [][Symbol.iterator]);
+  assert.sameValue(o[Symbol.iterator], [][Symbol.iterator]);
 }
 TestIndirectArgumentsIteratorProperty();
 
 
 function assertIteratorResult(value, done, result) {
-  assert.deepEquals({value: value, done: done}, result);
+  assert.sameValue(value, result.value);
+  assert.sameValue(done, result.done);
 }
 
 
@@ -139,10 +140,10 @@ TestIndirectValues4(1, 2, 3);
 function TestForOf() {
   var i = 0;
   for (var value of arguments) {
-    assert.deepEquals(arguments[i++], value);
+    assert.sameValue(arguments[i++], value);
   }
 
-  assert.deepEquals(arguments.length, i);
+  assert.sameValue(arguments.length, i);
 }
 TestForOf(1, 2, 3, 4, 5);
 
@@ -151,11 +152,12 @@ function TestAssignmentToIterator() {
   var i = 0;
   arguments[Symbol.iterator] = [].entries;
   for (var entry of arguments) {
-    assert.deepEquals([i, arguments[i]], entry);
+    assert.sameValue(i, entry[0]);
+    assert.sameValue(arguments[i], entry[1]);
     i++;
   }
 
-  assert.deepEquals(arguments.length, i);
+  assert.sameValue(arguments.length, i);
 }
 TestAssignmentToIterator(1, 2, 3, 4, 5);
 
@@ -163,12 +165,12 @@ TestAssignmentToIterator(1, 2, 3, 4, 5);
 function TestArgumentsMutation() {
   var i = 0;
   for (var x of arguments) {
-    assert.deepEquals(arguments[i], x);
+    assert.sameValue(arguments[i], x);
     arguments[i+1] *= 2;
     i++;
   }
 
-  assert.deepEquals(arguments.length, i);
+  assert.sameValue(arguments.length, i);
 }
 TestArgumentsMutation(1, 2, 3, 4, 5);
 
@@ -176,12 +178,12 @@ TestArgumentsMutation(1, 2, 3, 4, 5);
 function TestSloppyArgumentsAliasing(a0, a1, a2, a3, a4) {
   var i = 0;
   for (var x of arguments) {
-    assert.deepEquals(arguments[i], x);
+    assert.sameValue(arguments[i], x);
     a0 = a1; a1 = a2; a3 = a4;
     i++;
   }
 
-  assert.deepEquals(arguments.length, i);
+  assert.sameValue(arguments.length, i);
 }
 TestSloppyArgumentsAliasing(1, 2, 3, 4, 5);
 
@@ -191,11 +193,11 @@ function TestStrictArgumentsAliasing(a0, a1, a2, a3, a4) {
   var i = 0;
   for (var x of arguments) {
     a0 = a1; a1 = a2; a3 = a4;
-    assert.deepEquals(arguments[i], x);
+    assert.sameValue(arguments[i], x);
     i++;
   }
 
-  assert.deepEquals(arguments.length, i);
+  assert.sameValue(arguments.length, i);
 }
 TestStrictArgumentsAliasing(1, 2, 3, 4, 5);
 
@@ -210,7 +212,7 @@ function TestArgumentsAsProto() {
   assert.sameValue(o[Symbol.iterator], [][Symbol.iterator]);
   o[Symbol.iterator] = 10;
   assert(o.hasOwnProperty(Symbol.iterator));
-  assert.deepEquals(10, o[Symbol.iterator]);
+  assert.sameValue(10, o[Symbol.iterator]);
   assert.sameValue(arguments[Symbol.iterator], [][Symbol.iterator]);
 
   // Frozen o.
@@ -223,7 +225,7 @@ function TestArgumentsAsProto() {
   // See note in accessors.cc:SetPropertyOnInstanceIfInherited.
   o[Symbol.iterator] = 10;
   assert.sameValue(o.hasOwnProperty(Symbol.iterator), false);
-  assert.deepEquals([][Symbol.iterator], o[Symbol.iterator]);
+  assert.sameValue([][Symbol.iterator], o[Symbol.iterator]);
   assert.sameValue(arguments[Symbol.iterator], [][Symbol.iterator]);
 }
 TestArgumentsAsProto();
