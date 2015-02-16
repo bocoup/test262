@@ -220,12 +220,9 @@ function TestArgumentsAsProto() {
   assert.sameValue(o[Symbol.iterator], [][Symbol.iterator]);
   assert.sameValue(o.hasOwnProperty(Symbol.iterator), false);
   assert.sameValue(o[Symbol.iterator], [][Symbol.iterator]);
-  // This should throw, but currently it doesn't, because
-  // ExecutableAccessorInfo callbacks don't see the current strict mode.
-  // See note in accessors.cc:SetPropertyOnInstanceIfInherited.
-  o[Symbol.iterator] = 10;
-  assert.sameValue(o.hasOwnProperty(Symbol.iterator), false);
-  assert.sameValue([][Symbol.iterator], o[Symbol.iterator]);
-  assert.sameValue(arguments[Symbol.iterator], [][Symbol.iterator]);
+
+  assert.throws(TypeError, function() {
+    o[Symbol.iterator] = 10;
+  }, "Cannot set iterator of frozen object");
 }
 TestArgumentsAsProto();
