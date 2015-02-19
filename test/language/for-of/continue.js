@@ -6,15 +6,13 @@ description: >
 ---*/
 
 function* values() {
-  yield 5;
-  yield 8;
+  yield 1;
+  yield 1;
 }
 var iterable = values();
-var expected = [5, 8];
 var i = 0;
 
 for (var x of iterable) {
-  assert.sameValue(x, expected[i]);
   i++;
   continue;
 

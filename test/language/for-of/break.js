@@ -6,14 +6,13 @@ description: >
 ---*/
 
 function* values() {
-  yield 3;
-  yield 7;
+  yield 1;
+  yield 1;
 }
 var iterable = values();
 var i = 0;
 
 for (var x of iterable) {
-  assert.sameValue(x, 3);
   i++;
   break;
 
