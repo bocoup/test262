@@ -153,37 +153,7 @@ function poison_next_after(iterable, n) {
 }
 
 // Now, the tests.
-
-// Nested for-of.
-var result = nested_fold(append, [], iter_map(integers_until(5), integers_until));
-assert.sameValue(result[0], 0);
-assert.sameValue(result[1], 0);
-assert.sameValue(result[2], 1);
-assert.sameValue(result[3], 0);
-assert.sameValue(result[4], 1);
-assert.sameValue(result[5], 2);
-assert.sameValue(result[6], 0);
-assert.sameValue(result[7], 1);
-assert.sameValue(result[8], 2);
-assert.sameValue(result[9], 3);
-assert.sameValue(result.length, 10);
-
-// Result objects with sparse fields.
-result = fold(append, [], results([{ done: false },
-                           { value: 1, done: false },
-                           // A missing "done" is the same as undefined, which
-                           // is false.
-                           { value: 2 },
-                           // Not done.
-                           { value: 3, done: 0 },
-                           // Done.
-                           { value: 4, done: 42 }]));
-assert.sameValue(result[0], undefined);
-assert.sameValue(result[1], 1);
-assert.sameValue(result[2], 2);
-assert.sameValue(result[3], 3);
-assert.sameValue(result.length, 4);
-
+var result;
 // Results that are not objects.
 result = fold(append, [],
               results([10, "foo", /qux/, { value: 37, done: true }]));
