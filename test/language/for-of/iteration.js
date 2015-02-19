@@ -35,6 +35,7 @@
 es6id: 
 description: >
 ---*/
+(function() {
 "use strict";
 
 
@@ -179,24 +180,37 @@ function poison_next_after(iterable, n) {
 // Now, the tests.
 
 // Non-generator iterators.
-assertEquals(45, fold(sum, 0, integers_until(10)));
+assert.sameValue(fold(sum, 0, integers_until(10)), 45);
+
 // Generator iterators.
-assertEquals([1, 2, 3], fold(append, [], values(1, 2, 3)));
+var result = fold(append, [], values(1, 2, 3));
+assert.sameValue(result[0], 1);
+assert.sameValue(result[1], 2);
+assert.sameValue(result[2], 3);
+assert.sameValue(result.length, 3);
+
 // Break.
-assertEquals(45, fold(sum, 0, take(integers_from(0), 10)));
+assert.sameValue(fold(sum, 0, take(integers_from(0), 10)), 45);
 // Continue.
-assertEquals(90, fold(sum, 0, take(skip_every(integers_from(0), 2), 10)));
+assert.sameValue(fold(sum, 0, take(skip_every(integers_from(0), 2), 10)), 90);
 // Return.
-assertEquals(10, nth(integers_from(0), 10));
+assert.sameValue(nth(integers_from(0), 10), 10);
 // Nested for-of.
-assertEquals([0, 0, 1, 0, 1, 2, 0, 1, 2, 3],
-             nested_fold(append,
-                         [],
-                         iter_map(integers_until(5), integers_until)));
+result = nested_fold(append, [], iter_map(integers_until(5), integers_until));
+assert.sameValue(result[0], 0);
+assert.sameValue(result[1], 0);
+assert.sameValue(result[2], 1);
+assert.sameValue(result[3], 0);
+assert.sameValue(result[4], 1);
+assert.sameValue(result[5], 2);
+assert.sameValue(result[6], 0);
+assert.sameValue(result[7], 1);
+assert.sameValue(result[8], 2);
+assert.sameValue(result[9], 3);
+assert.sameValue(result.length, 10);
+
 // Result objects with sparse fields.
-assertEquals([undefined, 1, 2, 3],
-             fold(append, [],
-                  results([{ done: false },
+result = fold(append, [], results([{ done: false },
                            { value: 1, done: false },
                            // A missing "done" is the same as undefined, which
                            // is false.
@@ -204,18 +218,30 @@ assertEquals([undefined, 1, 2, 3],
                            // Not done.
                            { value: 3, done: 0 },
                            // Done.
-                           { value: 4, done: 42 }])));
+                           { value: 4, done: 42 }]));
+assert.sameValue(result[0], undefined);
+assert.sameValue(result[1], 1);
+assert.sameValue(result[2], 2);
+assert.sameValue(result[3], 3);
+assert.sameValue(result.length, 4);
+
 // Results that are not objects.
-assertEquals([undefined, undefined, undefined],
-             fold(append, [],
-                  results([10, "foo", /qux/, { value: 37, done: true }])));
+result = fold(append, [],
+              results([10, "foo", /qux/, { value: 37, done: true }]));
+assert.sameValue(result[0], undefined);
+assert.sameValue(result[1], undefined);
+assert.sameValue(result[2], undefined);
+assert.sameValue(result.length, 3);
+
 // Getters (shudder).
-assertEquals([1, 2],
-             fold(append, [],
-                  results([one_time_getter({ value: 1 }, 'done', false),
-                           one_time_getter({ done: false }, 'value', 2),
-                           { value: 37, done: true },
-                           never_getter(never_getter({}, 'done'), 'value')])));
+result = fold(append, [],
+              results([one_time_getter({ value: 1 }, 'done', false),
+                       one_time_getter({ done: false }, 'value', 2),
+                       { value: 37, done: true },
+                       never_getter(never_getter({}, 'done'), 'value')]))
+assert.sameValue(result[0], 1);
+assert.sameValue(result[1], 2);
+assert.sameValue(result.length, 2);
 
 // Unlike the case with for-in, null and undefined cause an error.
 assert.throws(TypeError, 'fold(sum, 0, unreachable(null))');
@@ -229,12 +255,12 @@ assert.throws(TypeError, 'fold(sum, 0, unreachable(37))');
 // "next" is looked up each time.
 assert.throws(TypeError,
              'fold(sum, 0, remove_next_after(integers_until(10), 5))');
+
 // It is not called at any other time.
-assertEquals(45,
-             fold(sum, 0, remove_next_after(integers_until(10), 10)));
+assert.sameValue(fold(sum, 0, remove_next_after(integers_until(10), 10)), 45);
+
 // It is not looked up too many times.
-assertEquals(45,
-             fold(sum, 0, poison_next_after(integers_until(10), 10)));
+assert.sameValue(fold(sum, 0, poison_next_after(integers_until(10), 10)), 45);
 
 function labelled_continue(iterable) {
   var n = 0;
@@ -246,7 +272,7 @@ outer:
   }
   return n;
 }
-assertEquals(11, labelled_continue(integers_until(10)));
+assert.sameValue(labelled_continue(integers_until(10)), 11);
 
 function labelled_break(iterable) {
   var n = 0;
@@ -257,7 +283,7 @@ outer:
   }
   return n;
 }
-assertEquals(1, labelled_break(integers_until(10)));
+assert.sameValue(labelled_break(integers_until(10)), 1);
 
 // Test continue/break in catch.
 function catch_control(iterable, k) {
@@ -273,18 +299,15 @@ function catch_control(iterable, k) {
   } while (false);
   return false;
 }
-assertEquals(false,
-             catch_control(integers_until(10),
-                           function() { throw "break" }));
-assertEquals(false,
-             catch_control(integers_until(10),
-                           function() { throw "continue" }));
-assertEquals(5,
-             catch_control(integers_until(10),
+assert.sameValue(catch_control(integers_until(10),
+                           function() { throw "break" }), false);
+assert.sameValue(catch_control(integers_until(10),
+                           function() { throw "continue" }), false);
+assert.sameValue(catch_control(integers_until(10),
                            function(x) {
                              if (x == 5) return x;
                              throw "continue";
-                           }));
+                           }), 5);
 
 // Test continue/break in try.
 function try_control(iterable, k) {
@@ -301,15 +324,12 @@ function try_control(iterable, k) {
   } while (false);
   return false;
 }
-assertEquals(false,
-             try_control(integers_until(10),
-                         function() { return "break" }));
-assertEquals(false,
-             try_control(integers_until(10),
-                         function() { return "continue" }));
-assertEquals(5,
-             try_control(integers_until(10),
-                         function(x) { return (x == 5) ? x : "continue" }));
+assert.sameValue(try_control(integers_until(10),
+                         function() { return "break" }), false);
+assert.sameValue(try_control(integers_until(10),
+                         function() { return "continue" }), false);
+assert.sameValue(try_control(integers_until(10),
+                         function(x) { return (x == 5) ? x : "continue" }), 5);
 
 // Proxy results, with getters.
 function transparent_proxy(x) {
@@ -317,13 +337,15 @@ function transparent_proxy(x) {
     get: function(receiver, name) { return x[name]; }
   });
 }
-assertEquals([1, 2],
-             fold(append, [],
+result = fold(append, [],
                   results([one_time_getter({ value: 1 }, 'done', false),
                            one_time_getter({ done: false }, 'value', 2),
                            { value: 37, done: true },
                            never_getter(never_getter({}, 'done'), 'value')]
-                          .map(transparent_proxy))));
+                          .map(transparent_proxy)))
+assert.sameValue(result[0], 1);
+assert.sameValue(result[1], 2);
+assert.sameValue(result.length, 2);
 
 // Proxy iterators.
 function poison_proxy_after(iterable, n) {
@@ -339,4 +361,5 @@ function poison_proxy_after(iterable, n) {
     }
   }));
 }
-assertEquals(45, fold(sum, 0, poison_proxy_after(integers_until(10), 10)));
+assert.sameValue(fold(sum, 0, poison_proxy_after(integers_until(10), 10)), 45);
+}());
