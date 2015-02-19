@@ -41,12 +41,6 @@ description: >
 
 // First, some helpers.
 
-function* values() {
-  for (var i = 0; i < arguments.length; i++) {
-    yield arguments[i];
-  }
-}
-
 function wrap_iterator(iterator) {
     var iterable = {};
     iterable[Symbol.iterator] = function() { return iterator; };
@@ -68,10 +62,6 @@ function results(results) {
     return results[i++];
   }
   return wrap_iterator({ next: next });
-}
-
-function* integers_from(n) {
-  while (1) yield n++;
 }
 
 // A destructive append.
@@ -96,21 +86,6 @@ function* take(iterable, n) {
   for (let x of iterable) {
     yield x;
     if (--n == 0) break;
-  }
-}
-
-function nth(iterable, n) {
-  for (let x of iterable) {
-    if (n-- == 0) return x;
-  }
-  throw "unreachable";
-}
-
-function* skip_every(iterable, n) {
-  var i = 0;
-  for (let x of iterable) {
-    if (++i % n == 0) continue;
-    yield x;
   }
 }
 
@@ -179,24 +154,8 @@ function poison_next_after(iterable, n) {
 
 // Now, the tests.
 
-// Non-generator iterators.
-assert.sameValue(fold(sum, 0, integers_until(10)), 45);
-
-// Generator iterators.
-var result = fold(append, [], values(1, 2, 3));
-assert.sameValue(result[0], 1);
-assert.sameValue(result[1], 2);
-assert.sameValue(result[2], 3);
-assert.sameValue(result.length, 3);
-
-// Break.
-assert.sameValue(fold(sum, 0, take(integers_from(0), 10)), 45);
-// Continue.
-assert.sameValue(fold(sum, 0, take(skip_every(integers_from(0), 2), 10)), 90);
-// Return.
-assert.sameValue(nth(integers_from(0), 10), 10);
 // Nested for-of.
-result = nested_fold(append, [], iter_map(integers_until(5), integers_until));
+var result = nested_fold(append, [], iter_map(integers_until(5), integers_until));
 assert.sameValue(result[0], 0);
 assert.sameValue(result[1], 0);
 assert.sameValue(result[2], 1);
