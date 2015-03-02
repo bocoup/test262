@@ -154,23 +154,6 @@ function poison_next_after(iterable, n) {
 
 // Now, the tests.
 var result;
-// Results that are not objects.
-result = fold(append, [],
-              results([10, "foo", /qux/, { value: 37, done: true }]));
-assert.sameValue(result[0], undefined);
-assert.sameValue(result[1], undefined);
-assert.sameValue(result[2], undefined);
-assert.sameValue(result.length, 3);
-
-// Getters (shudder).
-result = fold(append, [],
-              results([one_time_getter({ value: 1 }, 'done', false),
-                       one_time_getter({ done: false }, 'value', 2),
-                       { value: 37, done: true },
-                       never_getter(never_getter({}, 'done'), 'value')]))
-assert.sameValue(result[0], 1);
-assert.sameValue(result[1], 2);
-assert.sameValue(result.length, 2);
 
 // Unlike the case with for-in, null and undefined cause an error.
 assert.throws(TypeError, 'fold(sum, 0, unreachable(null))');

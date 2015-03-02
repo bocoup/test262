@@ -1,9 +1,10 @@
 // Copyright (C) Copyright 2013 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-es6id: 13.6.4.13 S5.d
+es6id: 7.4.3
 description: >
-    Iteration should continue when the iterator result is not an object.
+    The `done` value of iteration result objects should be interpreted as
+    incomplete as per `ToBoolean` (7.1.2).
 ---*/
 
 var iterable = {};
@@ -24,42 +25,23 @@ iterable[Symbol.iterator] = function() {
   };
 };
 
-firstIterResult = 123;
+firstIterResult = { value: 45, done: false };
 i = 0;
 for (var x of iterable) {
-  assert.sameValue(x, undefined);
+  assert.sameValue(x, 45);
   i++;
 }
 assert.sameValue(i, 1);
 
-firstIterResult = true;
+firstIterResult = { done: false };
+Object.defineProperty(firstIterResult, 'value', {
+  get: function() {
+    return 23;
+  }
+});
 i = 0;
 for (var x of iterable) {
-  assert.sameValue(x, undefined);
-  i++;
-}
-assert.sameValue(i, 1);
-
-firstIterResult = false;
-i = 0;
-for (var x of iterable) {
-  assert.sameValue(x, undefined);
-  i++;
-}
-assert.sameValue(i, 1);
-
-firstIterResult = 'string';
-i = 0;
-for (var x of iterable) {
-  assert.sameValue(x, undefined);
-  i++;
-}
-assert.sameValue(i, 1);
-
-firstIterResult = undefined;
-i = 0;
-for (var x of iterable) {
-  assert.sameValue(x, undefined);
+  assert.sameValue(x, 23);
   i++;
 }
 assert.sameValue(i, 1);

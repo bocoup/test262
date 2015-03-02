@@ -7,11 +7,6 @@ description: >
     incomplete as per `ToBoolean` (7.1.2).
 ---*/
 
-/**
- * I believe these tests are invalid.
- * TODO Verify
- */
-
 var iterable = {};
 var i, firstIterResult;
 
@@ -115,6 +110,18 @@ for (var x of iterable) {
 assert.sameValue(i, 0);
 
 firstIterResult = { value: null, done: {} };
+i = 0;
+for (var x of iterable) {
+  i++;
+}
+assert.sameValue(i, 0);
+
+firstIterResult = { value: null };
+Object.defineProperty(firstIterResult, 'done', {
+  get: function() {
+    return true;
+  }
+});
 i = 0;
 for (var x of iterable) {
   i++;
