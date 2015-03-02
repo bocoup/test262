@@ -149,22 +149,6 @@ function poison_next_after(iterable, n) {
 // Now, the tests.
 var result;
 
-// Proxy results, with getters.
-function transparent_proxy(x) {
-  return Proxy.create({
-    get: function(receiver, name) { return x[name]; }
-  });
-}
-result = fold(append, [],
-                  results([one_time_getter({ value: 1 }, 'done', false),
-                           one_time_getter({ done: false }, 'value', 2),
-                           { value: 37, done: true },
-                           never_getter(never_getter({}, 'done'), 'value')]
-                          .map(transparent_proxy)))
-assert.sameValue(result[0], 1);
-assert.sameValue(result[1], 2);
-assert.sameValue(result.length, 2);
-
 // Proxy iterators.
 function poison_proxy_after(iterable, n) {
   var iterator = iterable[Symbol.iterator]();

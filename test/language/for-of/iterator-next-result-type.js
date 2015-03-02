@@ -69,3 +69,34 @@ for (var x of iterable) {}
 
 firstIterResult = {};
 for (var x of iterable) {}
+
+firstIterResult = Proxy.create({
+  get: function(receiver, name) {
+    if (name === 'done') {
+      return true;
+    }
+    if (name === 'value') {
+      return null;
+    }
+  }
+});
+for (var x of iterable) {
+  assert(false, 'This code is unreachable.');
+}
+
+firstIterResult = Proxy.create({
+  get: function(receiver, name) {
+    if (name === 'done') {
+      return false;
+    }
+    if (name === 'value') {
+      return 23;
+    }
+  }
+});
+i = 0;
+for (var x of iterable) {
+  assert.sameValue(x, 23);
+  i++;
+}
+assert.sameValue(i, 1);
