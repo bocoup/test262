@@ -3,6 +3,7 @@
 /*---
 es6id: 13.6.4.13
 description: >
+    Generic objects with `@@iterator` protocols should function as iterables.
 ---*/
 
 var iterable = {};
