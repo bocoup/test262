@@ -149,16 +149,6 @@ function poison_next_after(iterable, n) {
 // Now, the tests.
 var result;
 
-// "next" is looked up each time.
-assert.throws(TypeError,
-             'fold(sum, 0, remove_next_after(integers_until(10), 5))');
-
-// It is not called at any other time.
-assert.sameValue(fold(sum, 0, remove_next_after(integers_until(10), 10)), 45);
-
-// It is not looked up too many times.
-assert.sameValue(fold(sum, 0, poison_next_after(integers_until(10), 10)), 45);
-
 function labelled_continue(iterable) {
   var n = 0;
 outer:
