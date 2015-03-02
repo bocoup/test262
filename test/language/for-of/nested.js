@@ -11,21 +11,27 @@ function* values() {
   yield 7;
 }
 
-var iterable1 = values();
-var expected = [3, 7];
-var i = 0;
-var iterable2, j;
+var outerIterable, expectedOuter, i, innerIterable, expectedInner, j;
 
-for (var x of iterable1) {
-  assert.sameValue(x, expected[i]);
-  iterable2 = values();
+outerIterable = values();
+expectedOuter = 3;
+i = 0;
+
+for (var x of outerIterable) {
+  assert.sameValue(x, expectedOuter);
+  expectedOuter = 7;
+  i++;
+
+  innerIterable = values();
+  expectedInner = 3;
   j = 0;
-  for (var y of iterable2) {
-    assert.sameValue(y, expected[j]);
+  for (var y of innerIterable) {
+    assert.sameValue(y, expectedInner);
+    expectedInner = 7;
     j++;
   }
+
   assert.sameValue(j, 2);
-  i++;
 }
 
 assert.sameValue(i, 2);
