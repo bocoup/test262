@@ -104,12 +104,6 @@ function nested_fold(cons, seed, iterable) {
   return seed;
 }
 
-function* unreachable(iterable) {
-  for (let x of iterable) {
-    throw "not reached";
-  }
-}
-
 function one_time_getter(o, prop, val) {
   function set_never() { throw "unreachable"; }
   var gotten = false;
@@ -154,15 +148,6 @@ function poison_next_after(iterable, n) {
 
 // Now, the tests.
 var result;
-
-// Unlike the case with for-in, null and undefined cause an error.
-assert.throws(TypeError, 'fold(sum, 0, unreachable(null))');
-assert.throws(TypeError, 'fold(sum, 0, unreachable(undefined))');
-
-// Other non-iterators do cause an error.
-assert.throws(TypeError, 'fold(sum, 0, unreachable({}))');
-assert.throws(TypeError, 'fold(sum, 0, unreachable(false))');
-assert.throws(TypeError, 'fold(sum, 0, unreachable(37))');
 
 // "next" is looked up each time.
 assert.throws(TypeError,
