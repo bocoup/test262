@@ -62,3 +62,11 @@ assert.throws = function (expectedErrorConstructor, func) {
 
     $ERROR('Expected a ' + expectedErrorConstructor.name + ' to be thrown but no exception was thrown at all');
 };
+
+assert.unreachable = function (message) {
+    if (message === undefined) {
+        message = 'Expected this code path to be unreachable, but it was executed';
+    }
+
+    $ERROR(message);
+};
