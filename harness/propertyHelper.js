@@ -105,3 +105,23 @@ function verifyNotConfigurable(obj, name) {
     }
 }
 
+function verifyProperty(obj, name, expected) {
+  if (expected.enumerable) {
+    verifyEnumerable(obj, name);
+  } else {
+    verifyNotEnumerable(obj, name);
+  }
+
+  if (expected.writeable) {
+    verifyWritable(obj, name);
+  } else {
+    verifyNotWritable(obj, name);
+  }
+
+  if (expected.configurable) {
+    verifyConfigurable(obj, name);
+  } else {
+    verifyNotConfigurable(obj, name);
+  }
+}
+
