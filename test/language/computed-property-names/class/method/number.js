@@ -17,9 +17,15 @@ class C {
   c() { return 'C'; }
   [ID(2)]() { return 'D'; }
 }
-assert.sameValue(new C().a(), 'A');
-assert.sameValue(new C()[1](), 'B');
-assert.sameValue(new C().c(), 'C');
-assert.sameValue(new C()[2](), 'D');
-assert(compareArray(Object.keys(C.prototype), []));
-assert(compareArray(Object.getOwnPropertyNames(C.prototype), ['1', '2', 'constructor', 'a', 'c']));
+assert.sameValue(new C().a(), 'A', "`new C().a()` returns `'A'`");
+assert.sameValue(new C()[1](), 'B', "`new C()[1]()` returns `'B'`");
+assert.sameValue(new C().c(), 'C', "`new C().c()` returns `'C'`");
+assert.sameValue(new C()[2](), 'D', "`new C()[2]()` returns `'D'`");
+assert(
+  compareArray(Object.keys(C.prototype), []),
+  "`compareArray(Object.keys(C.prototype), [])` returns `true`"
+);
+assert(
+  compareArray(Object.getOwnPropertyNames(C.prototype), ['1', '2', 'constructor', 'a', 'c']),
+  "`compareArray(Object.getOwnPropertyNames(C.prototype), ['1', '2', 'constructor', 'a', 'c'])` returns `true`"
+);

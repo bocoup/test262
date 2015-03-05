@@ -24,7 +24,7 @@ var object = {
 
 Object.setPrototypeOf(object, proto);
 
-assert.sameValue(object.a, 'a proto m');
-assert.sameValue(object.b, 'b proto m');
-assert.sameValue(object[0], '0 proto m');
-assert.sameValue(object[1], '1 proto m');
+assert.sameValue(object.a, 'a proto m', "The value of `object.a` is `'a proto m'`");
+assert.sameValue(object.b, 'b proto m', "The value of `object.b` is `'b proto m'`");
+assert.sameValue(object[0], '0 proto m', "The value of `object[0]` is `'0 proto m'`");
+assert.sameValue(object[1], '1 proto m', "The value of `object[1]` is `'1 proto m'`");

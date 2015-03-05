@@ -17,8 +17,11 @@ var object = {
   c: 'C',
   [ID(2)]: 'D',
 };
-assert.sameValue(object.a, 'A');
-assert.sameValue(object[1], 'B');
-assert.sameValue(object.c, 'C');
-assert.sameValue(object[2], 'D');
-assert(compareArray(Object.keys(object), ['1', '2', 'a', 'c']));
+assert.sameValue(object.a, 'A', "The value of `object.a` is `'A'`");
+assert.sameValue(object[1], 'B', "The value of `object[1]` is `'B'`");
+assert.sameValue(object.c, 'C', "The value of `object.c` is `'C'`");
+assert.sameValue(object[2], 'D', "The value of `object[2]` is `'D'`");
+assert(
+  compareArray(Object.keys(object), ['1', '2', 'a', 'c']),
+  "`compareArray(Object.keys(object), ['1', '2', 'a', 'c'])` returns `true`"
+);

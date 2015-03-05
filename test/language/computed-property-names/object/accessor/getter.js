@@ -11,37 +11,37 @@ var object = {
     return 'A';
   }
 };
-assert.sameValue(object.a, 'A');
+assert.sameValue(object.a, 'A', "The value of `object.a` is `'A'`");
 
 object = {
   get b() {
-    assert(false);
+    assert(false, "`false` is `true`");
   },
   get ['b']() {
     return 'B';
   }
 };
-assert.sameValue(object.b, 'B');
+assert.sameValue(object.b, 'B', "The value of `object.b` is `'B'`");
 
 object = {
   get c() {
-    assert(false);
+    assert(false, "`false` is `true`");
   },
   get ['c']() {
-    assert(false);
+    assert(false, "`false` is `true`");
   },
   get ['c']() {
     return 'C';
   }
 };
-assert.sameValue(object.c, 'C');
+assert.sameValue(object.c, 'C', "The value of `object.c` is `'C'`");
 
 object = {
   get ['d']() {
-    assert(false);
+    assert(false, "`false` is `true`");
   },
   get d() {
     return 'D';
   }
 };
-assert.sameValue(object.d, 'D');
+assert.sameValue(object.d, 'D', "The value of `object.d` is `'D'`");

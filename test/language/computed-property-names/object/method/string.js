@@ -17,8 +17,11 @@ var object = {
   c() { return 'C'; },
   [ID('d')]() { return 'D'; },
 };
-assert.sameValue(object.a(), 'A');
-assert.sameValue(object.b(), 'B');
-assert.sameValue(object.c(), 'C');
-assert.sameValue(object.d(), 'D');
-assert(compareArray(Object.keys(object), ['a', 'b', 'c', 'd']));
+assert.sameValue(object.a(), 'A', "`object.a()` returns `'A'`");
+assert.sameValue(object.b(), 'B', "`object.b()` returns `'B'`");
+assert.sameValue(object.c(), 'C', "`object.c()` returns `'C'`");
+assert.sameValue(object.d(), 'D', "`object.d()` returns `'D'`");
+assert(
+  compareArray(Object.keys(object), ['a', 'b', 'c', 'd']),
+  "`compareArray(Object.keys(object), ['a', 'b', 'c', 'd'])` returns `true`"
+);

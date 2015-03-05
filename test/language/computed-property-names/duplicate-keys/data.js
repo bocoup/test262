@@ -10,4 +10,4 @@ var object = {
   a: 1,
   ['a']: 2,
 };
-assert.sameValue(object.a, 2);
+assert.sameValue(object.a, 2, "The value of `object.a` is `2`");

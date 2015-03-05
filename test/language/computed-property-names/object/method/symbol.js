@@ -19,11 +19,14 @@ var object = {
   c() { return 'C'; },
   [ID(sym2)]() { return 'D'; },
 };
-assert.sameValue(object.a(), 'A');
-assert.sameValue(object[sym1](), 'B');
-assert.sameValue(object.c(), 'C');
-assert.sameValue(object[sym2](), 'D');
-assert(compareArray(Object.keys(object), ['a', 'c']));
+assert.sameValue(object.a(), 'A', "`object.a()` returns `'A'`");
+assert.sameValue(object[sym1](), 'B', "`object[sym1]()` returns `'B'`");
+assert.sameValue(object.c(), 'C', "`object.c()` returns `'C'`");
+assert.sameValue(object[sym2](), 'D', "`object[sym2]()` returns `'D'`");
+assert(
+  compareArray(Object.keys(object), ['a', 'c']),
+  "`compareArray(Object.keys(object), ['a', 'c'])` returns `true`"
+);
 
 // compareArray expects arguments to be sorted,
 // which will cause an array containing symbols to
@@ -36,6 +39,12 @@ assert(compareArray(Object.keys(object), ['a', 'c']));
 //
 var symbols = Object.getOwnPropertySymbols(object);
 
-assert(symbols.indexOf(sym1) !== -1);
-assert(symbols.indexOf(sym2) !== -1);
-assert.sameValue(symbols.length, 2);
+assert(
+  symbols.indexOf(sym1) !== -1,
+  "The result of `symbols.indexOf(sym1) !== -1` is `true`"
+);
+assert(
+  symbols.indexOf(sym2) !== -1,
+  "The result of `symbols.indexOf(sym2) !== -1` is `true`"
+);
+assert.sameValue(symbols.length, 2, "The value of `symbols.length` is `2`");

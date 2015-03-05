@@ -13,43 +13,43 @@ class C {
   }
 }
 new C().a = 'A';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");
 
 calls = 0;
 class C2 {
   set b(_) {
-    assert(false);
+    assert(false, "`false` is `true`");
   }
   set ['b'](_) {
     calls++;
   }
 }
 new C2().b = 'B';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");
 
 calls = 0;
 class C3 {
   set c(_) {
-    assert(false)
+    assert(false, "`false` is `true`")
   }
   set ['c'](_) {
-    assert(false)
+    assert(false, "`false` is `true`")
   }
   set ['c'](_) {
     calls++
   }
 }
 new C3().c = 'C';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");
 
 calls = 0;
 class C4 {
   set ['d'](_) {
-    assert(false)
+    assert(false, "`false` is `true`")
   }
   set d(_) {
     calls++
   }
 }
 new C4().d = 'D';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");

@@ -10,4 +10,4 @@ var object = {
   a() { return 1; },
   ['a']() { return 2; },
 };
-assert.sameValue(object.a(), 2);
+assert.sameValue(object.a(), 2, "`object.a()` returns `2`");

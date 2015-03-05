@@ -13,43 +13,43 @@ var object = {
   }
 };
 object.a = 'A';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");
 
 calls = 0;
 object = {
   set b(_) {
-    assert(false);
+    assert(false, "`false` is `true`");
   },
   set ['b'](_) {
     calls++;
   }
 };
 object.b = 'B';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");
 
 calls = 0;
 object = {
   set c(_) {
-    assert(false)
+    assert(false, "`false` is `true`")
   },
   set ['c'](_) {
-    assert(false)
+    assert(false, "`false` is `true`")
   },
   set ['c'](_) {
     calls++
   }
 };
 object.c = 'C';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");
 
 calls = 0;
 object = {
   set ['d'](_) {
-    assert(false)
+    assert(false, "`false` is `true`")
   },
   set d(_) {
     calls++
   }
 };
 object.d = 'D';
-assert.sameValue(calls, 1);
+assert.sameValue(calls, 1, "The value of `calls` is `1`");

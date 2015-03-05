@@ -11,37 +11,37 @@ class C {
     return 'A';
   }
 }
-assert.sameValue(new C().a, 'A');
+assert.sameValue(new C().a, 'A', "The value of `new C().a` is `'A'`");
 
 class C2 {
   get b() {
-    assert(false);
+    assert(false, "`false` is `true`");
   }
   get ['b']() {
     return 'B';
   }
 }
-assert.sameValue(new C2().b, 'B');
+assert.sameValue(new C2().b, 'B', "The value of `new C2().b` is `'B'`");
 
 class C3 {
   get c() {
-    assert(false);
+    assert(false, "`false` is `true`");
   }
   get ['c']() {
-    assert(false);
+    assert(false, "`false` is `true`");
   }
   get ['c']() {
     return 'C';
   }
 }
-assert.sameValue(new C3().c, 'C');
+assert.sameValue(new C3().c, 'C', "The value of `new C3().c` is `'C'`");
 
 class C4 {
   get ['d']() {
-    assert(false);
+    assert(false, "`false` is `true`");
   }
   get d() {
     return 'D';
   }
 }
-assert.sameValue(new C4().d, 'D');
+assert.sameValue(new C4().d, 'D', "The value of `new C4().d` is `'D'`");
