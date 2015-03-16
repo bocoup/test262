@@ -7,60 +7,6 @@ es6id:
 description: >
 includes: [compareArray.js]
 ---*/
-(function TestSetIterator() {
-  var s = new Set;
-  var iter = s.values();
-  //assertEquals('Set Iterator', %_ClassOf(iter));
-
-  var SetIteratorPrototype = Object.getPrototypeOf(iter);
-  assert.sameValue(SetIteratorPrototype.hasOwnProperty('constructor'), false);
-  assert.sameValue(Object.getPrototypeOf(SetIteratorPrototype), Object.prototype);
-
-  var propertyNames = Object.getOwnPropertyNames(SetIteratorPrototype);
-  assert(compareArray(['next'], propertyNames));
-
-  assert.sameValue(Object.getPrototypeOf(new Set().values()), SetIteratorPrototype);
-  assert.sameValue(Object.getPrototypeOf(new Set().entries()), SetIteratorPrototype);
-
-  assert.sameValue(Object.prototype.toString.call(iter),
-      "[object Set Iterator]");
-  assert.sameValue(SetIteratorPrototype[Symbol.toStringTag], "Set Iterator");
-  var desc = Object.getOwnPropertyDescriptor(
-      SetIteratorPrototype, Symbol.toStringTag);
-  assert.sameValue(desc.configurable, true);
-  assert.sameValue(desc.writable, false);
-  assert.sameValue(desc.value, "Set Iterator");
-})();
-
-
-(function TestSetIteratorValues() {
-  var s = new Set;
-  s.add(1);
-  s.add(2);
-  s.add(3);
-  var iter = s.values();
-  var result;
-
-  result = iter.next();
-  assert.sameValue(result.value, 1);
-  assert.sameValue(result.done, false);
-
-  result = iter.next();
-  assert.sameValue(result.value, 2);
-  assert.sameValue(result.done, false);
-
-  result = iter.next();
-  assert.sameValue(result.value, 3);
-  assert.sameValue(result.done, false);
-
-  result = iter.next();
-  assert.sameValue(result.value, undefined);
-  assert.sameValue(result.done, true);
-
-  result = iter.next();
-  assert.sameValue(result.value, undefined);
-  assert.sameValue(result.done, true);
-})();
 
 
 (function TestSetIteratorKeys() {
@@ -98,42 +44,6 @@ includes: [compareArray.js]
   assert.sameValue(result.value, undefined);
   assert.sameValue(result.done, true);
 
-  result = iter.next();
-  assert.sameValue(result.value, undefined);
-  assert.sameValue(result.done, true);
-})();
-
-
-(function TestSetIteratorMutations() {
-  var s = new Set;
-  s.add(1);
-  var iter = s.values();
-  var result;
-
-  result = iter.next();
-  assert.sameValue(result.value, 1);
-  assert.sameValue(result.done, false);
-
-  s.add(2);
-  s.add(3);
-  s.add(4);
-  s.add(5);
-
-  result = iter.next();
-  assert.sameValue(result.value, 2);
-  assert.sameValue(result.done, false);
-
-  s.delete(3);
-  result = iter.next();
-  assert.sameValue(result.value, 4);
-  assert.sameValue(result.done, false);
-
-  s.delete(5);
-  result = iter.next();
-  assert.sameValue(result.value, undefined);
-  assert.sameValue(result.done, true);
-
-  s.add(4);
   result = iter.next();
   assert.sameValue(result.value, undefined);
   assert.sameValue(result.done, true);
