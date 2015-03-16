@@ -8,7 +8,7 @@
   es6id: 23.2.3.5
  ---*/
 
-var set = new Set;
+var set = new Set();
 set.add(1);
 set.add(2);
 set.add(3);
