@@ -11,7 +11,7 @@
 
 var SetIteratorProto = Object.getPrototypeOf(new Set()[Symbol.iterator]());
 
-assert.sameValue("Set Iterator", SetIteratorProto[Symbol.toStringTag]);
+assert.sameValue('Set Iterator', SetIteratorProto[Symbol.toStringTag]);
 
 verifyNotEnumerable(SetIteratorProto, Symbol.toStringTag);
 verifyNotWritable(SetIteratorProto, Symbol.toStringTag);
