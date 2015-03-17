@@ -80,11 +80,6 @@ assert.throws(SyntaxError,
 // In sloppy mode, yield is a normal identifier, outside of generators.
 function yield(yield) { yield: yield (yield + yield (0)); }
 
-// Yield is always valid as a key in an object literal.
-({ yield: 1 });
-function* g() { yield ({ yield: 1 }) }
-function* g() { yield ({ get yield() { return 1; }}) }
-
 // Yield is only a keyword in the body of the generator, not in nested
 // functions.
 function* g() { function f() { yield (yield + yield (0)); } }
