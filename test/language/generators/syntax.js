@@ -85,12 +85,6 @@ function yield(yield) { yield: yield (yield + yield (0)); }
 function* g() { yield ({ yield: 1 }) }
 function* g() { yield ({ get yield() { return 1; }}) }
 
-// Checks that yield is a valid label in sloppy mode, but not valid in a strict
-// mode or in generators.
-function f() { yield: 1 }
-assert.throws(SyntaxError, "function f() { \"use strict\"; yield: 1 }");
-assert.throws(SyntaxError, "function* g() { yield: 1 }");
-
 // Yield is only a keyword in the body of the generator, not in nested
 // functions.
 function* g() { function f() { yield (yield + yield (0)); } }
