@@ -16,15 +16,6 @@ function* g() { yield 1; return; }
 function* g() { yield 1; return 2; }
 function* g() { yield 1; return 2; yield "dead"; }
 
-// Generator expression.
-(function* () { yield 3; });
-
-// Named generator expression.
-(function* g() { yield 3; });
-
-// You can have a generator without a yield.
-function* g() { }
-
 // A YieldExpression is valid as the RHS of a YieldExpression.
 function* g() { yield yield 1; }
 function* g() { yield 3 + (yield 4); }
