@@ -7,19 +7,6 @@
   es6id: 14.4
  ---*/
 
-// If yield has a RHS, it needs to start on the same line.  The * in a
-// yield* counts as starting the RHS.
-function* g() {
-  yield *
-  foo
-}
-assert.throws(SyntaxError, "function* g() { yield\n* foo }");
-assert.sameValue(undefined,
-             (function*(){
-               yield
-               3
-             })().next().value);
-
 // A YieldExpression is not a LogicalORExpression.
 assert.throws(SyntaxError, "function* g() { yield ? yield : yield }");
 
