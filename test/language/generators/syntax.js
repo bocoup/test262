@@ -7,30 +7,6 @@
   es6id: 14.4
  ---*/
 
-// Yield statements.
-function* g() { yield 3; yield 4; }
-
-// Yield expressions.
-function* g() { (yield 3) + (yield 4); }
-
-// Yield without a RHS.
-function* g() { yield; }
-function* g() { yield }
-function* g() {
-  yield
-}
-function* g() { (yield) }
-function* g() { [yield] }
-function* g() { {yield} }
-function* g() { yield, yield }
-function* g() { yield; yield }
-function* g() { (yield) ? yield : yield }
-function* g() {
-  (yield)
-  ? yield
-  : yield
-}
-
 // If yield has a RHS, it needs to start on the same line.  The * in a
 // yield* counts as starting the RHS.
 function* g() {
@@ -46,9 +22,6 @@ assert.sameValue(undefined,
 
 // A YieldExpression is not a LogicalORExpression.
 assert.throws(SyntaxError, "function* g() { yield ? yield : yield }");
-
-// You can have a generator in strict mode.
-function* g() { "use strict"; yield 3; yield 4; }
 
 // Generators can have return statements also, which internally parse to a kind
 // of yield expression.
@@ -79,13 +52,6 @@ assert.throws(SyntaxError,
 
 // In sloppy mode, yield is a normal identifier, outside of generators.
 function yield(yield) { yield: yield (yield + yield (0)); }
-
-// Yield is only a keyword in the body of the generator, not in nested
-// functions.
-function* g() { function f() { yield (yield + yield (0)); } }
-
-// Yield in a generator is not an identifier.
-assert.throws(SyntaxError, "function* g() { yield = 10; }");
 
 // Yield binds very loosely, so this parses as "yield (3 + yield 4)", which is
 // invalid.
