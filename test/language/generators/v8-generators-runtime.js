@@ -11,38 +11,6 @@ var GeneratorFunctionPrototype = Object.getPrototypeOf(g);
 var GeneratorFunction = GeneratorFunctionPrototype.constructor;
 var GeneratorObjectPrototype = GeneratorFunctionPrototype.prototype;
 
-// A generator function should have the same set of properties as any
-// other function.
-function TestGeneratorFunctionInstance() {
-  var f_own_property_names = Object.getOwnPropertyNames(f);
-  var g_own_property_names = Object.getOwnPropertyNames(g);
-
-  f_own_property_names.sort();
-  g_own_property_names.sort();
-
-  assert(compareArray(f_own_property_names, g_own_property_names));
-  var i;
-  for (i = 0; i < f_own_property_names.length; i++) {
-    var prop = f_own_property_names[i];
-    var f_desc = Object.getOwnPropertyDescriptor(f, prop);
-    var g_desc = Object.getOwnPropertyDescriptor(g, prop);
-    assert.sameValue(f_desc.configurable, g_desc.configurable, prop);
-    if (prop === 'arguments' || prop === 'caller') {
-      // Unlike sloppy functions, which have read-only data arguments and caller
-      // properties, sloppy generators have a poison pill implemented via
-      // accessors
-      assert.sameValue('writable' in g_desc, false, prop);
-      assert.sameValue(g_desc.get instanceof Function, true, prop);
-      assert.sameValue(g_desc.get, g_desc.set, prop);
-    } else {
-      assert.sameValue(f_desc.writable, g_desc.writable, prop);
-    }
-    assert.sameValue(f_desc.enumerable, g_desc.enumerable, prop);
-  }
-}
-TestGeneratorFunctionInstance();
-
-
 // Generators have an additional object interposed in the chain between
 // themselves and Function.prototype.
 function TestGeneratorFunctionPrototype() {
