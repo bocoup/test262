@@ -9,10 +9,3 @@
 
 function* g() { yield; }
 function* g() { yield 1; }
-function* g() {
-  yield;
-}
-function* g() {
-  yield 1;
-}
-

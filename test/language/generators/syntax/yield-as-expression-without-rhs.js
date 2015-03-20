@@ -12,8 +12,3 @@ function* g() { [yield] }
 function* g() { {yield} }
 function* g() { yield, yield; }
 function* g() { (yield) ? yield : yield }
-function* g() {
-  (yield)
-  ? yield
-  : yield
-}

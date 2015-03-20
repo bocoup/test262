@@ -9,10 +9,3 @@
 
 function* g() { return; }
 function* g() { return 1; }
-function* g() {
-  return;
-}
-function* g() {
-  return 1;
-}
-
