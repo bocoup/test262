@@ -3,10 +3,9 @@
 
 /*---
   description: >
-      `yield` is a reserved keyword within generator function bodies and may
-      not be used as the binding identifier of a function expression.
-  es6id: 12.1.1
-  negative: SyntaxError
+      `yield` may be used as the binding identifier of a function expression
+      within generator bodies.
+  es6id: 14.1
  ---*/
 
 function* g() {
