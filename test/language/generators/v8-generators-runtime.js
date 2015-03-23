@@ -14,11 +14,6 @@ var GeneratorObjectPrototype = GeneratorFunctionPrototype.prototype;
 // Generators have an additional object interposed in the chain between
 // themselves and Function.prototype.
 function TestGeneratorFunctionPrototype() {
-  // Sanity check.
-  assert.sameValue(Function.prototype, Object.getPrototypeOf(f));
-  assert.sameValue(GeneratorFunctionPrototype === Function.prototype, false);
-  assert.sameValue(Object.getPrototypeOf(GeneratorFunctionPrototype),
-             Function.prototype);
   assert.sameValue(Object.getPrototypeOf(function* () {}),
              GeneratorFunctionPrototype);
 }
