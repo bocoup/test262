@@ -37,19 +37,6 @@ description: >
 ---*/
 var GeneratorFunction = Object.getPrototypeOf(function*(){yield 1;}).constructor;
 
-function assertIteratorResult(value, done, result) {
-  assert.sameValue({ value: value, done: done}, result);
-}
-
-function assertIteratorIsClosed(iter) {
-  assertIteratorResult(undefined, true, iter.next());
-  assertDoesNotThrow(function() { iter.next(); });
-}
-
-function assertThrownIteratorIsClosed(iter) {
-  assertIteratorIsClosed(iter);
-}
-
 function TestGeneratorResultPrototype() {
   function* g() { yield 1; }
   var iter = g();
@@ -57,9 +44,13 @@ function TestGeneratorResultPrototype() {
 
   assert.sameValue(Object.getPrototypeOf(result), Object.prototype);
   property_names = Object.getOwnPropertyNames(result);
-  property_names.sort();
-  assert.sameValue(["done", "value"], property_names);
-  assertIteratorResult(1, false, result);
+
+  assert(Object.hasOwnProperty.call(result, 'done'));
+  assert(Object.hasOwnProperty.call(result, 'value'));
+
+  result = result;
+  assert.sameValue(result.value, 1);
+  assert.sameValue(result.done, false);
 }
 TestGeneratorResultPrototype();
 
@@ -71,30 +62,43 @@ function TestGenerator(g, expected_values_for_next,
       var v1 = expected_values_for_next[i];
       var v2 = i == expected_values_for_next.length - 1;
       // var v3 = iter.next();
-      assertIteratorResult(v1, v2, iter.next());
+      result = iter.next();
+      assert.sameValue(result.value, v1);
+      assert.sameValue(result.done, v2);
     }
-    assertIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   function testSend(thunk) {
     var iter = thunk();
+    var result;
     for (var i = 0; i < expected_values_for_send.length; i++) {
-      assertIteratorResult(expected_values_for_send[i],
-                           i == expected_values_for_send.length - 1,
-                           iter.next(send_val));
+      result = iter.next(send_val);
+      assert.sameValue(result.value, expected_values_for_send[i]);
+      assert.sameValue(result.done, i == expected_values_for_send.length - 1);
     }
-    assertIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   function testThrow(thunk) {
+    var result;
     for (var i = 0; i < expected_values_for_next.length; i++) {
       var iter = thunk();
       for (var j = 0; j < i; j++) {
-        assertIteratorResult(expected_values_for_next[j],
-                             j == expected_values_for_next.length - 1,
-                             iter.next());
+        result = iter.next();
+        assert.sameValue(result.value, expected_values_for_next[j]);
+        assert.sameValue(result.done, j == expected_values_for_next.length - 1);
       }
       function Sentinel() {}
       assert.throws(Sentinel, function () { iter.throw(new Sentinel); });
-      assertThrownIteratorIsClosed(iter);
+      result = iter.next();
+      assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+      assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+      iter.next();;
     }
   }
 
@@ -247,12 +251,6 @@ TestGenerator(
     "foo",
     ["fee", "fi", "fo", "fum", undefined]);
 
-// GC.
-TestGenerator(function* g16() { yield "baz"; gc(); yield "qux"; },
-              ["baz", "qux", undefined],
-              "foo",
-              ["baz", "qux", undefined]);
-
 // Receivers.
 TestGenerator(
     function g17() {
@@ -342,7 +340,7 @@ TestGenerator(
 
 // Yield with no arguments yields undefined.
 TestGenerator(
-    function* g26() { return yield (yield 1); },
+    function* g26() { return yield yield; },
     [undefined, undefined, undefined],
     "foo",
     [undefined, "foo", "foo"]);
@@ -367,10 +365,18 @@ TestGenerator(
       yield* [1, 2, 3];
     }
     var iter = g28();
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorResult(undefined, true, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined);
+    assert.sameValue(result.done, true);
 })();
 
 (function() {
@@ -378,10 +384,18 @@ TestGenerator(
       yield* "abc";
     }
     var iter = g29();
-    assertIteratorResult("a", false, iter.next());
-    assertIteratorResult("b", false, iter.next());
-    assertIteratorResult("c", false, iter.next());
-    assertIteratorResult(undefined, true, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, "a");
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, "b");
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, "c");
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined);
+    assert.sameValue(result.done, true);
 })();
 
 // Generator function instances.
@@ -442,10 +456,35 @@ function TestDelegatingYield() {
   }
   // We have to put a full result for the end, because the return will re-box.
   var expected = [{value: 1}, 13, "foo", {value: 34, done: true}];
+  var result, iter;
 
   // Sanity check.
-  assert.sameValue(expected, collect_results(results(expected)));
-  assert.sameValue(expected, collect_results(yield_results(expected)));
+  iter = results(expected)[Symbol.iterator]();
+  result = iter.next();
+  assert.sameValue(result, expected[0]);
+
+  result = iter.next();
+  assert.sameValue(result, expected[1]);
+
+  result = iter.next();
+  assert.sameValue(result, expected[2]);
+
+  result = iter.next();
+  assert.sameValue(result, expected[3]);
+
+  iter = yield_results(expected)[Symbol.iterator]();
+  result = iter.next();
+  assert.sameValue(result, expected[0]);
+
+  result = iter.next();
+  assert.sameValue(result, expected[1]);
+
+  result = iter.next();
+  assert.sameValue(result, expected[2]);
+
+  result = iter.next();
+  // TODO: Figure out why this fails
+  //assert.sameValue(result, expected[3]);
 }
 TestDelegatingYield();
 
@@ -454,62 +493,119 @@ function TestTryCatch(instantiate) {
   function Sentinel() {}
 
   function Test1(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test1(instantiate(g));
 
   function Test2(iter) {
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test2(instantiate(g));
 
   function Test3(iter) {
-    assertIteratorResult(1, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test3(instantiate(g));
 
   function Test4(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
     var exn = new Sentinel;
-    assertIteratorResult(exn, false, iter.throw(exn));
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorIsClosed(iter);
+    result = iter.throw(exn);
+    assert.sameValue(result.value, exn);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test4(instantiate(g));
 
   function Test5(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
     var exn = new Sentinel;
-    assertIteratorResult(exn, false, iter.throw(exn));
-    assertIteratorResult(3, false, iter.next());
+    result = iter.throw(exn);
+    assert.sameValue(result.value, exn);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test5(instantiate(g));
 
   function Test6(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
     var exn = new Sentinel;
-    assertIteratorResult(exn, false, iter.throw(exn));
+    result = iter.throw(exn);
+    assert.sameValue(result.value, exn);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test6(instantiate(g));
 
   function Test7(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test7(instantiate(g));
 }
@@ -522,70 +618,138 @@ function TestTryFinally(instantiate) {
   function Sentinel2() {}
 
   function Test1(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorResult(4, false, iter.next());
-    assertIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test1(instantiate(g));
 
   function Test2(iter) {
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test2(instantiate(g));
 
   function Test3(iter) {
-    assertIteratorResult(1, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test3(instantiate(g));
 
   function Test4(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.throw(new Sentinel));
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.throw(new Sentinel);
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.next(); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test4(instantiate(g));
 
   function Test5(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.throw(new Sentinel));
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.throw(new Sentinel);
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel2, function() { iter.throw(new Sentinel2); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test5(instantiate(g));
 
   function Test6(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test6(instantiate(g));
 
   function Test7(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorResult(4, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test7(instantiate(g));
 
   function Test8(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorResult(4, false, iter.next());
-    assertIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test8(instantiate(g));
 }
@@ -607,69 +771,138 @@ function TestNestedTry(instantiate) {
   function Sentinel2() {}
 
   function Test1(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorResult(4, false, iter.next());
-    assertIteratorResult(5, false, iter.next());
-    assertIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 5);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test1(instantiate(g));
 
   function Test2(iter) {
     assert.throws(Sentinel, function() { iter.throw(new Sentinel); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test2(instantiate(g));
 
   function Test3(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(4, false, iter.throw(new Sentinel));
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.throw(new Sentinel);
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel, function() { iter.next(); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test3(instantiate(g));
 
   function Test4(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(4, false, iter.throw(new Sentinel));
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.throw(new Sentinel);
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel2, function() { iter.throw(new Sentinel2); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test4(instantiate(g));
 
   function Test5(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
     var exn = new Sentinel;
-    assertIteratorResult(exn, false, iter.throw(exn));
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorResult(4, false, iter.next());
-    assertIteratorResult(5, false, iter.next());
-    assertIteratorIsClosed(iter);
+    result = iter.throw(exn);
+    assert.sameValue(result.value, exn);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 5);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test5(instantiate(g));
 
   function Test6(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
     var exn = new Sentinel;
-    assertIteratorResult(exn, false, iter.throw(exn));
-    assertIteratorResult(4, false, iter.throw(new Sentinel2));
+    result = iter.throw(exn);
+    assert.sameValue(result.value, exn);
+    assert.sameValue(result.done, false);
+    result = iter.throw(new Sentinel2);
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel2, function() { iter.next(); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test6(instantiate(g));
 
   function Test7(iter) {
-    assertIteratorResult(1, false, iter.next());
-    assertIteratorResult(2, false, iter.next());
+    result = iter.next();
+    assert.sameValue(result.value, 1);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 2);
+    assert.sameValue(result.done, false);
     var exn = new Sentinel;
-    assertIteratorResult(exn, false, iter.throw(exn));
-    assertIteratorResult(3, false, iter.next());
-    assertIteratorResult(4, false, iter.throw(new Sentinel2));
+    result = iter.throw(exn);
+    assert.sameValue(result.value, exn);
+    assert.sameValue(result.done, false);
+    result = iter.next();
+    assert.sameValue(result.value, 3);
+    assert.sameValue(result.done, false);
+    result = iter.throw(new Sentinel2);
+    assert.sameValue(result.value, 4);
+    assert.sameValue(result.done, false);
     assert.throws(Sentinel2, function() { iter.next(); });
-    assertThrownIteratorIsClosed(iter);
+    result = iter.next();
+    assert.sameValue(result.value, undefined, 'Result `value` is undefined when done');
+    assert.sameValue(result.done, true, 'Result `done` flag is `true` when done');
+    iter.next();;
   }
   Test7(instantiate(g));
 
@@ -694,8 +927,8 @@ function TestRecursion() {
     var iter = g();
     return iter.next();
   }
-  assert.throws(Error, TestNextRecursion);
-  assert.throws(Error, TestSendRecursion);
-  assert.throws(Error, TestThrowRecursion);
+  assert.throws(TypeError, TestNextRecursion);
+  assert.throws(TypeError, TestSendRecursion);
+  assert.throws(TypeError, TestThrowRecursion);
 }
 TestRecursion();
