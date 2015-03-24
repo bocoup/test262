@@ -14,6 +14,7 @@ var GeneratorObjectPrototype = GeneratorFunctionPrototype.prototype;
 // Generators have an additional object interposed in the chain between
 // themselves and Function.prototype.
 function TestGeneratorFunctionPrototype() {
+  // Tautoligical:
   assert.sameValue(Object.getPrototypeOf(function* () {}),
              GeneratorFunctionPrototype);
 }
@@ -23,20 +24,15 @@ TestGeneratorFunctionPrototype();
 // Functions that we associate with generator objects are actually defined by
 // a common prototype.
 function TestGeneratorObjectPrototype() {
+  // Invalid:
   assert.sameValue(Object.getPrototypeOf(GeneratorObjectPrototype),
              Object.prototype);
+
+  // Tautoligical:
   assert.sameValue(Object.getPrototypeOf((function*(){yield 1}).prototype),
              GeneratorObjectPrototype);
 
-  var expected_property_names = ["next", "throw", "constructor"];
-  var found_property_names =
-      Object.getOwnPropertyNames(GeneratorObjectPrototype);
-
-  expected_property_names.sort();
-  found_property_names.sort();
-
-  assert(compareArray(expected_property_names, found_property_names));
-
+  // Invalid:
   iterator_desc = Object.getOwnPropertyDescriptor(GeneratorObjectPrototype,
       Symbol.iterator);
   assert.sameValue(iterator_desc !== undefined, true);
