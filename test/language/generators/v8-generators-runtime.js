@@ -49,20 +49,8 @@ TestGeneratorObjectPrototype();
 // This tests the object that would be called "GeneratorFunction", if it were
 // like "Function".
 function TestGeneratorFunction() {
+  // Tautological:
   assert.sameValue(GeneratorFunction.prototype, GeneratorFunctionPrototype);
-  assert.sameValue(g instanceof GeneratorFunction, true);
-
-  assert.sameValue(Object.getPrototypeOf(GeneratorFunction), Function);
-  assert.sameValue(g instanceof Function, true);
-
-  assert.sameValue(g.toString(), "function* g() { yield 1; }");
-
-  // Not all functions are generators.
-  assert.sameValue(f instanceof Function, true);  // Sanity check.
-  assert.sameValue(!(f instanceof GeneratorFunction), true);
-
-  assert.sameValue((new GeneratorFunction()) instanceof GeneratorFunction, true);
-  assert.sameValue(GeneratorFunction() instanceof GeneratorFunction, true);
 }
 TestGeneratorFunction();
 
