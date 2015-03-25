@@ -117,22 +117,6 @@ function TestGenerator(g, expected_values_for_next,
   }
 }
 
-// Generator function instances.
-TestGenerator(GeneratorFunction(),
-              [undefined],
-              "foo",
-              [undefined]);
-
-TestGenerator(new GeneratorFunction(),
-              [undefined],
-              "foo",
-              [undefined]);
-
-TestGenerator(GeneratorFunction('yield 1;'),
-              [1, undefined],
-              "foo",
-              [1, undefined]);
-
 TestGenerator(
     function() { return GeneratorFunction('x', 'y', 'yield x + y;')(1, 2) },
     [3, undefined],
