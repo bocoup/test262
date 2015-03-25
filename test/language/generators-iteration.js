@@ -116,9 +116,3 @@ function TestGenerator(g, expected_values_for_next,
     testThrow(function() { return new g(); });
   }
 }
-
-TestGenerator(
-    function() { return GeneratorFunction('x', 'y', 'yield x + y;')(1, 2) },
-    [3, undefined],
-    "foo",
-    [3, undefined]);
