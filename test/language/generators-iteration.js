@@ -138,25 +138,3 @@ TestGenerator(
     [3, undefined],
     "foo",
     [3, undefined]);
-
-function TestRecursion() {
-  function TestNextRecursion() {
-    function* g() { yield iter.next(); }
-    var iter = g();
-    return iter.next();
-  }
-  function TestSendRecursion() {
-    function* g() { yield iter.next(42); }
-    var iter = g();
-    return iter.next();
-  }
-  function TestThrowRecursion() {
-    function* g() { yield iter.throw(1); }
-    var iter = g();
-    return iter.next();
-  }
-  assert.throws(TypeError, TestNextRecursion);
-  assert.throws(TypeError, TestSendRecursion);
-  assert.throws(TypeError, TestThrowRecursion);
-}
-TestRecursion();
