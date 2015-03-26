@@ -37,23 +37,6 @@ description: >
 ---*/
 var GeneratorFunction = Object.getPrototypeOf(function*(){yield 1;}).constructor;
 
-function TestGeneratorResultPrototype() {
-  function* g() { yield 1; }
-  var iter = g();
-  var result = iter.next();
-
-  assert.sameValue(Object.getPrototypeOf(result), Object.prototype);
-  property_names = Object.getOwnPropertyNames(result);
-
-  assert(Object.hasOwnProperty.call(result, 'done'));
-  assert(Object.hasOwnProperty.call(result, 'value'));
-
-  result = result;
-  assert.sameValue(result.value, 1);
-  assert.sameValue(result.done, false);
-}
-TestGeneratorResultPrototype();
-
 function TestGenerator(g, expected_values_for_next,
                        send_val, expected_values_for_send) {
   function testNext(thunk) {
