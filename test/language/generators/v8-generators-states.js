@@ -28,15 +28,3 @@ function assertIteratorIsClosed(iter) {
 var iter;
 function* nextGenerator() { yield iter.next(); }
 function* throwGenerator() { yield iter.throw(new Bar); }
-
-// Throw on a suspendedStart iterator.
-iter = nextGenerator();
-assert.throws(Foo, function() { iter.throw(new Foo) });
-assert.throws(Foo, function() { iter.throw(new Foo) });
-assertIteratorIsClosed(iter);
-
-// The same.
-iter = throwGenerator();
-assert.throws(Foo, function() { iter.throw(new Foo) });
-assert.throws(Foo, function() { iter.throw(new Foo) });
-assertIteratorIsClosed(iter);
