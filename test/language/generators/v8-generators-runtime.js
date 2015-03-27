@@ -59,10 +59,6 @@ function TestPerGeneratorPrototype() {
   // Invalid:
   assert.sameValue(g.prototype instanceof GeneratorFunctionPrototype, true);
 
-  assert.sameValue(Object.getPrototypeOf(g.prototype), GeneratorObjectPrototype);
   assert.sameValue(!(g.prototype instanceof Function), true);
-  assert.sameValue("object", typeof (g.prototype));
-
-  assert(compareArray([], Object.getOwnPropertyNames(g.prototype)));
 }
 TestPerGeneratorPrototype();
