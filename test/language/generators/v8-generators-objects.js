@@ -52,24 +52,3 @@ function TestContextAllocation() {
   g5(["foo"]);
 }
 TestContextAllocation();
-
-
-// Test the methods of generator objects.
-function TestGeneratorObjectMethods() {
-  function* g() { yield 1; }
-  var iter = g();
-
-  function TestNonGenerator(non_generator) {
-    assert.throws(TypeError, function() { iter.next.call(non_generator); });
-    assert.throws(TypeError, function() { iter.next.call(non_generator, 1); });
-    assert.throws(TypeError, function() { iter.throw.call(non_generator, 1); });
-    assert.throws(TypeError, function() { iter.close.call(non_generator); });
-  }
-
-  TestNonGenerator(1);
-  TestNonGenerator({});
-  TestNonGenerator(function(){});
-  TestNonGenerator(g);
-  TestNonGenerator(g.prototype);
-}
-TestGeneratorObjectMethods();
