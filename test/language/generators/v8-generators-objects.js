@@ -59,8 +59,6 @@ function TestGeneratorObject() {
   function* g() { yield 1; }
 
   var iter = g();
-  assert.sameValue(Object.getPrototypeOf(iter), g.prototype);
-  assert.sameValue(iter instanceof g, true);
   //assertEquals("Generator", %_ClassOf(iter));
   assert.sameValue(String(iter), "[object Generator]");
   assert.sameValue(Object.getOwnPropertyNames(iter).length, 0);
@@ -68,8 +66,6 @@ function TestGeneratorObject() {
 
   // g() is the same as new g().
   iter = new g();
-  assert.sameValue(Object.getPrototypeOf(iter), g.prototype);
-  assert.sameValue(iter instanceof g, true);
   //assertEquals("Generator", %_ClassOf(iter));
   assert.sameValue(String(iter), "[object Generator]");
   assert.sameValue(Object.prototype.toString.call(iter), "[object Generator]");
