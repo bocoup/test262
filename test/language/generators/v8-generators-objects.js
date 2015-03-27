@@ -54,29 +54,6 @@ function TestContextAllocation() {
 TestContextAllocation();
 
 
-// Test the properties and prototype of a generator object.
-function TestGeneratorObject() {
-  function* g() { yield 1; }
-
-  var iter = g();
-  //assertEquals("Generator", %_ClassOf(iter));
-  assert.sameValue(String(iter), "[object Generator]");
-  assert.sameValue(Object.getOwnPropertyNames(iter).length, 0);
-  assert.sameValue(iter !== g(), true);
-
-  // g() is the same as new g().
-  iter = new g();
-  //assertEquals("Generator", %_ClassOf(iter));
-  assert.sameValue(String(iter), "[object Generator]");
-  assert.sameValue(Object.prototype.toString.call(iter), "[object Generator]");
-  var gf = Object.getPrototypeOf(iter).constructor;
-  assert.sameValue(Object.prototype.toString.call(gf), "[object GeneratorFunction]");
-  assert.sameValue(Object.getOwnPropertyNames(iter).length, 0);
-  assert.sameValue(iter !== new g(), true);
-}
-TestGeneratorObject();
-
-
 // Test the methods of generator objects.
 function TestGeneratorObjectMethods() {
   function* g() { yield 1; }
