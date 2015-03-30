@@ -1,0 +1,688 @@
+// Copyright 2014 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-unicode
+
+// Copyright (C) Copyright 2014 the V8 project authors. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+/*---
+es6id: 
+description: >
+includes: [compareArray.js]
+---*/
+var num = 5;
+var str = "str";
+function fn() { return "result"; }
+var obj = {
+  num: num,
+  str: str,
+  fn: function() { return "result"; }
+};
+
+(function testBasicExpressions() {
+  assert.sameValue(`foo ${num} bar`, "foo 5 bar");
+  assert.sameValue(`foo ${str} bar`, "foo str bar");
+  assert.sameValue(`foo ${obj} bar`, "foo [object Object] bar");
+  assert.sameValue(`foo ${fn()} bar`, "foo result bar");
+  assert.sameValue(`foo ${obj.num} bar`, "foo 5 bar");
+  assert.sameValue(`foo ${obj.str} bar`, "foo str bar");
+  assert.sameValue(`foo ${obj.fn()} bar`, "foo result bar");
+})();
+
+(function testExpressionsContainingTemplates() {
+  assert.sameValue(`foo ${`bar ${num}`}`, "foo bar 5");
+})();
+
+(function testMultilineTemplates() {
+  assert.sameValue(`foo
+    bar
+    baz`, "foo\n    bar\n    baz");
+
+  assert.sameValue(eval("`foo\r\n  bar\r  baz`"), "foo\n  bar\n  baz");
+})();
+
+(function testLineContinuation() {
+  assert.sameValue(`\
+
+`, "\n");
+})();
+
+(function testTaggedTemplates() {
+  var calls = 0;
+  (function(s) {
+    calls++;
+  })`test`;
+  assert.sameValue(calls, 1);
+
+  calls = 0;
+  // assert tag is invoked in right context
+  obj = {
+    fn: function() {
+      calls++;
+      assert.sameValue(obj, this);
+    }
+  };
+
+  obj.fn`test`;
+  assert.sameValue(calls, 1);
+
+  calls = 0;
+  // Simple templates only have a callSiteObj
+  (function(s) {
+    calls++;
+    assert.sameValue(arguments.length, 1);
+  })`test`;
+  assert.sameValue(calls, 1);
+
+  // Templates containing expressions have the values of evaluated expressions
+  calls = 0;
+  (function(site, n, s, o, f, r) {
+    calls++;
+    assert.sameValue(arguments.length, 6);
+    assert.sameValue(typeof n, "number");
+    assert.sameValue(typeof s, "string");
+    assert.sameValue(typeof o, "object");
+    assert.sameValue(typeof f, "function");
+    assert.sameValue(r, "result");
+  })`${num}${str}${obj}${fn}${fn()}`;
+  assert.sameValue(calls, 1);
+
+  // The TV and TRV of NoSubstitutionTemplate :: `` is the empty code unit
+  // sequence.
+  calls = 0;
+  (function(s) {
+    calls++;
+    assert.sameValue(s.length, 1);
+    assert.sameValue(s.raw.length, 1);
+    assert.sameValue(s[0], "");
+
+    // Failure: expected <""> found <"foo  barfoo  barfoo foo foo foo testtest">
+    assert.sameValue(s.raw[0], "");
+  })``;
+  assert.sameValue(calls, 1);
+
+  // The TV and TRV of TemplateHead :: `${ is the empty code unit sequence.
+  calls = 0;
+  (function(s) {
+    calls++;
+    assert.sameValue(s.length, 2);
+    assert.sameValue(s.raw.length, 2);
+    assert.sameValue(s[0], "");
+    assert.sameValue(s.raw[0], "");
+  })`${1}`;
+  assert.sameValue(calls, 1);
+
+  // The TV and TRV of TemplateMiddle :: }${ is the empty code unit sequence.
+  calls = 0;
+  (function(s) {
+    calls++;
+    assert.sameValue(s.length, 3);
+    assert.sameValue(s.raw.length, 3);
+    assert.sameValue(s[1], "");
+    assert.sameValue(s.raw[1], "");
+  })`${1}${2}`;
+  assert.sameValue(calls, 1);
+
+  // The TV and TRV of TemplateTail :: }` is the empty code unit sequence.
+  calls = 0;
+  (function(s) {
+    calls++;
+    assert.sameValue(s.length, 2);
+    assert.sameValue(s.raw.length, 2);
+    assert.sameValue(s[1], "");
+    assert.sameValue(s.raw[1], "");
+  })`${1}`;
+  assert.sameValue(calls, 1);
+
+  // The TV of NoSubstitutionTemplate :: ` TemplateCharacters ` is the TV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[0], "foo"); })`foo`;
+  assert.sameValue(calls, 1);
+
+  // The TV of TemplateHead :: ` TemplateCharacters ${ is the TV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[0], "foo"); })`foo${1}`;
+  assert.sameValue(calls, 1);
+
+  // The TV of TemplateMiddle :: } TemplateCharacters ${ is the TV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[1], "foo"); })`${1}foo${2}`;
+  assert.sameValue(calls, 1);
+
+  // The TV of TemplateTail :: } TemplateCharacters ` is the TV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[1], "foo"); })`${1}foo`;
+  assert.sameValue(calls, 1);
+
+  // The TV of TemplateCharacters :: TemplateCharacter is the TV of
+  // TemplateCharacter.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[0], "f"); })`f`;
+  assert.sameValue(calls, 1);
+
+  // The TV of TemplateCharacter :: $ is the code unit value 0x0024.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[0], "$"); })`$`;
+  assert.sameValue(calls, 1);
+
+  // The TV of TemplateCharacter :: \ EscapeSequence is the CV of
+  // EscapeSequence.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[0], "안녕"); })`\uc548\uB155`;
+  (function(s) { calls++; assert.sameValue(s[0], "\xff"); })`\xff`;
+  (function(s) { calls++; assert.sameValue(s[0], "\n"); })`\n`;
+  assert.sameValue(calls, 3);
+
+  // The TV of TemplateCharacter :: LineContinuation is the TV of
+  // LineContinuation. The TV of LineContinuation :: \ LineTerminatorSequence is
+  // the empty code unit sequence.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s[0], ""); })`\
+`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of NoSubstitutionTemplate :: ` TemplateCharacters ` is the TRV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "test"); })`test`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of TemplateHead :: ` TemplateCharacters ${ is the TRV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "test"); })`test${1}`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of TemplateMiddle :: } TemplateCharacters ${ is the TRV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[1], "test"); })`${1}test${2}`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of TemplateTail :: } TemplateCharacters ` is the TRV of
+  // TemplateCharacters.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[1], "test"); })`${1}test`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of TemplateCharacters :: TemplateCharacter is the TRV of
+  // TemplateCharacter.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "f"); })`f`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of TemplateCharacter :: $ is the code unit value 0x0024.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u0024"); })`$`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of EscapeSequence :: 0 is the code unit value 0x0030.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u0030"); })`\0`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of TemplateCharacter :: \ EscapeSequence is the sequence consisting
+  // of the code unit value 0x005C followed by the code units of TRV of
+  // EscapeSequence.
+
+  //   The TRV of EscapeSequence :: HexEscapeSequence is the TRV of the
+  //   HexEscapeSequence.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cxff"); })`\xff`;
+  assert.sameValue(calls, 1);
+
+  //   The TRV of EscapeSequence :: UnicodeEscapeSequence is the TRV of the
+  //   UnicodeEscapeSequence.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cuc548"); })`\uc548`;
+  assert.sameValue(calls, 1);
+
+  //   The TRV of CharacterEscapeSequence :: SingleEscapeCharacter is the TRV of
+  //   the SingleEscapeCharacter.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u0027"); })`\'`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u0022"); })`\"`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u005C"); })`\\`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cb"); })`\b`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cf"); })`\f`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cn"); })`\n`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cr"); })`\r`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Ct"); })`\t`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cv"); })`\v`;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C`"); })`\``;
+  assert.sameValue(calls, 10);
+
+  //   The TRV of CharacterEscapeSequence :: NonEscapeCharacter is the CV of the
+  //   NonEscapeCharacter.
+  calls = 0;
+  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cz"); })`\z`;
+  assert.sameValue(calls, 1);
+
+  // The TRV of LineTerminatorSequence :: <LF> is the code unit value 0x000A.
+  // The TRV of LineTerminatorSequence :: <CR> is the code unit value 0x000A.
+  // The TRV of LineTerminatorSequence :: <CR><LF> is the sequence consisting of
+  // the code unit value 0x000A.
+  calls = 0;
+  function testRawLineNormalization(cs) {
+    calls++;
+    assert.sameValue(cs.raw[0], "\n\n\n");
+    assert.sameValue(cs.raw[1], "\n\n\n");
+  }
+  eval("testRawLineNormalization`\r\n\n\r${1}\r\n\n\r`");
+  assert.sameValue(calls, 1);
+
+  // The TRV of LineContinuation :: \ LineTerminatorSequence is the sequence
+  // consisting of the code unit value 0x005C followed by the code units of TRV
+  // of LineTerminatorSequence.
+  calls = 0;
+  function testRawLineContinuation(cs) {
+    calls++;
+    assert.sameValue(cs.raw[0], "\u005C\n\u005C\n\u005C\n");
+    assert.sameValue(cs.raw[1], "\u005C\n\u005C\n\u005C\n");
+  }
+  eval("testRawLineContinuation`\\\r\n\\\n\\\r${1}\\\r\n\\\n\\\r`");
+  assert.sameValue(calls, 1);
+})();
+
+
+(function testCallSiteObj() {
+  var calls = 0;
+  function tag(cs) {
+    calls++;
+    assert.sameValue(cs.hasOwnProperty("raw"), true);
+    assert.sameValue(Object.isFrozen(cs), true);
+    assert.sameValue(Object.isFrozen(cs.raw), true);
+    var raw = Object.getOwnPropertyDescriptor(cs, "raw");
+    assert.sameValue(raw.writable, false);
+    assert.sameValue(raw.configurable, false);
+    assert.sameValue(raw.enumerable, false);
+    assert.sameValue(Array.prototype, Object.getPrototypeOf(cs.raw));
+    assert.sameValue(Array.isArray(cs.raw), true);
+    assert.sameValue(Array.prototype, Object.getPrototypeOf(cs));
+    assert.sameValue(Array.isArray(cs), true);
+
+    var cooked0 = Object.getOwnPropertyDescriptor(cs, "0");
+    assert.sameValue(cooked0.writable, false);
+    assert.sameValue(cooked0.configurable, false);
+    assert.sameValue(cooked0.enumerable, true);
+
+    var raw0 = Object.getOwnPropertyDescriptor(cs.raw, "0");
+    assert.sameValue(cooked0.writable, false);
+    assert.sameValue(cooked0.configurable, false);
+    assert.sameValue(cooked0.enumerable, true);
+
+    var length = Object.getOwnPropertyDescriptor(cs, "length");
+    assert.sameValue(length.writable, false);
+    assert.sameValue(length.configurable, false);
+    assert.sameValue(length.enumerable, false);
+
+    length = Object.getOwnPropertyDescriptor(cs.raw, "length");
+    assert.sameValue(length.writable, false);
+    assert.sameValue(length.configurable, false);
+    assert.sameValue(length.enumerable, false);
+  }
+  tag`${1}`;
+  assert.sameValue(calls, 1);
+})();
+
+
+(function testUTF16ByteOrderMark() {
+  assert.sameValue(`\uFEFFtest`, "\uFEFFtest");
+  assert.sameValue(eval("`\uFEFFtest`"), "\uFEFFtest");
+})();
+
+
+(function testStringRawAsTagFn() {
+  assert.sameValue(String.raw`\u0065\`\r\r\n\n${"test"}check`,
+               "\\u0065\\`\\r\\r\\n\\ntestcheck");
+  assert.sameValue(eval("String.raw`\\\r\\\r\n\\\n`"), "\\\n\\\n\\\n");
+  assert.sameValue(String.raw``, "");
+})();
+
+
+(function testCallSiteCaching() {
+  var callSites = [];
+  function tag(cs) { callSites.push(cs); }
+  var a = 1;
+  var b = 2;
+
+  tag`head${a}tail`;
+  tag`head${b}tail`;
+
+  assert.sameValue(callSites.length, 2);
+  assert.sameValue(callSites[1], callSites[0]);
+
+  eval("tag`head${a}tail`");
+  assert.sameValue(callSites.length, 3);
+  assert.sameValue(callSites[2], callSites[1]);
+
+  eval("tag`head${b}tail`");
+  assert.sameValue(callSites.length, 4);
+  assert.sameValue(callSites[3], callSites[2]);
+
+  (new Function("tag", "a", "b", "return tag`head${a}tail`;"))(tag, 1, 2);
+  assert.sameValue(callSites.length, 5);
+  assert.sameValue(callSites[4], callSites[3]);
+
+  (new Function("tag", "a", "b", "return tag`head${b}tail`;"))(tag, 1, 2);
+  assert.sameValue(callSites.length, 6);
+  assert.sameValue(callSites[5], callSites[4]);
+
+  callSites = [];
+
+  tag`foo${a}bar`;
+  tag`foo\${.}bar`;
+  assert.sameValue(callSites.length, 2);
+  assert.sameValue(callSites[0].length, 2);
+  assert.sameValue(callSites[1].length, 1);
+
+  callSites = [];
+
+  eval("tag`\\\r\n\\\n\\\r`");
+  eval("tag`\\\r\n\\\n\\\r`");
+  assert.sameValue(callSites.length, 2);
+  assert.sameValue(callSites[1], callSites[0]);
+  assert.sameValue(callSites[0][0], "");
+  assert.sameValue(callSites[0].raw[0], "\\\n\\\n\\\n");
+
+  callSites = [];
+
+  tag`\uc548\ub155`;
+  tag`\uc548\ub155`;
+  assert.sameValue(callSites.length, 2);
+  assert.sameValue(callSites[1], callSites[0]);
+  assert.sameValue(callSites[0][0], "안녕");
+  assert.sameValue(callSites[0].raw[0], "\\uc548\\ub155");
+
+  callSites = [];
+
+  tag`\uc548\ub155`;
+  tag`안녕`;
+  assert.sameValue(callSites.length, 2);
+  assert.sameValue(callSites[0] !== callSites[1], true);
+  assert.sameValue(callSites[0][0], "안녕");
+  assert.sameValue(callSites[0].raw[0], "\\uc548\\ub155");
+  assert.sameValue(callSites[1][0], "안녕");
+  assert.sameValue(callSites[1].raw[0], "안녕");
+
+  // Extra-thorough UTF8 decoding test.
+  callSites = [];
+
+  tag`Iñtërnâtiônàlizætiøn\u2603\uD83D\uDCA9`;
+  tag`Iñtërnâtiônàlizætiøn☃💩`;
+
+  assert.sameValue(callSites.length, 2);
+  assert.sameValue(callSites[0] !== callSites[1], true);
+  assert.sameValue(callSites[0][0], "Iñtërnâtiônàlizætiøn☃💩");
+  assert.sameValue(
+      callSites[0].raw[0], "Iñtërnâtiônàlizætiøn\\u2603\\uD83D\\uDCA9");
+  assert.sameValue(callSites[1][0], "Iñtërnâtiônàlizætiøn☃💩");
+  assert.sameValue(callSites[1].raw[0], "Iñtërnâtiônàlizætiøn☃💩");
+})();
+
+
+(function testExtendedArrayPrototype() {
+  Object.defineProperty(Array.prototype, 0, {
+    set: function() {
+      assert(false);
+    },
+    configurable: true
+  });
+  function tag(){}
+  tag`a${1}b`;
+  delete Array.prototype[0];
+})();
+
+
+(function testRawLineNormalization() {
+  function raw0(callSiteObj) {
+    return callSiteObj.raw[0];
+  }
+  assert.sameValue(eval("raw0`\r`"), "\n");
+  assert.sameValue(eval("raw0`\r\n`"), "\n");
+  assert.sameValue(eval("raw0`\r\r\n`"), "\n\n");
+  assert.sameValue(eval("raw0`\r\n\r\n`"), "\n\n");
+  assert.sameValue(eval("raw0`\r\r\r\n`"), "\n\n\n");
+})();
+
+
+(function testHarmonyUnicode() {
+  function raw0(callSiteObj) {
+    return callSiteObj.raw[0];
+  }
+  assert.sameValue(raw0`a\u{62}c`, "a\\u{62}c");
+  assert.sameValue(raw0`a\u{000062}c`, "a\\u{000062}c");
+  assert.sameValue(raw0`a\u{0}c`, "a\\u{0}c");
+
+  assert.sameValue(`a\u{62}c`, "abc");
+  assert.sameValue(`a\u{000062}c`, "abc");
+})();
+
+
+(function testLiteralAfterRightBrace() {
+  // Regression test for https://code.google.com/p/v8/issues/detail?id=3734
+  function f() {}
+  `abc`;
+
+  function g() {}`def`;
+
+  {
+    // block
+  }
+  `ghi`;
+
+  {
+    // block
+  }`jkl`;
+})();
+
+
+(function testLegacyOctal() {
+  assert.sameValue(`\0`, '\u0000');
+  assert.sameValue(`\0a`, '\u0000a');
+  for (var i = 0; i < 8; i++) {
+    var code = "`\\0" + i + "`";
+    assert.throws(SyntaxError, code);
+    code = "(function(){})" + code;
+    assert.throws(SyntaxError, code);
+  }
+
+  assert.sameValue(String.raw`\0`, '\\0');
+})();
+
+
+(function testSyntaxErrorsNonEscapeCharacter() {
+  assert.throws(SyntaxError, "`\\x`");
+  assert.throws(SyntaxError, "`\\u`");
+  for (var i = 1; i < 8; i++) {
+    var code = "`\\" + i + "`";
+    assert.throws(SyntaxError, code);
+    code = "(function(){})" + code;
+    assert.throws(SyntaxError, code);
+  }
+})();
+
+
+(function testValidNumericEscapes() {
+  assert.sameValue(`\8`, "8");
+  assert.sameValue(`\9`, "9");
+  assert.sameValue(`\08`, "\u00008");
+  assert.sameValue(`\09`, "\u00009");
+})();
+
+
+(function testLegacyOctalEscapesInExpressions() {
+  // Allowed in sloppy expression
+  assert.sameValue(`${"\07"}`, "\x07");
+
+  // Disallowed in template tail
+  assert.throws(SyntaxError, "`${\"\\07\"}\\07`");
+
+  // Disallowed in strict expression
+  assert.throws(SyntaxError,
+               "`${(function() { \"use strict\"; return \"\\07\"; })()}`");
+})();
+
+
+var global = this;
+(function testCallNew() {
+  "use strict";
+  var called = false;
+  var calledWith;
+  global.log = function(x) { called = true; calledWith = x; }
+
+  assertInstanceof(new Function`log("test")`, Object);
+  assert.sameValue(called, true);
+  assert.sameValue(calledWith, "test");
+  delete global.log;
+})();
+
+
+(function testCallNew2() {
+  "use strict";
+  var log = [];
+  function tag(x) {
+    log.push(x);
+    if (!(this instanceof tag)) {
+      return tag;
+    }
+    this.x = x === void 0 ? null : x;
+    return this;
+  }
+  // No arguments passed to constructor
+  var instance = new tag`x``y``z`;
+  assertInstanceof(instance, tag);
+  assert.sameValue(Object.getPrototypeOf(instance), tag.prototype);
+  assert.sameValue({ x: null }, instance);
+  assert.sameValue([["x"], ["y"], ["z"], undefined], log);
+
+  // Arguments passed to constructor
+  log.length = 0;
+  instance = new tag`x2` `y2` `z2` (`test`);
+  assertInstanceof(instance, tag);
+  assert.sameValue(Object.getPrototypeOf(instance), tag.prototype);
+  assert.sameValue({ x: "test" }, instance);
+  assert.sameValue([["x2"], ["y2"], ["z2"], "test"], log);
+})();
+
+
+(function testCallResultOfTagFn() {
+  "use strict";
+  var i = 0;
+  var raw = [];
+  function tag(cs) {
+    var args = Array.prototype.slice.call(arguments);
+    var text = String.raw.apply(null, args);
+    if (i++ < 2) {
+      raw.push("tag;" + text);
+      return tag;
+    }
+
+    raw.push("raw;" + text);
+    return text;
+  }
+  assert.sameValue(tag`test1``test2``test3`, "test3");
+  assert.sameValue([
+    "tag;test1",
+    "tag;test2",
+    "raw;test3"
+  ], raw);
+})();
+
+
+(function testToStringSubstitutions() {
+  var a = {
+    toString: function() { return "a"; },
+    valueOf: function() { return "-a-"; }
+  };
+  var b = {
+    toString: function() { return "b"; },
+    valueOf: function() { return "-b-"; }
+  };
+  assert.sameValue(`${a}`, "a");
+  assert.sameValue(`${a}${b}`, "ab");
+  assert.sameValue(`${a + b}`, "-a--b-");
+  assert.sameValue(`${a + ""}`, "-a-");
+  assert.sameValue(`1${a}`, "1a");
+  assert.sameValue(`1${a}2`, "1a2");
+  assert.sameValue(`1${a}2${b}`, "1a2b");
+  assert.sameValue(`1${a}2${b}3`, "1a2b3");
+})();
+
+
+(function testToStringSubstitutionsOrder() {
+  var subs = [];
+  var log = [];
+  function getter(name, value) {
+    return {
+      get: function() {
+        log.push("get" + name);
+        return value;
+      },
+      set: function(v) {
+        log.push("set" + name);
+      }
+    };
+  }
+  Object.defineProperties(subs, {
+    0: getter(0, "a"),
+    1: getter(1, "b"),
+    2: getter(2, "c")
+  });
+
+  assert.sameValue(`-${subs[0]}-${subs[1]}-${subs[2]}-`, "-a-b-c-");
+  assert(compareArray(["get0", "get1", "get2"], log));
+})();
+
+
+(function testTaggedToStringSubstitutionsOrder() {
+  var subs = [];
+  var log = [];
+  var tagged = [];
+  function getter(name, value) {
+    return {
+      get: function() {
+        log.push("get" + name);
+        return value;
+      },
+      set: function(v) {
+        log.push("set" + name);
+      }
+    };
+  }
+  Object.defineProperties(subs, {
+    0: getter(0, 1),
+    1: getter(1, 2),
+    2: getter(2, 3)
+  });
+
+  function tag(cs) {
+    var n_substitutions = arguments.length - 1;
+    var n_cooked = cs.length;
+    var e = cs[0];
+    var i = 0;
+    assert.sameValue(n_cooked, n_substitutions + 1);
+    while (i < n_substitutions) {
+      var sub = arguments[i++ + 1];
+      var tail = cs[i];
+      tagged.push(sub);
+      e = e.concat(sub, tail);
+    }
+    return e;
+  }
+
+  assert.sameValue(tag`-${subs[0]}-${subs[1]}-${subs[2]}-`, "-1-2-3-");
+  assert(compareArray(["get0", "get1", "get2"], log));
+  assert(compareArray([1, 2, 3], tagged));
+
+  tagged.length = 0;
+  log.length = 0;
+  assert.sameValue(tag`-${subs[0]}-`, "-1-");
+  assert(compareArray(["get0"], log));
+  assert(compareArray([1], tagged));
+})();
