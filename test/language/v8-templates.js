@@ -9,7 +9,6 @@
 /*---
 es6id: 
 description: >
-includes: [compareArray.js]
 ---*/
 var num = 5;
 var str = "str";
@@ -648,7 +647,10 @@ var global = this;
   });
 
   assert.sameValue(`-${subs[0]}-${subs[1]}-${subs[2]}-`, "-a-b-c-");
-  assert(compareArray(["get0", "get1", "get2"], log));
+  assert.sameValue(log[0], "get0");
+  assert.sameValue(log[1], "get1");
+  assert.sameValue(log[2], "get2");
+  assert.sameValue(log.length, 3);
 })();
 
 
@@ -689,12 +691,20 @@ var global = this;
   }
 
   assert.sameValue(tag`-${subs[0]}-${subs[1]}-${subs[2]}-`, "-1-2-3-");
-  assert(compareArray(["get0", "get1", "get2"], log));
-  assert(compareArray([1, 2, 3], tagged));
+  assert.sameValue(log[0], "get0");
+  assert.sameValue(log[1], "get1");
+  assert.sameValue(log[2], "get2");
+  assert.sameValue(log.length, 3);
+  assert.sameValue(tagged[0], 1);
+  assert.sameValue(tagged[1], 2);
+  assert.sameValue(tagged[2], 3);
+  assert.sameValue(tagged.length, 3);
 
   tagged.length = 0;
   log.length = 0;
   assert.sameValue(tag`-${subs[0]}-`, "-1-");
-  assert(compareArray(["get0"], log));
-  assert(compareArray([1], tagged));
+  assert.sameValue(log[0], "get0");
+  assert.sameValue(log.length, 1);
+  assert.sameValue(tagged[0], 1);
+  assert.sameValue(tagged.length, 1);
 })();
