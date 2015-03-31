@@ -26,17 +26,6 @@ var obj = {
   // of the code unit value 0x005C followed by the code units of TRV of
   // EscapeSequence.
 
-  // The TRV of LineContinuation :: \ LineTerminatorSequence is the sequence
-  // consisting of the code unit value 0x005C followed by the code units of TRV
-  // of LineTerminatorSequence.
-  calls = 0;
-  function testRawLineContinuation(cs) {
-    calls++;
-    assert.sameValue(cs.raw[0], "\u005C\n\u005C\n\u005C\n");
-    assert.sameValue(cs.raw[1], "\u005C\n\u005C\n\u005C\n");
-  }
-  eval("testRawLineContinuation`\\\r\n\\\n\\\r${1}\\\r\n\\\n\\\r`");
-  assert.sameValue(calls, 1);
 })();
 
 
