@@ -19,34 +19,6 @@ var obj = {
   fn: function() { return "result"; }
 };
 
-(function testBasicExpressions() {
-  assert.sameValue(`foo ${num} bar`, "foo 5 bar");
-  assert.sameValue(`foo ${str} bar`, "foo str bar");
-  assert.sameValue(`foo ${obj} bar`, "foo [object Object] bar");
-  assert.sameValue(`foo ${fn()} bar`, "foo result bar");
-  assert.sameValue(`foo ${obj.num} bar`, "foo 5 bar");
-  assert.sameValue(`foo ${obj.str} bar`, "foo str bar");
-  assert.sameValue(`foo ${obj.fn()} bar`, "foo result bar");
-})();
-
-(function testExpressionsContainingTemplates() {
-  assert.sameValue(`foo ${`bar ${num}`}`, "foo bar 5");
-})();
-
-(function testMultilineTemplates() {
-  assert.sameValue(`foo
-    bar
-    baz`, "foo\n    bar\n    baz");
-
-  assert.sameValue(eval("`foo\r\n  bar\r  baz`"), "foo\n  bar\n  baz");
-})();
-
-(function testLineContinuation() {
-  assert.sameValue(`\
-
-`, "\n");
-})();
-
 (function testTaggedTemplates() {
   var calls = 0;
   (function(s) {
