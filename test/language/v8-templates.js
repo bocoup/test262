@@ -29,47 +29,6 @@ var obj = {
 })();
 
 
-(function testCallSiteObj() {
-  var calls = 0;
-  function tag(cs) {
-    calls++;
-    assert.sameValue(cs.hasOwnProperty("raw"), true);
-    assert.sameValue(Object.isFrozen(cs), true);
-    assert.sameValue(Object.isFrozen(cs.raw), true);
-    var raw = Object.getOwnPropertyDescriptor(cs, "raw");
-    assert.sameValue(raw.writable, false);
-    assert.sameValue(raw.configurable, false);
-    assert.sameValue(raw.enumerable, false);
-    assert.sameValue(Array.prototype, Object.getPrototypeOf(cs.raw));
-    assert.sameValue(Array.isArray(cs.raw), true);
-    assert.sameValue(Array.prototype, Object.getPrototypeOf(cs));
-    assert.sameValue(Array.isArray(cs), true);
-
-    var cooked0 = Object.getOwnPropertyDescriptor(cs, "0");
-    assert.sameValue(cooked0.writable, false);
-    assert.sameValue(cooked0.configurable, false);
-    assert.sameValue(cooked0.enumerable, true);
-
-    var raw0 = Object.getOwnPropertyDescriptor(cs.raw, "0");
-    assert.sameValue(cooked0.writable, false);
-    assert.sameValue(cooked0.configurable, false);
-    assert.sameValue(cooked0.enumerable, true);
-
-    var length = Object.getOwnPropertyDescriptor(cs, "length");
-    assert.sameValue(length.writable, false);
-    assert.sameValue(length.configurable, false);
-    assert.sameValue(length.enumerable, false);
-
-    length = Object.getOwnPropertyDescriptor(cs.raw, "length");
-    assert.sameValue(length.writable, false);
-    assert.sameValue(length.configurable, false);
-    assert.sameValue(length.enumerable, false);
-  }
-  tag`${1}`;
-  assert.sameValue(calls, 1);
-})();
-
-
 (function testUTF16ByteOrderMark() {
   assert.sameValue(`\uFEFFtest`, "\uFEFFtest");
   assert.sameValue(eval("`\uFEFFtest`"), "\uFEFFtest");
