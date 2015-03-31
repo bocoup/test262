@@ -22,39 +22,6 @@ var obj = {
 (function testTaggedTemplates() {
   var calls = 0;
 
-  // The TV of TemplateTail :: } TemplateCharacters ` is the TV of
-  // TemplateCharacters.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s[1], "foo"); })`${1}foo`;
-  assert.sameValue(calls, 1);
-
-  // The TV of TemplateCharacters :: TemplateCharacter is the TV of
-  // TemplateCharacter.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s[0], "f"); })`f`;
-  assert.sameValue(calls, 1);
-
-  // The TV of TemplateCharacter :: $ is the code unit value 0x0024.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s[0], "$"); })`$`;
-  assert.sameValue(calls, 1);
-
-  // The TV of TemplateCharacter :: \ EscapeSequence is the CV of
-  // EscapeSequence.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s[0], "안녕"); })`\uc548\uB155`;
-  (function(s) { calls++; assert.sameValue(s[0], "\xff"); })`\xff`;
-  (function(s) { calls++; assert.sameValue(s[0], "\n"); })`\n`;
-  assert.sameValue(calls, 3);
-
-  // The TV of TemplateCharacter :: LineContinuation is the TV of
-  // LineContinuation. The TV of LineContinuation :: \ LineTerminatorSequence is
-  // the empty code unit sequence.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s[0], ""); })`\
-`;
-  assert.sameValue(calls, 1);
-
   // The TRV of NoSubstitutionTemplate :: ` TemplateCharacters ` is the TRV of
   // TemplateCharacters.
   calls = 0;
