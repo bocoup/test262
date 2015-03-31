@@ -26,19 +26,6 @@ var obj = {
   // of the code unit value 0x005C followed by the code units of TRV of
   // EscapeSequence.
 
-  // The TRV of LineTerminatorSequence :: <LF> is the code unit value 0x000A.
-  // The TRV of LineTerminatorSequence :: <CR> is the code unit value 0x000A.
-  // The TRV of LineTerminatorSequence :: <CR><LF> is the sequence consisting of
-  // the code unit value 0x000A.
-  calls = 0;
-  function testRawLineNormalization(cs) {
-    calls++;
-    assert.sameValue(cs.raw[0], "\n\n\n");
-    assert.sameValue(cs.raw[1], "\n\n\n");
-  }
-  eval("testRawLineNormalization`\r\n\n\r${1}\r\n\n\r`");
-  assert.sameValue(calls, 1);
-
   // The TRV of LineContinuation :: \ LineTerminatorSequence is the sequence
   // consisting of the code unit value 0x005C followed by the code units of TRV
   // of LineTerminatorSequence.
