@@ -21,10 +21,6 @@ var obj = {
 
 (function testTaggedTemplates() {
   var calls = 0;
-  (function(s) {
-    calls++;
-  })`test`;
-  assert.sameValue(calls, 1);
 
   calls = 0;
   // assert tag is invoked in right context
@@ -36,27 +32,6 @@ var obj = {
   };
 
   obj.fn`test`;
-  assert.sameValue(calls, 1);
-
-  calls = 0;
-  // Simple templates only have a callSiteObj
-  (function(s) {
-    calls++;
-    assert.sameValue(arguments.length, 1);
-  })`test`;
-  assert.sameValue(calls, 1);
-
-  // Templates containing expressions have the values of evaluated expressions
-  calls = 0;
-  (function(site, n, s, o, f, r) {
-    calls++;
-    assert.sameValue(arguments.length, 6);
-    assert.sameValue(typeof n, "number");
-    assert.sameValue(typeof s, "string");
-    assert.sameValue(typeof o, "object");
-    assert.sameValue(typeof f, "function");
-    assert.sameValue(r, "result");
-  })`${num}${str}${obj}${fn}${fn()}`;
   assert.sameValue(calls, 1);
 
   // The TV and TRV of NoSubstitutionTemplate :: `` is the empty code unit
