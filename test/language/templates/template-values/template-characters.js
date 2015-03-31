@@ -3,14 +3,22 @@
 /*---
 es6id: 11.8.6
 description: >
+    The TV of TemplateCharacters :: TemplateCharacter is the TV of
+    TemplateCharacter.
     The TV of NoSubstitutionTemplate :: ` TemplateCharacters ` is the TV of
     TemplateCharacters.
+    The TRV of TemplateCharacters :: TemplateCharacter is the TRV of
+    TemplateCharacter.
 ---*/
 
 var calls;
-(function(s) { calls++; assert.sameValue(s[0], "f"); })`f`;
-assert.sameValue(
-  `f`,
-  'f',
-  'The TV of TemplateCharacters :: TemplateCharacter is the TV of TemplateCharacter.'
-);
+
+calls = 0;
+(function(s) {
+  calls++;
+  assert.sameValue(s[0], 'f', 'TemplateCharacters template value');
+  assert.sameValue(s.raw[0], 'f', 'TemplateCharacters template raw value');
+})`f`;
+assert.sameValue(calls, 1);
+
+assert.sameValue(`test`, 'test', 'TemplateCharacters template value');

@@ -6,6 +6,8 @@ description: >
     The TV and TRV of TemplateHead :: `${ is the empty code unit sequence.
     The TV of TemplateHead :: ` TemplateCharacters ${ is the TV of
     TemplateCharacters.
+    The TRV of TemplateHead :: ` TemplateCharacters ${ is the TRV of
+    TemplateCharacters.
 ---*/
 
 var calls;
@@ -22,5 +24,6 @@ calls = 0;
 (function(s) {
   calls++;
   assert.sameValue(s[0], 'foo', 'Template value (with content)');
+  assert.sameValue(s.raw[0], 'foo', 'Template raw value (with content)');
 })`foo${1}`;
 assert.sameValue(calls, 1);

@@ -22,82 +22,9 @@ var obj = {
 (function testTaggedTemplates() {
   var calls = 0;
 
-  // The TRV of NoSubstitutionTemplate :: ` TemplateCharacters ` is the TRV of
-  // TemplateCharacters.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "test"); })`test`;
-  assert.sameValue(calls, 1);
-
-  // The TRV of TemplateHead :: ` TemplateCharacters ${ is the TRV of
-  // TemplateCharacters.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "test"); })`test${1}`;
-  assert.sameValue(calls, 1);
-
-  // The TRV of TemplateMiddle :: } TemplateCharacters ${ is the TRV of
-  // TemplateCharacters.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[1], "test"); })`${1}test${2}`;
-  assert.sameValue(calls, 1);
-
-  // The TRV of TemplateTail :: } TemplateCharacters ` is the TRV of
-  // TemplateCharacters.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[1], "test"); })`${1}test`;
-  assert.sameValue(calls, 1);
-
-  // The TRV of TemplateCharacters :: TemplateCharacter is the TRV of
-  // TemplateCharacter.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "f"); })`f`;
-  assert.sameValue(calls, 1);
-
-  // The TRV of TemplateCharacter :: $ is the code unit value 0x0024.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u0024"); })`$`;
-  assert.sameValue(calls, 1);
-
-  // The TRV of EscapeSequence :: 0 is the code unit value 0x0030.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u0030"); })`\0`;
-  assert.sameValue(calls, 1);
-
   // The TRV of TemplateCharacter :: \ EscapeSequence is the sequence consisting
   // of the code unit value 0x005C followed by the code units of TRV of
   // EscapeSequence.
-
-  //   The TRV of EscapeSequence :: HexEscapeSequence is the TRV of the
-  //   HexEscapeSequence.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cxff"); })`\xff`;
-  assert.sameValue(calls, 1);
-
-  //   The TRV of EscapeSequence :: UnicodeEscapeSequence is the TRV of the
-  //   UnicodeEscapeSequence.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cuc548"); })`\uc548`;
-  assert.sameValue(calls, 1);
-
-  //   The TRV of CharacterEscapeSequence :: SingleEscapeCharacter is the TRV of
-  //   the SingleEscapeCharacter.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u0027"); })`\'`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u0022"); })`\"`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C\u005C"); })`\\`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cb"); })`\b`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cf"); })`\f`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cn"); })`\n`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cr"); })`\r`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Ct"); })`\t`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cv"); })`\v`;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005C`"); })`\``;
-  assert.sameValue(calls, 10);
-
-  //   The TRV of CharacterEscapeSequence :: NonEscapeCharacter is the CV of the
-  //   NonEscapeCharacter.
-  calls = 0;
-  (function(s) { calls++; assert.sameValue(s.raw[0], "\u005Cz"); })`\z`;
-  assert.sameValue(calls, 1);
 
   // The TRV of LineTerminatorSequence :: <LF> is the code unit value 0x000A.
   // The TRV of LineTerminatorSequence :: <CR> is the code unit value 0x000A.
