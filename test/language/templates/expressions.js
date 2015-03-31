@@ -6,20 +6,20 @@ description: >
     Expressions should be evaluated and converted to Stings accordingto the
     ToString abstract operation.
 ---*/
-var num = 5;
-var str = 'str';
+var number = 5;
+var string = 'string';
 function fn() { return 'result'; }
-var obj = {
-  num: num,
-  str: str,
+var object = {
+  number: number,
+  string: string,
   fn: function() { return 'result'; }
 };
 
-assert.sameValue(`foo ${num} bar`, 'foo 5 bar', 'number value reference');
-assert.sameValue(`foo ${str} bar`, 'foo str bar', 'string value reference');
-assert.sameValue(`foo ${obj} bar`, 'foo [object Object] bar', 'object reference');
+assert.sameValue(`foo ${number} bar`, 'foo 5 bar', 'number value reference');
+assert.sameValue(`foo ${string} bar`, 'foo string bar', 'string value reference');
+assert.sameValue(`foo ${object} bar`, 'foo [object Object] bar', 'object reference');
 assert.sameValue(`foo ${fn()} bar`, 'foo result bar', 'function invocation');
-assert.sameValue(`foo ${obj.num} bar`, 'foo 5 bar', 'number value property');
-assert.sameValue(`foo ${obj.str} bar`, 'foo str bar', 'string value property');
-assert.sameValue(`foo ${obj.fn()} bar`, 'foo result bar', 'method invocation');
-assert.sameValue(`foo ${`bar ${num}`}`, 'foo bar 5', 'template expression');
+assert.sameValue(`foo ${object.number} bar`, 'foo 5 bar', 'number value property');
+assert.sameValue(`foo ${object.string} bar`, 'foo string bar', 'string value property');
+assert.sameValue(`foo ${object.fn()} bar`, 'foo result bar', 'method invocation');
+assert.sameValue(`foo ${`bar ${number}`}`, 'foo bar 5', 'template expression');
