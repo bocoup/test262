@@ -22,18 +22,6 @@ var obj = {
 (function testTaggedTemplates() {
   var calls = 0;
 
-  calls = 0;
-  // assert tag is invoked in right context
-  obj = {
-    fn: function() {
-      calls++;
-      assert.sameValue(obj, this);
-    }
-  };
-
-  obj.fn`test`;
-  assert.sameValue(calls, 1);
-
   // The TV and TRV of NoSubstitutionTemplate :: `` is the empty code unit
   // sequence.
   calls = 0;
