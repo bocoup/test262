@@ -118,16 +118,7 @@ var obj = {
 
 
 (function testLegacyOctal() {
-  assert.sameValue(`\0`, '\u0000');
   assert.sameValue(`\0a`, '\u0000a');
-  for (var i = 0; i < 8; i++) {
-    var code = "`\\0" + i + "`";
-    //assert.throws(SyntaxError, code);
-    code = "(function(){})" + code;
-    //assert.throws(SyntaxError, code);
-  }
-
-  assert.sameValue(String.raw`\0`, '\\0');
 })();
 
 
