@@ -117,11 +117,13 @@ var obj = {
 })();
 
 
+// Functionality covered by other tests
 (function testLegacyOctal() {
   assert.sameValue(`\0a`, '\u0000a');
 })();
 
 
+// Functionality covered by other tests
 (function testSyntaxErrorsNonEscapeCharacter() {
   for (var i = 1; i < 8; i++) {
     var code = "`\\" + i + "`";
@@ -133,15 +135,9 @@ var obj = {
 
 
 (function testLegacyOctalEscapesInExpressions() {
-  // Allowed in sloppy expression
-  assert.sameValue(`${"\07"}`, "\x07");
-
+  // Functionality covered by other tests
   // Disallowed in template tail
   //assert.throws(SyntaxError, "`${\"\\07\"}\\07`");
-
-  // Disallowed in strict expression
-  //assert.throws(SyntaxError,
-  //             "`${(function() { \"use strict\"; return \"\\07\"; })()}`");
 })();
 
 
