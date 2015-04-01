@@ -29,20 +29,6 @@ var obj = {
 })();
 
 
-(function testUTF16ByteOrderMark() {
-  assert.sameValue(`\uFEFFtest`, "\uFEFFtest");
-  assert.sameValue(eval("`\uFEFFtest`"), "\uFEFFtest");
-})();
-
-
-(function testStringRawAsTagFn() {
-  assert.sameValue(String.raw`\u0065\`\r\r\n\n${"test"}check`,
-               "\\u0065\\`\\r\\r\\n\\ntestcheck");
-  assert.sameValue(eval("String.raw`\\\r\\\r\n\\\n`"), "\\\n\\\n\\\n");
-  assert.sameValue(String.raw``, "");
-})();
-
-
 (function testCallSiteCaching() {
   var callSites = [];
   function tag(cs) { callSites.push(cs); }
