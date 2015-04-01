@@ -123,22 +123,12 @@ var obj = {
 
 
 (function testSyntaxErrorsNonEscapeCharacter() {
-  //assert.throws(SyntaxError, "`\\x`");
-  //assert.throws(SyntaxError, "`\\u`");
   for (var i = 1; i < 8; i++) {
     var code = "`\\" + i + "`";
     //assert.throws(SyntaxError, code);
     code = "(function(){})" + code;
     //assert.throws(SyntaxError, code);
   }
-})();
-
-
-(function testValidNumericEscapes() {
-  assert.sameValue(`\8`, "8");
-  assert.sameValue(`\9`, "9");
-  assert.sameValue(`\08`, "\u00008");
-  assert.sameValue(`\09`, "\u00009");
 })();
 
 
