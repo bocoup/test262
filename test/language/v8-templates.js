@@ -72,6 +72,7 @@ var obj = {
 })();
 
 
+// Irrelevant
 (function testExtendedArrayPrototype() {
   Object.defineProperty(Array.prototype, 0, {
     set: function() {
@@ -85,6 +86,7 @@ var obj = {
 })();
 
 
+// Functionality covered by other tests
 (function testRawLineNormalization() {
   function raw0(callSiteObj) {
     return callSiteObj.raw[0];
@@ -94,19 +96,6 @@ var obj = {
   assert.sameValue(eval("raw0`\r\r\n`"), "\n\n");
   assert.sameValue(eval("raw0`\r\n\r\n`"), "\n\n");
   assert.sameValue(eval("raw0`\r\r\r\n`"), "\n\n\n");
-})();
-
-
-(function testHarmonyUnicode() {
-  function raw0(callSiteObj) {
-    return callSiteObj.raw[0];
-  }
-  assert.sameValue(raw0`a\u{62}c`, "a\\u{62}c");
-  assert.sameValue(raw0`a\u{000062}c`, "a\\u{000062}c");
-  assert.sameValue(raw0`a\u{0}c`, "a\\u{0}c");
-
-  assert.sameValue(`a\u{62}c`, "abc");
-  assert.sameValue(`a\u{000062}c`, "abc");
 })();
 
 
