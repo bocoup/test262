@@ -165,34 +165,6 @@ var obj = {
 })();
 
 
-(function testToStringSubstitutionsOrder() {
-  var subs = [];
-  var log = [];
-  function getter(name, value) {
-    return {
-      get: function() {
-        log.push("get" + name);
-        return value;
-      },
-      set: function(v) {
-        log.push("set" + name);
-      }
-    };
-  }
-  Object.defineProperties(subs, {
-    0: getter(0, "a"),
-    1: getter(1, "b"),
-    2: getter(2, "c")
-  });
-
-  assert.sameValue(`-${subs[0]}-${subs[1]}-${subs[2]}-`, "-a-b-c-");
-  assert.sameValue(log[0], "get0");
-  assert.sameValue(log[1], "get1");
-  assert.sameValue(log[2], "get2");
-  assert.sameValue(log.length, 3);
-})();
-
-
 (function testTaggedToStringSubstitutionsOrder() {
   var subs = [];
   var log = [];
