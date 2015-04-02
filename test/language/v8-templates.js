@@ -141,20 +141,6 @@ var obj = {
 })();
 
 
-var global = this;
-(function testCallNew() {
-  "use strict";
-  var called = false;
-  var calledWith;
-  global.log = function(x) { called = true; calledWith = x; }
-
-  assert(new Function`log("test")` instanceof Object);
-  assert.sameValue(called, true);
-  assert.sameValue(calledWith, "test");
-  delete global.log;
-})();
-
-
 (function testCallNew2() {
   "use strict";
   var log = [];
