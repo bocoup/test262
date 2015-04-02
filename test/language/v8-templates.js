@@ -141,6 +141,7 @@ var obj = {
 })();
 
 
+// Functionality covered by other tests
 (function testCallResultOfTagFn() {
   "use strict";
   var i = 0;
@@ -161,26 +162,6 @@ var obj = {
   assert.sameValue(raw[1], "tag;test2");
   assert.sameValue(raw[2], "raw;test3");
   assert.sameValue(raw.length, 3);
-})();
-
-
-(function testToStringSubstitutions() {
-  var a = {
-    toString: function() { return "a"; },
-    valueOf: function() { return "-a-"; }
-  };
-  var b = {
-    toString: function() { return "b"; },
-    valueOf: function() { return "-b-"; }
-  };
-  assert.sameValue(`${a}`, "a");
-  assert.sameValue(`${a}${b}`, "ab");
-  assert.sameValue(`${a + b}`, "-a--b-");
-  assert.sameValue(`${a + ""}`, "-a-");
-  assert.sameValue(`1${a}`, "1a");
-  assert.sameValue(`1${a}2`, "1a2");
-  assert.sameValue(`1${a}2${b}`, "1a2b");
-  assert.sameValue(`1${a}2${b}3`, "1a2b3");
 })();
 
 
