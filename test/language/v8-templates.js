@@ -141,47 +141,6 @@ var obj = {
 })();
 
 
-(function testCallNew2() {
-  "use strict";
-  var log = [];
-  function tag(x) {
-    log.push(x);
-    if (!(this instanceof tag)) {
-      return tag;
-    }
-    this.x = x === void 0 ? null : x;
-    return this;
-  }
-  // No arguments passed to constructor
-  var instance = new tag`x``y``z`;
-  assert(instance instanceof tag);
-  assert.sameValue(Object.getPrototypeOf(instance), tag.prototype);
-  assert.sameValue(instance.x, null);
-  assert.sameValue(log[0][0], "x");
-  assert.sameValue(log[0].length, 1);
-  assert.sameValue(log[1][0], "y");
-  assert.sameValue(log[1].length, 1);
-  assert.sameValue(log[2][0], "z");
-  assert.sameValue(log[3], undefined);
-  assert.sameValue(log.length, 4);
-
-  // Arguments passed to constructor
-  log.length = 0;
-  instance = new tag`x2` `y2` `z2` (`test`);
-  assert(instance instanceof tag);
-  assert.sameValue(Object.getPrototypeOf(instance), tag.prototype);
-  assert.sameValue(instance.x, "test");
-  assert.sameValue(log[0][0], "x2");
-  assert.sameValue(log[0].length, 1);
-  assert.sameValue(log[1][0], "y2");
-  assert.sameValue(log[1].length, 1);
-  assert.sameValue(log[2][0], "z2");
-  assert.sameValue(log[2].length, 1);
-  assert.sameValue(log[3], "test");
-  assert.sameValue(log.length, 4);
-})();
-
-
 (function testCallResultOfTagFn() {
   "use strict";
   var i = 0;
