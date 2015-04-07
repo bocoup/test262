@@ -15,14 +15,16 @@ var iterable = values();
 var i = 0;
 
 for (var x of iterable) {
-  i++;
   try {
     throw new Error();
   } catch (err) {
+    i++;
     continue;
+
+    $ERROR('This code is unreachable (following `continue` statement).');
   }
 
-  $ERROR('This code is unreachable.');
+  $ERROR('This code is unreachable (following `try` statement).');
 }
 
 assert.sameValue(i, 2);

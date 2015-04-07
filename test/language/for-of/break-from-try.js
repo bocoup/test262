@@ -9,20 +9,20 @@ description: >
 
 function* values() {
   yield 1;
-  yield 1;
+  $ERROR('This code is unreachable (following `yield` statement).');
 }
 var iterable = values();
 var i = 0;
 
 for (var x of iterable) {
-  i++;
-
   try {
+    i++;
     break;
-    $ERROR('This code is unreachable.');
+
+    $ERROR('This code is unreachable (following `break` statement).');
   } catch (err) {}
 
-  $ERROR('This code is unreachable.');
+  $ERROR('This code is unreachable (following `try` statement).');
 }
 
 assert.sameValue(i, 1);

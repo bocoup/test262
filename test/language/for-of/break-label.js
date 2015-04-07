@@ -9,7 +9,7 @@ description: >
 
 function* values() {
   yield 1;
-  yield 1;
+  $ERROR('This code is unreachable (following `yield` statement).');
 }
 var iterable = values();
 var i = 0;
@@ -20,9 +20,9 @@ while (true) {
     i++;
     break outer;
 
-    $ERROR('This code is unreachable.');
+    $ERROR('This code is unreachable (following `break` statement).');
   }
-  $ERROR('This code is unreachable.');
+  $ERROR('This code is unreachable (following `for..of` statement).');
 }
 
 assert.sameValue(i, 1);

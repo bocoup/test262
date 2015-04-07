@@ -8,7 +8,7 @@ description: >
 
 function* values() {
   yield 1;
-  yield 1;
+  $ERROR('This code is unreachable (following `yield` statement).');
 }
 var iterable = values();
 var i = 0;
@@ -18,10 +18,10 @@ var result = (function() {
     i++;
     return 34;
 
-    $ERROR('This code is unreachable.');
+    $ERROR('This code is unreachable (following `return` statement).');
   }
 
-  $ERROR('This code is unreachable.');
+  $ERROR('This code is unreachable (following `for..of` statement).');
 })();
 
 assert.sameValue(result, 34);
