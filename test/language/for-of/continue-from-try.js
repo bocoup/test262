@@ -11,10 +11,10 @@ function* values() {
   yield 1;
   yield 1;
 }
-var iterable = values();
+var iterator = values();
 var i = 0;
 
-for (var x of iterable) {
+for (var x of iterator) {
   try {
     i++;
     continue;

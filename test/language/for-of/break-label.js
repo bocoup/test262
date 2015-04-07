@@ -11,12 +11,12 @@ function* values() {
   yield 1;
   $ERROR('This code is unreachable (following `yield` statement).');
 }
-var iterable = values();
+var iterator = values();
 var i = 0;
 
 outer:
 while (true) {
-  for (var x of iterable) {
+  for (var x of iterator) {
     i++;
     break outer;
 
