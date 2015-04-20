@@ -11,7 +11,7 @@ description: >
 function* g() {
   try {
     yield 1;
-	throw new Error();
+    throw new Error();
     try {
       yield 2;
     } catch (e) {
