@@ -3,9 +3,10 @@
 /*---
 es6id: 25.3.1.4
 description: >
-    During iteration, the value specified to `throw` should effect control flow
-    as though it were declared at the corresponding location within the
-    generator function body.
+    When a generator is paused within a `try` block that is declared within a
+    `try` block of a `try..catch` statement, `throw` should interrupt control
+    flow as if a `throw` statement had appeared at that location in the
+    function body.
 ---*/
 
 function* g() {
