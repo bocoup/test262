@@ -4,6 +4,7 @@
 es6id: 13.6.4.13 S5.n
 description: >
     Control flow during body evaluation should honor `break` statements.
+features: [generators]
 ---*/
 
 function* values() {

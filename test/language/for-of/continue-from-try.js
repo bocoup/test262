@@ -5,6 +5,7 @@ es6id: 13.6.4.13 S5.n
 description: >
     Control flow during body evaluation should honor `continue` statements
     within `try` blocks.
+features: [generators]
 ---*/
 
 function* values() {
