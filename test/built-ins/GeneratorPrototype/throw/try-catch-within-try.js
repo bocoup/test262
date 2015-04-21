@@ -17,10 +17,9 @@ function* g() {
   }
   yield 3;
 }
-function Sentinel() {}
 var iter, result, exception;
 
-exception = new Sentinel();
+exception = new Test262Error();
 iter = g();
 
 result = iter.next();

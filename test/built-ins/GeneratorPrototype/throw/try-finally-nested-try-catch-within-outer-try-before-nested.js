@@ -23,7 +23,6 @@ function* g() {
   }
   yield 5;
 }
-function Sentinel() {}
 var iter = g();
 var result;
 
@@ -33,11 +32,11 @@ result = iter.next();
 assert.sameValue(result.value, 1, 'First result `value`');
 assert.sameValue(result.done, false, 'First result `done` flag');
 
-result = iter.throw(new Sentinel());
+result = iter.throw(new Test262Error());
 assert.sameValue(result.value, 4, 'Second result `value`');
 assert.sameValue(result.done, false, 'Second result `done` flag');
 
-assert.throws(Sentinel, function() { iter.next(); });
+assert.throws(Test262Error, function() { iter.next(); });
 
 result = iter.next();
 assert.sameValue(

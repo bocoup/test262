@@ -24,7 +24,6 @@ function* g() {
   }
   yield 5;
 }
-function Sentinel() {}
 var exception = new Error();
 var iter = g();
 var result;
@@ -45,11 +44,11 @@ result = iter.next();
 assert.sameValue(result.value, 3, 'Fourth result `value`');
 assert.sameValue(result.done, false, 'Fourth result `done` flag');
 
-result = iter.throw(new Sentinel());
+result = iter.throw(new Test262Error());
 assert.sameValue(result.value, 4, 'Fifth result `value`');
 assert.sameValue(result.done, false, 'Fifth result `done` flag');
 
-assert.throws(Sentinel, function() { iter.next(); });
+assert.throws(Test262Error, function() { iter.next(); });
 
 result = iter.next();
 assert.sameValue(
