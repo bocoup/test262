@@ -31,4 +31,4 @@ s.forEach(function(value, entry, set) {
   assert.sameValue(set, s);
 });
 
-assert.sameValue(expects.length, 0, , "`forEach` is not a no-op");
+assert.sameValue(expects.length, 0, "`forEach` is not a no-op");
