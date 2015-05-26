@@ -5,7 +5,14 @@
 info: Sanity test for throw statement
 es5id: 12.13_A1
 description: Trying to throw exception with "throw"
-negative: expected_message
 ---*/
 
-throw "expected_message";
+var error = null;
+
+try {
+  throw "expected_message";
+} catch(_error) {
+  error = _error;
+}
+
+assert.sameValue(error, "expected_message");
