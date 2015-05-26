@@ -9,9 +9,9 @@ es5id: 8.7.2-3-a-1gs
 description: >
     Strict Mode - ReferenceError is thrown if LeftHandSide evaluate to
     an unresolvable Reference
-negative: .
 flags: [onlyStrict]
 ---*/
 
-"use strict";
-b = 11;
+assert.throws(ReferenceError, function() {
+  b = 11;
+});

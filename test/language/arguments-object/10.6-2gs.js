@@ -9,12 +9,9 @@ es5id: 10.6-2gs
 description: >
     Strict Mode - arguments.callee cannot be accessed in a strict
     function
-negative: .
 flags: [onlyStrict]
 ---*/
 
-"use strict";
-function f_10_6_1_gs(){
-    return arguments.callee;
-}
-f_10_6_1_gs();
+assert.throws(TypeError, function() {
+  arguments.callee;
+});
