@@ -1,25 +1,17 @@
 // Copyright (C) 2015 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-es6id: 9.2.1
+es6id: 13.3.3.7
 description: >
   Function call define default values to arguments
 info: >
-  9.2.1 [[Call]] ( thisArgument, argumentsList)
+  13.3.3.7 Runtime Semantics: KeyedBindingInitialization
 
-  ...
-  7. Let result be OrdinaryCallEvaluateBody(F, argumentsList).
-  ...
-
-  9.2.1.3 OrdinaryCallEvaluateBody ( F, argumentsList )
-
-  1. Let status be FunctionDeclarationInstantiation(F, argumentsList).
-  2. ReturnIfAbrupt(status)
-  ...
-
-  9.2.12 FunctionDeclarationInstantiation(func, argumentsList)
-
-  ...
+  When undefined is passed for environment it indicates that a PutValue
+  operation should be used to assign the initialization value. This is the case
+  for formal parameter lists of non-strict functions. In that case the formal
+  parameter bindings are preinitialized in order to deal with the possibility of
+  multiple parameters with the same name.
 ---*/
 
 var results;
