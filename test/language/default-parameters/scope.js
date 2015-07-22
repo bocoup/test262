@@ -1,7 +1,7 @@
 // Copyright (C) 2015 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-es6id: 9.2.1
+es6id: 13.3.3.7
 description: >
   Expressions as parameter default values share the top level context only.
 ---*/
