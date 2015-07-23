@@ -6,9 +6,7 @@ description: >
   Throws a ReferenceError from a unsolvable reference as the default parameter.
 ---*/
 
-function fn(a = unresolvableReference) {
-  return 42;
-}
+function fn(a = unresolvableReference) {}
 
 assert.throws(ReferenceError, function() {
   fn();

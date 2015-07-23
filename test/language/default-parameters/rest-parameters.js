@@ -4,8 +4,7 @@
 es6id: 14.1
 description: >
   Rest parameters can not have a default
+negative: SyntaxError
 ---*/
 
-assert.throws(SyntaxError, function() {
-  eval('function fn(...args = [1]) {}');
-});
+function fn(...args = [1]) {}

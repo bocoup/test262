@@ -6,7 +6,7 @@ description: Set default parameters on method definitions
 ---*/
 
 var o = {
-  m: function(a = 1, b = 2) {
+  m(a = 1, b = 2) {
     return a + b;
   }
 };
