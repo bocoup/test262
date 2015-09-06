@@ -27,6 +27,7 @@ regexp[Symbol.search] = function() {
 };
 
 assert.sameValue('O'.search(regexp), returnVal);
+assert.sameValue(callCount, 1, 'Invokes the method exactly once');
 assert.sameValue(thisVal, regexp);
 assert.notSameValue(args, undefined);
 assert.sameValue(args.length, 1);
