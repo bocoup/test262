@@ -12,13 +12,13 @@ info: >
 features: [Symbol.search]
 ---*/
 
-var poisonedSplit = {};
-Object.defineProperty(poisonedSplit, Symbol.search, {
+var poisonedSearch = {};
+Object.defineProperty(poisonedSearch, Symbol.search, {
   get: function() {
     throw new Test262Error();
   }
 });
 
 assert.throws(Test262Error, function() {
-  ''.search(poisonedSplit);
+  ''.search(poisonedSearch);
 });
