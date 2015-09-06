@@ -25,7 +25,7 @@ var nonWritableLastIndex = {
   get lastIndex() {
     callCount += 1;
   },
-  // Thie method defined to avoid false positives from unrelated TypeErrors
+  // This method defined to avoid false positives from unrelated TypeErrors
   exec: function() {
     return null;
   }
