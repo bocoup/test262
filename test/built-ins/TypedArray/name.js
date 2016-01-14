@@ -1,14 +1,19 @@
-// Copyright (C) Copyright 2015 the V8 project authors. All rights reserved.
+// Copyright (C) Copyright 2016 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 22.2.2
-description: name property of TypedArray
+description: >
+  TypedArray has a 'name' property whose value is "TypedArray".
 info: >
-    TypedArray has a 'name' property whose value is "TypedArray".
+  22.2.2 Properties of the %TypedArray% Intrinsic Object
 
-    ES6 section 17: Unless otherwise specified, the name property of a built-in
-    Function object, if it exists, has the attributes { [[Writable]]: false,
-    [[Enumerable]]: false, [[Configurable]]: true }.
+  Besides a length property whose value is 3 and a name property whose value is
+  "TypedArray", %TypedArray% has the following properties:
+  ...
+
+  ES6 section 17: Unless otherwise specified, the name property of a built-in
+  Function object, if it exists, has the attributes { [[Writable]]: false,
+  [[Enumerable]]: false, [[Configurable]]: true }.
 includes: [propertyHelper.js, testTypedArray.js]
 features: [TypedArray]
 ---*/
