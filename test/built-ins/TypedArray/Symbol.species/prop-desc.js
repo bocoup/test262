@@ -3,10 +3,12 @@
 /*---
 es6id: 22.2.2.4
 description: >
-    @@species property of TypedArray
+  @@species property of TypedArray
 info: >
-    %TypedArray%[@@species] is an accessor property whose set accessor function
-    is undefined.
+  22.2.2.4 get %TypedArray% [ @@species ]
+
+  %TypedArray%[@@species] is an accessor property whose set accessor function
+  is undefined.
 features: [TypedArray, Symbol.species]
 includes: [testTypedArray.js]
 ---*/
