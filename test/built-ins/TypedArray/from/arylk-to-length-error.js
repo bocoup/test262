@@ -1,12 +1,15 @@
-// Copyright (C) Copyright 2015 the V8 project authors. All rights reserved.
+// Copyright (C) Copyright 2016 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 22.2.2.1.1
 description: Returns error produced by interpreting length property as a length
 info: >
-    [...]
-    12. Let len be ToLength(Get(arrayLike, "length")).
-    13. ReturnIfAbrupt(len).
+  22.2.2.1.1 Runtime Semantics: TypedArrayFrom( constructor, items, mapfn, thisArg )
+
+  ...
+  12. Let len be ToLength(Get(arrayLike, "length")).
+  13. ReturnIfAbrupt(len).
+  ...
 features: [TypedArray, Symbol.toPrimitive]
 includes: [testTypedArray.js]
 ---*/
