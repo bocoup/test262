@@ -7,9 +7,10 @@ info: >
     This function is not generic. The this value must be an object with a
     [[TypedArrayName]] internal slot.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var slice = Object.getPrototypeOf(Int8Array).prototype.slice;
+var slice = TypedArray.prototype.slice;
 
 assert.sameValue(typeof slice, 'function');
 

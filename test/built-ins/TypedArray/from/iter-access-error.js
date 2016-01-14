@@ -8,9 +8,9 @@ info: >
     6. Let usingIterator be GetMethod(items, @@iterator).
     7. ReturnIfAbrupt(usingIterator).
 features: [TypedArray, Symbol.iterator]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArray = Object.getPrototypeOf(Int8Array);
 var iter = {};
 Object.defineProperty(iter, Symbol.iterator, {
   get: function() {

@@ -4,9 +4,8 @@
 es6id: 22.2.1.1
 description: If NewTarget is undefined, throw a TypeError exception.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
-
-var TypedArray = Object.getPrototypeOf(Int8Array);
 
 assert.throws(TypeError, function() {
   TypedArray();

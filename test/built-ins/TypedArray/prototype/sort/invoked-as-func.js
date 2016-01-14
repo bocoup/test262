@@ -7,9 +7,10 @@ info: >
     This function is not generic. The this value must be an object with a
     [[TypedArrayName]] internal slot.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var sort = Object.getPrototypeOf(Int8Array).prototype.sort;
+var sort = TypedArray.prototype.sort;
 
 assert.sameValue(typeof sort, 'function');
 

@@ -8,9 +8,9 @@ info: >
     12. Let len be ToLength(Get(arrayLike, "length")).
     13. ReturnIfAbrupt(len).
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArray = Object.getPrototypeOf(Int8Array);
 var arrayLike = {};
 
 Object.defineProperty(arrayLike, 'length', {

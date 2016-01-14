@@ -5,9 +5,9 @@ es6id: 22.2.2.4
 description: >
     @@species property returns the `this` value
 features: [TypedArray, Symbol.species]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArray = Object.getPrototypeOf(Int8Array);
 var value = {};
 var getter = Object.getOwnPropertyDescriptor(TypedArray, Symbol.species).get;
 

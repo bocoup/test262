@@ -4,9 +4,10 @@
 es6id: 22.2.3.6
 description: Requires a [[TypedArrayName]] internal slot.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArrayPrototype = Object.getPrototypeOf(Int8Array).prototype;
+var TypedArrayPrototype = TypedArray.prototype;
 
 assert.sameValue(typeof TypedArrayPrototype.entries, 'function');
 

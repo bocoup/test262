@@ -8,9 +8,10 @@ info: >
     %TypedArray%.prototype.length is an accessor property whose set accessor
     function is undefined.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArrayPrototype = Object.getPrototypeOf(Int8Array).prototype;
+var TypedArrayPrototype = TypedArray.prototype;
 var desc = Object.getOwnPropertyDescriptor(TypedArrayPrototype, 'length');
 
 assert.sameValue(desc.set, undefined);

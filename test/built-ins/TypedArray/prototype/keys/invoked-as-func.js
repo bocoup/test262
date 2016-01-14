@@ -4,9 +4,10 @@
 es6id: 22.2.3.15
 description: If Type(O) is not Object, throw a TypeError exception.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var keys = Object.getPrototypeOf(Int8Array).prototype.keys;
+var keys = TypedArray.prototype.keys;
 
 assert.sameValue(typeof keys, 'function');
 

@@ -4,9 +4,10 @@
 es6id: 22.2.3.9
 description: If Type(O) is not Object, throw a TypeError exception.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var filter = Object.getPrototypeOf(Int8Array).prototype.filter;
+var filter = TypedArray.prototype.filter;
 
 assert.sameValue(typeof filter, 'function');
 

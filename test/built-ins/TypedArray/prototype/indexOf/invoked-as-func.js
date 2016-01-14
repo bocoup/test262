@@ -8,9 +8,10 @@ info: >
     value prior to evaluating the algorithm. If its result is an abrupt
     completion that exception is thrown instead of evaluating the algorithm.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var indexOf = Object.getPrototypeOf(Int8Array).prototype.indexOf;
+var indexOf = TypedArray.prototype.indexOf;
 
 assert.sameValue(typeof indexOf, 'function');
 

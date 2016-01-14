@@ -4,9 +4,10 @@
 es6id: 22.2.3.31
 description: If Type(O) is not Object, return undefined.
 features: [TypedArray, Symbol.toStringTag]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArrayPrototype = Object.getPrototypeOf(Int8Array).prototype;
+var TypedArrayPrototype = TypedArray.prototype;
 var getter = Object.getOwnPropertyDescriptor(
   TypedArrayPrototype, Symbol.toStringTag
 ).get;

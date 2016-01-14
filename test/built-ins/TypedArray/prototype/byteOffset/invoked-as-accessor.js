@@ -6,9 +6,10 @@ description: >
     If O does not have a [[ViewedArrayBuffer]] internal slot, throw a TypeError
     exception.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArrayPrototype = Object.getPrototypeOf(Int8Array).prototype;
+var TypedArrayPrototype = TypedArray.prototype;
 
 assert.throws(TypeError, function() {
   TypedArrayPrototype.byteOffset;

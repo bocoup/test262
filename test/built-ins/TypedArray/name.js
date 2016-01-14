@@ -9,11 +9,9 @@ info: >
     ES6 section 17: Unless otherwise specified, the name property of a built-in
     Function object, if it exists, has the attributes { [[Writable]]: false,
     [[Enumerable]]: false, [[Configurable]]: true }.
-includes: [propertyHelper.js]
+includes: [propertyHelper.js, testTypedArray.js]
 features: [TypedArray]
 ---*/
-
-var TypedArray = Object.getPrototypeOf(Int8Array);
 
 assert.sameValue(TypedArray.name, 'TypedArray');
 

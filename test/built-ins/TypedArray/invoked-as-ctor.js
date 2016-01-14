@@ -7,9 +7,8 @@ info: >
     If SameValue(%TypedArray%, newTarget) is true, throw a TypeError
     exception.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
-
-var TypedArray = Object.getPrototypeOf(Int8Array);
 
 assert.throws(TypeError, function() {
   new TypedArray();

@@ -8,9 +8,10 @@ info: >
     value prior to evaluating the algorithm. If its result is an abrupt
     completion that exception is thrown instead of evaluating the algorithm.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var copyWithin = Object.getPrototypeOf(Int8Array).prototype.copyWithin;
+var copyWithin = TypedArray.prototype.copyWithin;
 
 assert.sameValue(typeof copyWithin, 'function');
 

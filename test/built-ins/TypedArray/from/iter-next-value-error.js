@@ -9,9 +9,9 @@ info: >
        i. Let nextValue be IteratorValue(next).
        ii. ReturnIfAbrupt(nextValue).
 features: [TypedArray, Symbol.iterator]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArray = Object.getPrototypeOf(Int8Array);
 var iter = {};
 iter[Symbol.iterator] = function() {
   return {

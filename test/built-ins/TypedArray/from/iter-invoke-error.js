@@ -9,9 +9,9 @@ info: >
        a. Let iterator be GetIterator(items, usingIterator).
        b. ReturnIfAbrupt(iterator).
 features: [TypedArray, Symbol.iterator]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArray = Object.getPrototypeOf(Int8Array);
 var iter = {};
 iter[Symbol.iterator] = function() {
   throw new Test262Error();

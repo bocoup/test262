@@ -10,11 +10,11 @@ info: >
 
     This property has the attributes { [[Enumerable]]: false, [[Configurable]]:
     true }.
-includes: [propertyHelper.js]
+includes: [propertyHelper.js, testTypedArray.js]
 features: [TypedArray]
 ---*/
 
-var TypedArrayPrototype = Object.getPrototypeOf(Int8Array).prototype;
+var TypedArrayPrototype = TypedArray.prototype;
 var desc = Object.getOwnPropertyDescriptor(TypedArrayPrototype, 'byteLength');
 
 assert.sameValue(desc.set, undefined);

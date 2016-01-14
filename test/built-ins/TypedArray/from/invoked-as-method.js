@@ -5,9 +5,8 @@ es6id: 22.2.2.1
 description: >
     "from" cannot be invoked as a method of TypedArray
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
-
-var TypedArray = Object.getPrototypeOf(Int8Array);
 
 assert.throws(TypeError, function() {
   TypedArray.from([]);

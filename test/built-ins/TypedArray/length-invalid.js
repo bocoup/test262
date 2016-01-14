@@ -7,9 +7,8 @@ info: >
     If SameValueZero(numberLength, elementLength) is false, throw a RangeError
     exception.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
-
-var TypedArray = Object.getPrototypeOf(Int8Array);
 
 assert.throws(RangeError, function() {
   new TypedArray(1.1);

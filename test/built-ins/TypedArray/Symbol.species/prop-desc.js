@@ -8,9 +8,9 @@ info: >
     %TypedArray%[@@species] is an accessor property whose set accessor function
     is undefined.
 features: [TypedArray, Symbol.species]
+includes: [testTypedArray.js]
 ---*/
 
-var TypedArray = Object.getPrototypeOf(Int8Array);
 var desc = Object.getOwnPropertyDescriptor(TypedArray, Symbol.species);
 
 assert.sameValue(desc.set, undefined);

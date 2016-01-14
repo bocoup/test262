@@ -7,11 +7,9 @@ description: >
 info: >
     This property has the attributes { [[Writable]]: false, [[Enumerable]]:
     false, [[Configurable]]: false }.
-includes: [propertyHelper.js]
+includes: [propertyHelper.js, testTypedArray.js]
 features: [TypedArray]
 ---*/
-
-var TypedArray = Object.getPrototypeOf(Int8Array);
 
 verifyNotEnumerable(TypedArray, 'prototype');
 verifyNotWritable(TypedArray, 'prototype');

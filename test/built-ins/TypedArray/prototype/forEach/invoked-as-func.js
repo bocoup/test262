@@ -8,9 +8,10 @@ info: >
     value prior to evaluating the algorithm. If its result is an abrupt
     completion that exception is thrown instead of evaluating the algorithm.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var forEach = Object.getPrototypeOf(Int8Array).prototype.forEach;
+var forEach = TypedArray.prototype.forEach;
 
 assert.sameValue(typeof forEach, 'function');
 

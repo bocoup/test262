@@ -7,9 +7,10 @@ description: >
 info: >
     If IsConstructor(C) is false, throw a TypeError exception.
 features: [TypedArray]
+includes: [testTypedArray.js]
 ---*/
 
-var of = Object.getPrototypeOf(Int8Array).of;
+var of = TypedArray.of;
 
 assert.throws(TypeError, function() {
   of();
