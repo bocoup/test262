@@ -15,4 +15,4 @@ includes: [testTypedArray.js]
 var value = {};
 var getter = Object.getOwnPropertyDescriptor(TypedArray, Symbol.species).get;
 
-assert.sameValue(getter.call({}), value);
+assert.sameValue(getter.call(value), value);
