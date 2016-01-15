@@ -3,10 +3,10 @@
 /*---
 es6id: 22.2.3.3
 description: >
-    "byteOffset" property of TypedArrayPrototype
+  "byteOffset" property of TypedArrayPrototype
 info: >
-    %TypedArray%.prototype.byteOffset is an accessor property whose set
-    accessor function is undefined.
+  %TypedArray%.prototype.byteOffset is an accessor property whose set accessor
+  function is undefined.
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

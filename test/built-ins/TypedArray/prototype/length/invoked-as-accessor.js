@@ -3,8 +3,15 @@
 /*---
 es6id: 22.2.3.17
 description: >
-    If O does not have a [[ViewedArrayBuffer]] internal slot, throw a TypeError
-    exception.
+  Requires this value to have a [[ViewedArrayBuffer]] internal slot
+info: >
+  22.2.3.17 get %TypedArray%.prototype.length
+
+  1. Let O be the this value.
+  ...
+  3. If O does not have a [[TypedArrayName]] internal slot, throw a TypeError
+  exception.
+  ...
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

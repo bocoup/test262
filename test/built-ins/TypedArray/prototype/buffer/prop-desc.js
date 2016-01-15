@@ -3,10 +3,10 @@
 /*---
 es6id: 22.2.3.1
 description: >
-    "buffer" property of TypedArrayPrototype
+  "buffer" property of TypedArrayPrototype
 info: >
-    %TypedArray%.prototype.buffer is an accessor property whose set accessor
-    function is undefined.
+  %TypedArray%.prototype.buffer is an accessor property whose set accessor
+  function is undefined.
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

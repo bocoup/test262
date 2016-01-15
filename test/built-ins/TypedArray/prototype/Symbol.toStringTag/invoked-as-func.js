@@ -2,7 +2,13 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 22.2.3.31
-description: If Type(O) is not Object, return undefined.
+description: If this value is not Object, return undefined.
+info: >
+  22.2.3.31 get %TypedArray%.prototype [ @@toStringTag ]
+
+  1. Let O be the this value.
+  2. If Type(O) is not Object, return undefined.
+  ...
 features: [TypedArray, Symbol.toStringTag]
 includes: [testTypedArray.js]
 ---*/

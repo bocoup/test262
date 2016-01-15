@@ -4,8 +4,24 @@
 es6id: 22.2.3.25
 description: Requires a [[TypedArrayName]] internal slot.
 info: >
-    This function is not generic. The this value must be an object with a
-    [[TypedArrayName]] internal slot.
+  22.2.3.25 %TypedArray%.prototype.sort ( comparefn )
+
+  ...
+  This function is not generic. The this value must be an object with a
+  [[TypedArrayName]] internal slot.
+  ...
+
+  1. Let obj be the this value as the argument.
+  2. Let buffer be ValidateTypedArray(obj).
+  3. ReturnIfAbrupt(buffer).
+  ...
+
+  22.2.3.5.1 Runtime Semantics: ValidateTypedArray ( O )
+
+  1. If Type(O) is not Object, throw a TypeError exception.
+  2. If O does not have a [[TypedArrayName]] internal slot, throw a TypeError
+  exception.
+  ...
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

@@ -3,13 +3,13 @@
 /*---
 es6id: 22.2.3.31
 description: >
-    "@@toStringTag" property of TypedArrayPrototype
+  "@@toStringTag" property of TypedArrayPrototype
 info: >
-    %TypedArray%.prototype.byteLength is an accessor property whose set
-    accessor function is undefined.
+  %TypedArray%.prototype.byteLength is an accessor property whose set accessor
+  function is undefined.
 
-    This property has the attributes { [[Enumerable]]: false, [[Configurable]]:
-    true }.
+  This property has the attributes { [[Enumerable]]: false, [[Configurable]]:
+  true }.
 includes: [propertyHelper.js, testTypedArray.js]
 features: [TypedArray]
 ---*/

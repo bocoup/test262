@@ -3,10 +3,10 @@
 /*---
 es6id: 22.2.3.17
 description: >
-    "length" property of TypedArrayPrototype
+  "length" property of TypedArrayPrototype
 info: >
-    %TypedArray%.prototype.length is an accessor property whose set accessor
-    function is undefined.
+  %TypedArray%.prototype.length is an accessor property whose set accessor
+  function is undefined.
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

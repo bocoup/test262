@@ -3,7 +3,14 @@
 /*---
 es6id: 22.2.3.31
 description: >
-    If O does not have a [[TypedArrayName]] internal slot, return undefined.
+  Return undefined if this value does not have a [[TypedArrayName]] internal slot
+info: >
+  22.2.3.31 get %TypedArray%.prototype [ @@toStringTag ]
+
+  1. Let O be the this value.
+  ...
+  3. If O does not have a [[TypedArrayName]] internal slot, return undefined.
+  ...
 features: [TypedArray, Symbol.toStringTag]
 includes: [testTypedArray.js]
 ---*/

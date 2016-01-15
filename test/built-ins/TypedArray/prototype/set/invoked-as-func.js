@@ -2,10 +2,12 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 22.2.3.22
-description: If Type(target) is not Object, throw a TypeError exception.
+description: Throws a TypeError exception when invoked as a function
 info: >
-    This function is not generic. The this value must be an object with a
-    [[TypedArrayName]] internal slot.
+  22.2.3.22 %TypedArray%.prototype.set ( overloaded [ , offset ])
+
+  This function is not generic. The this value must be an object with a
+  [[TypedArrayName]] internal slot.
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

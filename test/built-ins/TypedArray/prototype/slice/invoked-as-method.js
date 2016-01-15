@@ -4,8 +4,19 @@
 es6id: 22.2.3.23
 description: Requires a [[TypedArrayName]] internal slot.
 info: >
-    This function is not generic. The this value must be an object with a
-    [[TypedArrayName]] internal slot.
+  22.2.3.23 %TypedArray%.prototype.slice ( start, end )
+
+  1. Let O be the this value.
+  2. Let valid be ValidateTypedArray(O).
+  3. ReturnIfAbrupt(valid).
+  ...
+
+  22.2.3.5.1 Runtime Semantics: ValidateTypedArray ( O )
+
+  1. If Type(O) is not Object, throw a TypeError exception.
+  2. If O does not have a [[TypedArrayName]] internal slot, throw a TypeError
+  exception.
+  ...
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

@@ -2,7 +2,13 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 22.2.3.17
-description: If Type(O) is not Object, throw a TypeError exception.
+description: Throws a TypeError exception when invoked as a function
+info: >
+  22.2.3.17 get %TypedArray%.prototype.length
+
+  1. Let O be the this value.
+  2. If Type(O) is not Object, throw a TypeError exception.
+  ...
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

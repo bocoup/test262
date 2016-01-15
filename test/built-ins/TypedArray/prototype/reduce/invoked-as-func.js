@@ -2,11 +2,21 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 22.2.3.19
-description: If Type(O) is not Object, throw a TypeError exception.
+description: Throws a TypeError exception when invoked as a function
 info: >
-    This function is not generic. ValidateTypedArray is applied to the this
-    value prior to evaluating the algorithm. If its result is an abrupt
-    completion that exception is thrown instead of evaluating the algorithm.
+  22.2.3.19 %TypedArray%.prototype.reduce ( callbackfn [ , initialValue ] )
+
+  ...
+  This function is not generic. ValidateTypedArray is applied to the this value
+  prior to evaluating the algorithm. If its result is an abrupt completion that
+  exception is thrown instead of evaluating the algorithm.
+
+  22.2.3.5.1 Runtime Semantics: ValidateTypedArray ( O )
+
+  1. If Type(O) is not Object, throw a TypeError exception.
+  2. If O does not have a [[TypedArrayName]] internal slot, throw a TypeError
+  exception.
+  ...
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/

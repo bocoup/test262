@@ -3,15 +3,17 @@
 /*---
 es6id: 22.2.3.28
 description: >
-    "toString" property of TypedArrayPrototype
+  "toString" property of TypedArrayPrototype
 info: >
-    The initial value of the %TypedArray%.prototype.toString data property is
-    the same built-in function object as the Array.prototype.toString method
-    defined in 22.1.3.27.
+  22.2.3.28 %TypedArray%.prototype.toString ( )
 
-    ES6 section 17: Every other data property described in clauses 18 through
-    26 and in Annex B.2 has the attributes { [[Writable]]: true,
-    [[Enumerable]]: false, [[Configurable]]: true } unless otherwise specified.
+  The initial value of the %TypedArray%.prototype.toString data property is the
+  same built-in function object as the Array.prototype.toString method defined
+  in 22.1.3.27.
+
+  ES6 section 17: Every other data property described in clauses 18 through 26
+  and in Annex B.2 has the attributes { [[Writable]]: true,
+  [[Enumerable]]: false, [[Configurable]]: true } unless otherwise specified.
 includes: [propertyHelper.js, testTypedArray.js]
 features: [TypedArray]
 ---*/

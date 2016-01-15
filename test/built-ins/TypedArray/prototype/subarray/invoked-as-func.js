@@ -2,10 +2,15 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 22.2.3.26
-description: If Type(O) is not Object, throw a TypeError exception.
+description: Throws a TypeError exception when invoked as a function
 info: >
-    This function is not generic. The this value must be an object with a
-    [[TypedArrayName]] internal slot.
+  22.2.3.26 %TypedArray%.prototype.subarray( [ begin [ , end ] ] )
+
+  1. Let O be the this value.
+  2. If Type(O) is not Object, throw a TypeError exception.
+  3. If O does not have a [[TypedArrayName]] internal slot, throw a TypeError
+  exception.
+  ...
 features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
