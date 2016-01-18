@@ -10,7 +10,6 @@ info: >
   This property has the attributes { [[Writable]]: false, [[Enumerable]]:
   false, [[Configurable]]: false }.
 includes: [propertyHelper.js, testTypedArray.js]
-features: [TypedArray]
 ---*/
 
 verifyNotEnumerable(TypedArray, 'prototype');

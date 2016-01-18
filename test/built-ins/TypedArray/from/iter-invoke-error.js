@@ -12,7 +12,7 @@ info: >
     a. Let iterator be GetIterator(items, usingIterator).
     b. ReturnIfAbrupt(iterator).
   ...
-features: [TypedArray, Symbol.iterator]
+features: [Symbol.iterator]
 includes: [testTypedArray.js]
 ---*/
 

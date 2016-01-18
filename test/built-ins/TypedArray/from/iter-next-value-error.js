@@ -13,7 +13,7 @@ info: >
     e. If next is not false, then
       i. Let nextValue be IteratorValue(next).
       ii. ReturnIfAbrupt(nextValue).
-features: [TypedArray, Symbol.iterator]
+features: [Symbol.iterator]
 includes: [testTypedArray.js]
 ---*/
 

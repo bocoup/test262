@@ -13,7 +13,6 @@ info: >
   7. If SameValueZero(numberLength, elementLength) is false, throw a RangeError
   exception.
   ...
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

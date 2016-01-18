@@ -11,7 +11,6 @@ info: >
   3. If O does not have a [[ViewedArrayBuffer]] internal slot, throw a TypeError
   exception.
   ...
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

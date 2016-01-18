@@ -11,7 +11,6 @@ info: >
   This property has the attributes { [[Enumerable]]: false, [[Configurable]]:
   true }.
 includes: [propertyHelper.js, testTypedArray.js]
-features: [TypedArray]
 ---*/
 
 var TypedArrayPrototype = TypedArray.prototype;

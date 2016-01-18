@@ -14,7 +14,7 @@ info: >
       i. Let next be IteratorStep(iterator).
       ii. ReturnIfAbrupt(next).
     ...
-features: [TypedArray, Symbol.iterator]
+features: [Symbol.iterator]
 includes: [testTypedArray.js]
 ---*/
 

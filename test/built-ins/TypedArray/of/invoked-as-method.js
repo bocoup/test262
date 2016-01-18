@@ -17,7 +17,6 @@ info: >
   ...
   2. If SameValue(%TypedArray%, newTarget) is true, throw a TypeError exception.
   ...
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

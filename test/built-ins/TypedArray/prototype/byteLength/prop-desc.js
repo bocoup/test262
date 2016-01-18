@@ -7,7 +7,6 @@ description: >
 info: >
   %TypedArray%.prototype.byteLength is an accessor property whose set accessor
   function is undefined.
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

@@ -8,7 +8,6 @@ info: >
 
   This function is not generic. The this value must be an object with a
   [[TypedArrayName]] internal slot.
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

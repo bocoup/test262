@@ -9,7 +9,7 @@ info: >
 
   %TypedArray%[@@species] is an accessor property whose set accessor function
   is undefined.
-features: [TypedArray, Symbol.species]
+features: [Symbol.species]
 includes: [testTypedArray.js]
 ---*/
 

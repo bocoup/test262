@@ -14,7 +14,6 @@ info: >
   Note: there's a breaking change from ES2015's 22.2.1.2 step 7 where calling
   the %TypedArray% constructor with a floating number as the argument throws a
   RangeError exception before checking `SameValue(NewTarget, here)`.
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

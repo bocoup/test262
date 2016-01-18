@@ -10,7 +10,6 @@ info: >
   1. Let C be the this value.
   2. If IsConstructor(C) is false, throw a TypeError exception.
   ...
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

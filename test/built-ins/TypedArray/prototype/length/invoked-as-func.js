@@ -9,7 +9,6 @@ info: >
   1. Let O be the this value.
   2. If Type(O) is not Object, throw a TypeError exception.
   ...
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 

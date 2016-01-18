@@ -11,7 +11,7 @@ info: >
   6. Let usingIterator be GetMethod(items, @@iterator).
   7. ReturnIfAbrupt(usingIterator).
   ...
-features: [TypedArray, Symbol.iterator]
+features: [Symbol.iterator]
 includes: [testTypedArray.js]
 ---*/
 

@@ -10,7 +10,7 @@ info: >
   12. Let len be ToLength(Get(arrayLike, "length")).
   13. ReturnIfAbrupt(len).
   ...
-features: [TypedArray, Symbol.toPrimitive]
+features: [Symbol.toPrimitive]
 includes: [testTypedArray.js]
 ---*/
 

@@ -9,7 +9,7 @@ info: >
   1. Let O be the this value.
   2. If Type(O) is not Object, return undefined.
   ...
-features: [TypedArray, Symbol.toStringTag]
+features: [Symbol.toStringTag]
 includes: [testTypedArray.js]
 ---*/
 

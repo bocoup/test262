@@ -10,7 +10,6 @@ info: >
   12. Let len be ToLength(Get(arrayLike, "length")).
   13. ReturnIfAbrupt(len).
   ...
-features: [TypedArray]
 includes: [testTypedArray.js]
 ---*/
 
