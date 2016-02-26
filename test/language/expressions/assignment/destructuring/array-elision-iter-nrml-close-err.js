@@ -1,13 +1,16 @@
 // Copyright (C) 2016 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-description: Iterator is closed without iterating
+description: >
+    Abrupt completion returned from IteratorClose
 info: |
-    ArrayAssignmentPattern : [ ]
+    ArrayAssignmentPattern : [ Elision ]
 
     1. Let iterator be GetIterator(value).
-    2. ReturnIfAbrupt(iterator).
-    3. Return IteratorClose(iterator, NormalCompletion(empty)).
+    [...]
+    5. If iteratorRecord.[[done]] is false, return IteratorClose(iterator,
+       result).
+    6. Return result.
 features: [Symbol.iterator]
 es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
@@ -19,18 +22,22 @@ var iterable = {};
 var iterator = {
   next: function() {
     nextCount += 1;
-    return { done: true };
+    // Set an upper-bound to limit unnecessary iteration in non-conformant
+    // implementations
+    return { done: nextCount > 10 };
   },
   return: function() {
     returnCount += 1;
-    return {};
+    throw new Test262Error();
   }
 };
 iterable[Symbol.iterator] = function() {
   return iterator;
 };
 
-[] = iterable;
+assert.throws(Test262Error, function() {
+  [ , ] = iterable;
+});
 
-assert.sameValue(nextCount, 0);
+assert.sameValue(nextCount, 1);
 assert.sameValue(returnCount, 1);

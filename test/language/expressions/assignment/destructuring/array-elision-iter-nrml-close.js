@@ -23,11 +23,13 @@ var iterable = {};
 var iterator = {
   next: function() {
     nextCount += 1;
-    return { done: nextCount > 3 };
+    // Set an upper-bound to limit unnecessary iteration in non-conformant
+    // implementations
+    return { done: nextCount > 10 };
   },
   return: function() {
     returnCount += 1;
-    return { done: true };
+    return {};
   }
 };
 iterable[Symbol.iterator] = function() {
@@ -36,5 +38,5 @@ iterable[Symbol.iterator] = function() {
 
 [ , ] = iterable;
 
-assert.sameValue(nextCount, 2);
+assert.sameValue(nextCount, 1);
 assert.sameValue(returnCount, 1);
