@@ -8,7 +8,8 @@ info: |
     ArrayAssignmentPattern : [ AssignmentElementList ]
 
     [...]
-    5. If iteratorRecord.[[done]] is false, return IteratorClose(iterator, result).
+    5. If iteratorRecord.[[done]] is false, return IteratorClose(iterator,
+       result).
     6. Return result.
 features: [Symbol.iterator]
 es6id: 12.14.5.2

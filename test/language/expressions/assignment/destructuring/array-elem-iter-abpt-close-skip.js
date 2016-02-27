@@ -2,20 +2,15 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 description: >
-    IteratorClose is not called when assignment evaluation produces an abupt
+    IteratorClose is not called when assignment evaluation produces an abrupt
     completion
 info: |
-    ArrayAssignmentPattern : [ Elisionopt AssignmentRestElement ]
+    ArrayAssignmentPattern : [ AssignmentElementList ]
 
     [...]
-    4. If Elision is present, then
-       a. Let status be the result of performing
-          IteratorDestructuringAssignmentEvaluation of Elision with
-          iteratorRecord as the argument.
-       b. If status is an abrupt completion, then
-          i. If iteratorRecord.[[done]] is false, return
-             IteratorClose(iterator, status).
-          ii. Return Completion(status).
+    5. If iteratorRecord.[[done]] is false, return IteratorClose(iterator,
+       result).
+    6. Return result.
 features: [Symbol.iterator]
 es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
@@ -39,7 +34,7 @@ iterable[Symbol.iterator] = function() {
 var x;
 
 assert.throws(Test262Error, function() {
-  [ , ...x] = iterable;
+  [ x ] = iterable;
 });
 
 assert.sameValue(nextCount, 1);
