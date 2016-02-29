@@ -37,6 +37,8 @@ var x;
 var iterator = {
   next: function() {
     nextCount += 1;
+    // Set an upper-bound to limit unnecessary iteration in non-conformant
+    // implementations
     return { done: nextCount > 10 };
   },
   return: function() {
