@@ -2,8 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 description: >
-    IteratorClose is not called when assignment evaluation produces an abrupt
-    completion
+    IteratorClose is not called when iteration produces an abrupt completion
 info: |
     ArrayAssignmentPattern : [ Elision ]
 

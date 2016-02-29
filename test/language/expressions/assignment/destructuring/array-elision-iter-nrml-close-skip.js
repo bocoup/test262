@@ -2,8 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 description: >
-    IteratorClose is not called when assignment evaluation has exhausted the
-    iterator
+    IteratorClose is not called when iteration has exhausted the iterator
 info: |
     ArrayAssignmentPattern : [ Elision ]
 

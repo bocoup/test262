@@ -14,6 +14,7 @@ esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
 var nextCount = 0;
+var returnCount = 0;
 var iterable = {};
 var iterator = {
   next: function() {
@@ -21,6 +22,7 @@ var iterator = {
     return { done: true };
   },
   return: function() {
+    returnCount += 1;
     throw new Test262Error();
   }
 };
@@ -33,3 +35,4 @@ assert.throws(Test262Error, function() {
 });
 
 assert.sameValue(nextCount, 0);
+assert.sameValue(returnCount, 1);

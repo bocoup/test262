@@ -29,7 +29,7 @@ var iterator = {
   next: function() {
     nextCount += 1;
 
-    return { done: nextCount === 2 };
+    return { done: nextCount > 1 };
   },
   return: function() {
     returnCount += 1;

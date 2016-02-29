@@ -3,7 +3,7 @@
 /*---
 description: >
     IteratorClose is not invoked when evaluation of AssignmentElementList
-    exhaustings the iterator
+    exhausts the iterator
 info: |
     ArrayAssignmentPattern :
         [ AssignmentElementList , Elisionopt AssignmentRestElementopt ]
