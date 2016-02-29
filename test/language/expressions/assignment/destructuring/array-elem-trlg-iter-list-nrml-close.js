@@ -33,9 +33,6 @@ var returnCount = 0;
 var thisValue = null;
 var args = null;
 var iterable = {};
-var thrower = function() {
-  throw new Test262Error();
-};
 var x;
 var iterator = {
   next: function() {
