@@ -32,7 +32,9 @@ var iterator = {
       throw new Test262Error();
     }
 
-    return { done: false };
+    // Set an upper-bound to limit unnecessary iteration in non-conformant
+    // implementations
+    return { done: nextCount > 10 };
   },
   return: function() {
     returnCount += 1;

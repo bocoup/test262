@@ -30,7 +30,6 @@ var iterator = {
   },
   return: function() {
     returnCount += 1;
-    return { done: true };
   }
 };
 iterable[Symbol.iterator] = function() {

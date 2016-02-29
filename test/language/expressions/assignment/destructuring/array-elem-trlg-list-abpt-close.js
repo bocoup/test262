@@ -31,6 +31,7 @@ var thrower = function() {
 var iterator = {
   next: function() {
     nextCount += 1;
+    return { done: true };
   },
   return: function() {
     returnCount += 1;
