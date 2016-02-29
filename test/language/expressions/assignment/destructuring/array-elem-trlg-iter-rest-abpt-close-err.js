@@ -41,7 +41,7 @@ var iterator = {
   return: function() {
     returnCount += 1;
 
-    // This value should be discarded
+    // This value should be discarded.
     throw new ReturnError();
   }
 };
