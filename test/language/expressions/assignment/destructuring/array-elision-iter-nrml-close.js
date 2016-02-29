@@ -12,6 +12,12 @@ info: |
     5. If iteratorRecord.[[done]] is false, return IteratorClose(iterator,
        result).
     [...]
+
+    7.4.6 IteratorClose( iterator, completion )
+
+    [...]
+    6. Let innerResult be Call(return, iterator, « »).
+    [...]
 features: [Symbol.iterator]
 es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
@@ -19,6 +25,8 @@ esid: sec-runtime-semantics-destructuringassignmentevaluation
 
 var nextCount = 0;
 var returnCount = 0;
+var thisValue = null;
+var args = null;
 var iterable = {};
 var iterator = {
   next: function() {
@@ -29,6 +37,8 @@ var iterator = {
   },
   return: function() {
     returnCount += 1;
+    thisValue = this;
+    args = arguments;
     return {};
   }
 };
@@ -40,3 +50,6 @@ iterable[Symbol.iterator] = function() {
 
 assert.sameValue(nextCount, 1);
 assert.sameValue(returnCount, 1);
+assert.sameValue(thisValue, iterator, 'correct `this` value');
+assert(!!args, 'arguments object provided');
+assert.sameValue(args.length, 0, 'zero arguments specified');
