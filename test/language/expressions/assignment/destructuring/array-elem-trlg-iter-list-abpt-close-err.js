@@ -33,7 +33,7 @@ var iterable = {};
 var thrower = function() {
   throw new Test262Error();
 };
-var ReturnError = function() {};
+function ReturnError() {}
 var iterator = {
   next: function() {
     nextCount += 1;

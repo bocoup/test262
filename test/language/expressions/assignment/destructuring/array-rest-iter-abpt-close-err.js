@@ -28,7 +28,7 @@ esid: sec-runtime-semantics-destructuringassignmentevaluation
 var nextCount = 0;
 var returnCount = 0;
 var x;
-var ReturnError = function() {};
+function ReturnError() {}
 var iterable = {};
 var iterator = {
   next: function() {
