@@ -16,12 +16,10 @@ info: |
 flags: [noStrict]
 ---*/
 
-assert.throws(Test262Error, function() {
-  f();
-});
+assert.sameValue(f(), 'outer declaration');
 
-if (false) ; else function f() {}
+if (false) ; else function f() { return 'inner declaration'; }
 
 function f() {
-  throw new Test262Error();
+  return 'outer declaration';
 }
