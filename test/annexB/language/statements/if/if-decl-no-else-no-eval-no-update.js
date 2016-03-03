@@ -21,4 +21,6 @@ flags: [noStrict]
 
 if (false) function f() {}
 
+// A separate file asserts binding initialization, so this reference is
+// "guarded" with the `typeof` operator to limit the semantics under test.
 assert.sameValue(typeof f, 'undefined');
