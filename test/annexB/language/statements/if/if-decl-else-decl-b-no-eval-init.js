@@ -18,6 +18,13 @@ info: |
 flags: [noStrict]
 ---*/
 
-assert.sameValue(f, undefined);
+assert.sameValue(f, undefined, 'binding is initialized to `undefined`');
 
-if (true) function _f() {} else function f() {}
+f = 123;
+
+assert.sameValue(f, 123, 'binding is mutable');
+
+// Ensure the new binding is not block-scoped
+{
+  if (true) function _f() {} else function f() {}
+}
