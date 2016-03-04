@@ -123,6 +123,12 @@ class Template:
         if len(flags):
             lines += ['flags: ' + yaml.dump(flags).strip()]
 
+        includes = []
+        includes += case_values['meta'].get('includes', [])
+        includes += self.attribs['meta'].get('includes', [])
+        if len(includes):
+            lines += ['includes: ' + yaml.dump(includes).strip()]
+
         if case_values['meta'].get('negative'):
             lines += ['negative: ' + case_values['meta'].get('negative')]
 

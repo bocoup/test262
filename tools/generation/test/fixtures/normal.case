@@ -5,6 +5,7 @@ template: normal
 desc: foobar
 info: case info
 flags: [a, b]
+includes: [foo.js]
 ---*/
 
 Because this test appears before any "region" delimiters, it should not appear

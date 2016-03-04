@@ -4,6 +4,7 @@
 name: Second template name
 path: normal/nested/path2-
 esid: sec-a-generic-id
+includes: [bar.js]
 info: template info
 ---*/
 
