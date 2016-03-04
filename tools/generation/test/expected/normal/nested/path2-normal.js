@@ -4,6 +4,7 @@
 /*---
 description: foobar (Second template name)
 esid: sec-a-generic-id
+flags: [a, b]
 info: >
     template info
 

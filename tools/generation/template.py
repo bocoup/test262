@@ -117,6 +117,12 @@ class Template:
         if len(features):
             lines += ['features: ' + yaml.dump(features)]
 
+        flags = []
+        flags += case_values['meta'].get('flags', [])
+        flags += self.attribs['meta'].get('flags', [])
+        if len(flags):
+            lines += ['flags: ' + yaml.dump(flags).strip()]
+
         if case_values['meta'].get('negative'):
             lines += ['negative: ' + case_values['meta'].get('negative')]
 
