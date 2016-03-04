@@ -83,6 +83,11 @@ class Template:
         if setup:
             source = setup + '\n' + source
 
+        teardown = context['regions'].get('teardown')
+
+        if teardown:
+            source += '\n' + teardown + '\n'
+
         return source
 
     def _frontmatter(self, case_filename, case_values):

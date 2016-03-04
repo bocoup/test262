@@ -21,3 +21,5 @@ First value
 Second value
 //- third
 Third value
+//- teardown
+'This is "teardown" code.';

@@ -27,3 +27,5 @@ The following should not be expanded:
 '/*{ first }*/'
 `
 /*{ first }*/`
+
+'This is "teardown" code.';
