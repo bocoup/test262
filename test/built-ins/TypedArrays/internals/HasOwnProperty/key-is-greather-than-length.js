@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-integer-indexed-exotic-objects-hasproperty-p
-description: Throws a TypeError if this has a detached buffer
+description: Return false if P's value is >= this's [[ArrayLength]]
 info: >
   9.4.5.2 [[HasProperty]](P)
 
@@ -10,8 +10,9 @@ info: >
   3. If Type(P) is String, then
     a. Let numericIndex be ! CanonicalNumericIndexString(P).
     b. If numericIndex is not undefined, then
-      i. Let buffer be the value of O's [[ViewedArrayBuffer]] internal slot.
-      ii. If IsDetachedBuffer(buffer) is true, throw a TypeError exception.
+      ...
+      vi. If numericIndex ≥ the value of O's [[ArrayLength]] internal slot,
+      return false.
   ...
 features: [Reflect]
 includes: [testTypedArray.js, detachArrayBuffer.js]
@@ -21,7 +22,5 @@ testWithTypedArrayConstructors(function(TA) {
   var sample = new TA(1);
   $DETACHBUFFER(sample);
 
-  assert.throws(TypeError, function() {
-    Reflect.has(sample, 0);
-  });
+  assert.sameValue(Reflect.has(sample, "1"), false, "1");
 });
