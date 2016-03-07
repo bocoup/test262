@@ -15,7 +15,7 @@ info: >
   4. Return OrdinaryGetOwnProperty(O, P).
   ...
 includes: [testTypedArray.js]
-features: [Reflect, Symbol]
+features: [Reflect]
 ---*/
 
 testWithTypedArrayConstructors(function(TA) {
@@ -34,13 +34,5 @@ testWithTypedArrayConstructors(function(TA) {
     Reflect.getOwnPropertyDescriptor(sample, "foo").value,
     "bar",
     "return value from a String key"
-  );
-
-  var s = Symbol("foo");
-  Object.defineProperty(sample, s, { value: "baz" });
-  assert.sameValue(
-    Reflect.getOwnPropertyDescriptor(sample, s).value,
-    "baz",
-    "return value from a Symbol key"
   );
 });
