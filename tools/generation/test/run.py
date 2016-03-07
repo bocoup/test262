@@ -27,8 +27,8 @@ class TestGeneration(unittest.TestCase):
             actualFiles += map(lambda x: os.path.join(root, x), files)
 
         self.assertListEqual(
-            map(lambda x: os.path.relpath(expectedPath, x), expectedFiles),
-            map(lambda x: os.path.relpath(actualPath, x), actualFiles))
+            map(lambda x: os.path.relpath(x, expectedPath), expectedFiles),
+            map(lambda x: os.path.relpath(x, actualPath), actualFiles))
 
         for expectedFile, actualFile in zip(expectedFiles, actualFiles):
             with open(expectedFile) as expectedHandle:
