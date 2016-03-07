@@ -15,12 +15,11 @@ info: >
       return false.
   ...
 features: [Reflect]
-includes: [testTypedArray.js, detachArrayBuffer.js]
+includes: [testTypedArray.js]
 ---*/
 
 testWithTypedArrayConstructors(function(TA) {
   var sample = new TA(1);
-  $DETACHBUFFER(sample);
 
   assert.sameValue(Reflect.has(sample, "1"), false, "1");
 });

@@ -22,6 +22,14 @@ testWithTypedArrayConstructors(function(TA) {
   $DETACHBUFFER(sample);
 
   assert.throws(TypeError, function() {
-    Reflect.has(sample, 0);
+    Reflect.has(sample, "0");
+  });
+
+  assert.throws(TypeError, function() {
+    Reflect.has(sample, "-0");
+  });
+
+  assert.throws(TypeError, function() {
+    Reflect.has(sample, "1.1");
   });
 });

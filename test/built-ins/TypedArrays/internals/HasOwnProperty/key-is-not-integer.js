@@ -14,12 +14,11 @@ info: >
       iii. If IsInteger(numericIndex) is false, return false.
   ...
 features: [Reflect]
-includes: [testTypedArray.js, detachArrayBuffer.js]
+includes: [testTypedArray.js]
 ---*/
 
 testWithTypedArrayConstructors(function(TA) {
   var sample = new TA(1);
-  $DETACHBUFFER(sample);
 
   assert.sameValue(Reflect.has(sample, "1.1"), false, "1.1");
   assert.sameValue(Reflect.has(sample, "0.0000000001"), false, "0.0000000001");
