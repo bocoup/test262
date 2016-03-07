@@ -74,6 +74,12 @@ class Template:
         for region in self.regions:
             whitespace = indentPattern.match(lines[region['lineno']]).group(1)
             value = context['regions'].get(region['name'], '')
+
+            if not value:
+                defaults = self.attribs['meta'].get('defaults')
+                if defaults:
+                    value = defaults.get(region['name'], '')
+
             source = source[:region['firstchar']] + \
                 _indent(value, whitespace).lstrip() + \
                 source[region['lastchar']:]

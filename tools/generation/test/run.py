@@ -48,5 +48,10 @@ class TestGeneration(unittest.TestCase):
         self.assertEqual(result['returncode'], 0)
         self.compareTrees('normal')
 
+    def test_optional_override(self):
+        result = self.fixture('optional')
+        self.assertEqual(result['returncode'], 0)
+        self.compareTrees('optional')
+
 if __name__ == '__main__':
     unittest.main()

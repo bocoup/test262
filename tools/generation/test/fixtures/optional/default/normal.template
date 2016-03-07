@@ -1,0 +1,12 @@
+// Fake copyright information (line 1)
+// Fake copyright information (line 2)
+/*---
+name: First template name
+path: optional/
+es6id: 1.2.3
+info: template info
+defaults:
+  optional: f
+---*/
+
+function /*{ optional }*/() {}
