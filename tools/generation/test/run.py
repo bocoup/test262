@@ -16,9 +16,12 @@ class TestGeneration(unittest.TestCase):
         stdout, stderr = sp.communicate()
         return dict(stdout=stdout, stderr=stderr, returncode=sp.returncode)
 
-    def compareTrees(self, expectedPath, actualPath):
+    def compareTrees(self, targetName):
         expectedFiles = []
         actualFiles = []
+
+        expectedPath = os.path.join(EXPECTED_DIR, targetName)
+        actualPath = os.path.join(OUT_DIR, targetName)
 
         for root, _, files in os.walk(expectedPath):
             expectedFiles += map(lambda x: os.path.join(root, x), files)
@@ -43,7 +46,7 @@ class TestGeneration(unittest.TestCase):
     def test_normal(self):
         result = self.fixture('normal.case')
         self.assertEqual(result['returncode'], 0)
-        self.compareTrees(os.path.join(EXPECTED_DIR), OUT_DIR)
+        self.compareTrees('normal')
 
 if __name__ == '__main__':
     unittest.main()
