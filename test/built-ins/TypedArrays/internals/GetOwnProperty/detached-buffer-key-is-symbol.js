@@ -20,7 +20,7 @@ features: [Reflect, Symbol]
 
 testWithTypedArrayConstructors(function(TA) {
   var sample = new TA([42, 43]);
-  $DETACHBUFFER(sample);
+  $DETACHBUFFER(sample.buffer);
 
   var s = Symbol("foo");
   Object.defineProperty(sample, s, { value: "baz" });

@@ -20,7 +20,7 @@ features: [Reflect]
 
 testWithTypedArrayConstructors(function(TA) {
   var sample = new TA([42, 43]);
-  $DETACHBUFFER(sample);
+  $DETACHBUFFER(sample.buffer);
 
   assert.sameValue(
     Reflect.getOwnPropertyDescriptor(sample, "undef"),
