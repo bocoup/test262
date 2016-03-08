@@ -144,13 +144,20 @@ class Template:
         if case_values['meta'].get('negative'):
             lines += ['negative: ' + case_values['meta'].get('negative')]
 
-        lines += [
-            'info: >',
-            _indent(self.attribs['meta']['info']),
-            '',
-            _indent(case_values['meta']['info']),
-            '---*/'
-        ]
+        info = []
+
+        if 'info' in self.attribs['meta']:
+            info.append(_indent(self.attribs['meta']['info']))
+        if 'info' in case_values['meta']:
+            if len(info):
+                info.append('')
+            info.append(_indent(case_values['meta']['info']))
+
+        if len(info):
+            lines.append('info: >')
+            lines += info
+
+        lines.append('---*/')
 
         return '\n'.join(lines)
 
