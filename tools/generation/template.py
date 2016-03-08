@@ -80,6 +80,12 @@ class Template:
                 if defaults:
                     value = defaults.get(region['name'], '')
 
+            str_char = region.get('in_string')
+            if str_char:
+                safe_char = '"' if str_char == '\'' else '\''
+                value = value.replace(str_char, safe_char)
+                value = value.replace('\n', '\\\n')
+
             source = source[:region['firstchar']] + \
                 _indent(value, whitespace).lstrip() + \
                 source[region['lastchar']:]
