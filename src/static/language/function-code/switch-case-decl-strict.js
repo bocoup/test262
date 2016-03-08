@@ -1,14 +1,18 @@
 // Copyright (C) 2016 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-description: AnnexB extension not honored in strict mode (Funtion declaration in the `default` clause of a `switch` statement in the global scope)
-es6id: B.3.3.2
+description: AnnexB extension not honored in strict mode
+es6id: B.3.3.1
 flags: [onlyStrict]
 info: >
-    B.3.3.3 Changes to EvalDeclarationInstantiation
+    Function declaration in the `case` clause of a `switch` statement in
+    function code
+
+    B.3.3.1 Changes to FunctionDeclarationInstantiation
 
     1. If strict is false, then
 ---*/
+
 var err1, err2;
 
 (function() {
@@ -19,7 +23,7 @@ var err1, err2;
   }
 
   switch (1) {
-    default:
+    case 1:
       function f() {  }
   }
 
