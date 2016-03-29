@@ -55,14 +55,14 @@ assert.sameValue(result.done, false, 'not done after "default"');
 
 result = iter.next();
 assert.sameValue(result.value, 'starLocal');
-assert.sameValue(result.done, false), 'not done after "indirect"';
+assert.sameValue(result.done, false, 'not done after "indirect"');
 
 result = iter.next();
 assert.sameValue(result.value, 'starIndirect');
-assert.sameValue(result.done, false), 'not done after "starLocal"';
+assert.sameValue(result.done, false, 'not done after "starLocal"');
 
 result = iter.next();
-assert.sameValue(result.done, true, 'done after "starIndirect"';
+assert.sameValue(result.done, true, 'done after "starIndirect"');
 assert.sameValue(result.value, undefined);
 
 result = iter.next();
