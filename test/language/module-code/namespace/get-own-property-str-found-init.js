@@ -4,6 +4,7 @@
 esid: sec-module-namespace-exotic-objects-getownproperty-p
 description: >
     Behavior of the [[GetOwnProperty]] internal method with a string argument
+    describing an initialized binding
 info: |
     1. If Type(P) is Symbol, return OrdinaryGetOwnProperty(O, P).
     2. Let exports be the value of O's [[Exports]] internal slot.
@@ -14,9 +15,9 @@ info: |
 flags: [module]
 ---*/
 
-import * as ns from './get-own-property-str.js';
+import * as ns from './get-own-property-str-found-init.js';
 export var local = 201;
-export { local as indirect } from './get-own-property-str.js';
+export { local as indirect } from './get-own-property-str-found-init.js';
 export default 302;
 var desc;
 
@@ -47,6 +48,3 @@ assert.sameValue(desc.enumerable, true, 'default enumerable');
 assert.sameValue(desc.writable, true, 'default writable');
 assert.sameValue(desc.configurable, false, 'default configurable');
 
-assert.sameValue(Object.prototype.hasOwnProperty.call(ns, 'not found'), false);
-desc = Object.getOwnPropertyDescriptor(ns, 'not found');
-assert.sameValue(desc, undefined);

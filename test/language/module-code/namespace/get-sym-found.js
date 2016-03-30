@@ -10,6 +10,7 @@ info: |
     2. If Type(P) is Symbol, then
        a. Return ? OrdinaryGet(O, P, Receiver).
 flags: [module]
+features: [Symbol.iterator, Symbol.toStringTag]
 ---*/
 
 import * as ns from './get-sym-found.js';
