@@ -19,7 +19,6 @@ export var local = 23;
 export { local as indirect } from './get-own-property-str.js';
 export default null;
 var desc;
-var assert = { sameValue: print };
 
 assert.sameValue(
   Object.prototype.hasOwnProperty.call(ns, 'local'), true
