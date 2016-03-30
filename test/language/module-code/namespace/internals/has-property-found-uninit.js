@@ -9,7 +9,7 @@ info: |
     [...]
     2. Let exports be the value of O's [[Exports]] internal slot.
     3. If P is an element of exports, return true.
-    4. Return false. 
+    4. Return false.
 flags: [module]
 features: [Reflect, let, class]
 ---*/

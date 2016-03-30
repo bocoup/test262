@@ -8,7 +8,7 @@ info: |
     1. Let exports be a copy of the value of O's [[Exports]] internal slot.
     2. Let symbolKeys be ! OrdinaryOwnPropertyKeys(O).
     3. Append all the entries of symbolKeys to the end of exports.
-    4. Return exports. 
+    4. Return exports.
 flags: [module]
 features: [Reflect, Symbol.iterator, Symbol.toStringTag, let, class]
 ---*/
