@@ -32,13 +32,25 @@ assert.sameValue(stringKeys[6], 'indirectUninit');
 
 var symbolKeys = Object.getOwnPropertySymbols(ns);
 
-assert(symbolKeys.length > 1);
-assert(symbolKeys.indexOf(Symbol.iterator) > -1);
-assert(symbolKeys.indexOf(Symbol.toStringTag) > -1);
+assert(
+  symbolKeys.length > 1,
+  'at least as many Symbol keys as defined by the specification'
+);
+assert(
+  symbolKeys.indexOf(Symbol.iterator) > -1,
+  'Symbol keys array includes Symbol.iterator'
+);
+assert(
+  symbolKeys.indexOf(Symbol.toStringTag) > -1,
+  'Symbol keys array includes Symbol.toStringTag'
+);
 
 var allKeys = Reflect.ownKeys(ns);
 
-assert(allKeys.length > 8);
+assert(
+  allKeys.length > 8,
+  'at least as many keys as defined by the module and the specification'
+);
 assert.sameValue(allKeys[0], 'local1');
 assert.sameValue(allKeys[1], 'renamed');
 assert.sameValue(allKeys[2], 'localUninit1');
@@ -46,8 +58,13 @@ assert.sameValue(allKeys[3], 'renamedUninit');
 assert.sameValue(allKeys[4], 'default');
 assert.sameValue(allKeys[5], 'indirect');
 assert.sameValue(allKeys[6], 'indirectUninit');
-assert(allKeys.indexOf(Symbol.iterator) > 6);
-assert(allKeys.indexOf(Symbol.toStringTag) > 6);
+assert(
+  allKeys.indexOf(Symbol.iterator) > 6, 'keys array includes Symbol.iterator'
+);
+assert(
+  allKeys.indexOf(Symbol.toStringTag) > 6,
+  'keys array includes Symbol.toStringTag'
+);
 
 export let localUninit1;
 let localUninit2;
