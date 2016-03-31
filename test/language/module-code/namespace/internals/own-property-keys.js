@@ -10,7 +10,7 @@ info: |
     3. Append all the entries of symbolKeys to the end of exports.
     4. Return exports.
 flags: [module]
-features: [Reflect, Symbol.iterator, Symbol.toStringTag, let, class]
+features: [Reflect, Symbol.iterator, Symbol.toStringTag, let]
 ---*/
 
 import * as ns from './own-property-keys.js';
@@ -53,4 +53,4 @@ export let localUninit1;
 let localUninit2;
 export { localUninit2 as renamedUninit };
 export { localUninit1 as indirectUninit } from './own-property-keys.js';
-export default class {}
+export default null;

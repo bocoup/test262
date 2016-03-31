@@ -10,7 +10,7 @@ info: |
     12. Let targetEnvRec be targetEnv's EnvironmentRecord.
     13. Return ? targetEnvRec.GetBindingValue(binding.[[BindingName]], true).
 flags: [module]
-features: [let, class]
+features: [let]
 ---*/
 
 import * as ns from './get-str-found-uninit.js';
@@ -32,4 +32,4 @@ export let local1 = 23;
 let local2 = 45;
 export { local2 as renamed };
 export { local1 as indirect } from './get-str-found-uninit.js';
-export default class {}
+export default null;
