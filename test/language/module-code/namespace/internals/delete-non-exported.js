@@ -10,7 +10,7 @@ info: |
     3. If P is an element of exports, return false.
     4. Return true.
 flags: [module]
-features: [Reflect, Symbol,Symbol.iterator, Symbol.toStringTag]
+features: [Reflect, Symbol, Symbol.iterator, Symbol.toStringTag]
 ---*/
 
 import * as ns from './delete-non-exported.js';

@@ -17,7 +17,6 @@ var x;
 import * as ns from './own-property-keys-sort.js';
 
 var stringKeys = Object.getOwnPropertyNames(ns);
-var allKeys = Reflect.ownKeys(ns);
 
 assert.sameValue(stringKeys.length, 16);
 assert.sameValue(stringKeys[0], '$', 'stringKeys[0] === "$"');
@@ -37,6 +36,7 @@ assert.sameValue(stringKeys[13], '\u03bb', 'stringKeys[13] === "\u03bb"');
 assert.sameValue(stringKeys[14], '\u03bc', 'stringKeys[14] === "\u03bc"');
 assert.sameValue(stringKeys[15], '\u03c0', 'stringKeys[15] === "\u03c0"');
 
+var allKeys = Reflect.ownKeys(ns);
 assert(
   allKeys.length > 17,
   'at least as many keys as defined by the module and the specification'
