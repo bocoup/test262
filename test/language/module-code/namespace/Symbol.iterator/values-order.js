@@ -108,11 +108,11 @@ assert.sameValue(result.done, false, 'not done following "\u03bc"');
 assert.sameValue(result.value, '\u03c0');
 
 result = iter.next();
-assert.sameValue(result.done, true, 'done after "\u03c0"');
+assert.sameValue(result.done, true, 'done following "\u03c0"');
 assert.sameValue(result.value, undefined);
 
 result = iter.next();
-assert.sameValue(result.done, true, 'done after exhaustion');
+assert.sameValue(result.done, true, 'done following exhaustion');
 assert.sameValue(result.value, undefined);
 
 export { x as π }; // u03c0
