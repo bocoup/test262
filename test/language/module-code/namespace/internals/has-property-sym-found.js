@@ -11,7 +11,7 @@ flags: [module]
 features: [Symbol.iterator, Symbol.toStringTag, Reflect]
 ---*/
 
-import * as ns from './get-sym-found.js';
+import * as ns from './has-property-sym-found.js';
 
 assert(Symbol.iterator in ns, 'in: Symbol.iterator');
 assert(Reflect.has(ns, Symbol.iterator), 'Reflect.has: Symbol.iterator');

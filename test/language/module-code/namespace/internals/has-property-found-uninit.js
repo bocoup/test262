@@ -14,7 +14,7 @@ flags: [module]
 features: [Reflect, let]
 ---*/
 
-import * as ns from './get-str-found-uninit.js';
+import * as ns from './has-property-str-found-uninit.js';
 
 assert('local1' in ns, 'in: local1');
 assert(Reflect.has(ns, 'local1'), 'Reflect.has: local1');
@@ -31,5 +31,5 @@ assert(Reflect.has(ns, 'default'), 'Reflect.has: default');
 export let local1 = 23;
 let local2 = 45;
 export { local2 as renamed };
-export { local1 as indirect } from './get-str-found-uninit.js';
+export { local1 as indirect } from './has-property-str-found-uninit.js';
 export default null;
