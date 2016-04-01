@@ -14,6 +14,23 @@ features: [Reflect, Symbol.iterator, Symbol.toStringTag]
 ---*/
 
 var x;
+export { x as π }; // u03c0
+export { x as az };
+export { x as __ };
+export { x as za };
+export { x as Z };
+export { x as \u03bc };
+export { x as z };
+export { x as zz };
+export { x as a };
+export { x as A };
+export { x as aa };
+export { x as λ }; // u03bb
+export { x as _ };
+export { x as $$ };
+export { x as $ };
+export default null;
+
 import * as ns from './own-property-keys-sort.js';
 
 var stringKeys = Object.getOwnPropertyNames(ns);
@@ -64,20 +81,3 @@ assert(
   allKeys.indexOf(Symbol.toStringTag) > 15,
   'keys array includes Symbol.toStringTag'
 );
-
-export { x as π }; // u03c0
-export { x as az };
-export { x as __ };
-export { x as za };
-export { x as Z };
-export { x as \u03bc };
-export { x as z };
-export { x as zz };
-export { x as a };
-export { x as A };
-export { x as aa };
-export { x as λ }; // u03bb
-export { x as _ };
-export { x as $$ };
-export { x as $ };
-export default null;

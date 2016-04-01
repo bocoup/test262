@@ -38,6 +38,23 @@ features: [Symbol.iterator]
 ---*/
 
 var x;
+export { x as π }; // u03c0
+export { x as az };
+export { x as __ };
+export { x as za };
+export { x as Z };
+export { x as \u03bc };
+export { x as z };
+export { x as zz };
+export { x as a };
+export { x as A };
+export { x as aa };
+export { x as λ }; // u03bb
+export { x as _ };
+export { x as $$ };
+export { x as $ };
+export default null;
+
 import * as ns from './values-order.js';
 
 var iter = ns[Symbol.iterator]();
@@ -114,20 +131,3 @@ assert.sameValue(result.value, undefined);
 result = iter.next();
 assert.sameValue(result.done, true, 'done following exhaustion');
 assert.sameValue(result.value, undefined);
-
-export { x as π }; // u03c0
-export { x as az };
-export { x as __ };
-export { x as za };
-export { x as Z };
-export { x as \u03bc };
-export { x as z };
-export { x as zz };
-export { x as a };
-export { x as A };
-export { x as aa };
-export { x as λ }; // u03bb
-export { x as _ };
-export { x as $$ };
-export { x as $ };
-export default null;
