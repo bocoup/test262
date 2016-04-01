@@ -9,6 +9,7 @@ info: |
     12. Let targetEnvRec be targetEnv's EnvironmentRecord.
     13. Return ? targetEnvRec.GetBindingValue(binding.[[BindingName]], true).
 flags: [module]
+features: [let]
 ---*/
 
 import * as ns from './get-str-initialize.js';

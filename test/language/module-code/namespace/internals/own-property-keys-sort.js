@@ -10,7 +10,7 @@ info: |
     3. Append all the entries of symbolKeys to the end of exports.
     4. Return exports.
 flags: [module]
-features: [Reflect, Symbol.iterator, Symbol.toStringTag, let]
+features: [Reflect, Symbol.iterator, Symbol.toStringTag]
 ---*/
 
 var x;
