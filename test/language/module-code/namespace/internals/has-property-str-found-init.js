@@ -13,7 +13,7 @@ flags: [module]
 features: [Reflect]
 ---*/
 
-import * as ns from './has-propert-str-found-init.js';
+import * as ns from './has-property-str-found-init.js';
 export var local1;
 var local2;
 export { local2 as renamed };
