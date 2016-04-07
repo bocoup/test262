@@ -2,17 +2,11 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 description: Strictness of direct eval is not dependent on strictness of caller
-esid: sec-eval-x
+esid: sec-strict-mode-code
 info: |
-    [...]
-    3. Return ? PerformEval(x, evalRealm, false, false). 
-
-    18.2.1.1 Runtime Semantics: PerformEval
-
-    [...]
-    6. If strictCaller is true, let strictEval be true.
-    7. Else, let strictEval be IsStrict of script.
-    [...]
+    Eval code is strict mode code if it begins with a Directive Prologue that
+    contains a Use Strict Directive or if the call to eval is a direct eval
+    that is contained in strict mode code.
 flags: [onlyStrict]
 ---*/
 
