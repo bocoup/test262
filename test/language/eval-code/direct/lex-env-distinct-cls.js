@@ -3,7 +3,7 @@
 /*---
 esid: sec-performeval
 description: >
-    direct eval code creates a new declarative environment for lexically-scoped
+    Direct eval code creates a new declarative environment for lexically-scoped
     declarations (class)
 info: |
     [...]
