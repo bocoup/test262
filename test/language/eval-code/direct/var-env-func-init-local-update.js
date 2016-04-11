@@ -30,3 +30,6 @@ var initial;
 
 assert.sameValue(typeof initial, 'function');
 assert.sameValue(initial(), 33);
+assert.throws(ReferenceError, function() {
+  f;
+});

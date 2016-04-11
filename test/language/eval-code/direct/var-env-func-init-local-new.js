@@ -30,3 +30,6 @@ var initial, postAssignment;
 assert.sameValue(typeof initial, 'function');
 assert.sameValue(initial(), 33);
 assert.sameValue(postAssignment, 5, 'binding is mutable');
+assert.throws(ReferenceError, function() {
+  f;
+});
