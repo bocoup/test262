@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-evaldeclarationinstantiation
-description: Assignment to an existing local binding
+description: Re-declaration of an existing local variable binding
 info: |
     [...]
     15. For each production f in functionsToInitialize, do
