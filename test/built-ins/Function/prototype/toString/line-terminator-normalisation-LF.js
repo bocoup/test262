@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
-esid: sec-function-definitions-runtime-semantics-instantiatefunctionobject
+esid: pending
 description: Function.prototype.toString line terminator normalisation (LF)
 info: >
   Function.prototype.toString should normalise line terminator sequences to Line Feed characters.

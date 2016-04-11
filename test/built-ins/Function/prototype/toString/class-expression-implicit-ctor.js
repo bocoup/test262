@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
-esid: sec-class-definitions-runtime-semantics-evaluation
+esid: pending
 description: Function.prototype.toString on a class expression (implicit constructor)
 ---*/
 

@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
-esid: sec-function.prototype.tostring
+esid: pending
 description: Function.prototype.toString on a function with Unicode escape sequences
 info: >
   Function.prototype.toString returns a slice of the source text before

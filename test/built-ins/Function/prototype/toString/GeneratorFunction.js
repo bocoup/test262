@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
-esid: sec-createdynamicfunction
+esid: pending
 description: Function.prototype.toString on a generator function created with the GeneratorFunction constructor
 ---*/
 

@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
-esid: sec-arrow-function-definitions-runtime-semantics-evaluation
+esid: pending
 description: Function.prototype.toString on an arrow function
 ---*/
 

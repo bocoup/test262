@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
-esid: sec-function.prototype.tostring
+esid: pending
 description: Function.prototype.toString on well-known intrinsic function objects
 includes: [nativeFunctionMatcher.js]
 ---*/
