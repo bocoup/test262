@@ -3,6 +3,7 @@
 // - src/spread/default/super-call.template
 /*---
 description: Spread operator applied to the only argument with a valid iterator (SuperCall)
+esid: sec-super-keyword-runtime-semantics-evaluation
 es6id: 12.3.5.1
 features: [Symbol.iterator]
 

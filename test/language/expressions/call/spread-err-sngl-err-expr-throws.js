@@ -3,6 +3,7 @@
 // - src/spread/error/call-expr.template
 /*---
 description: Spread operator applied to the only argument when evaluation throws (CallExpression)
+esid: sec-function-calls-runtime-semantics-evaluation
 es6id: 12.3.4.1
 features: [generators]
 
