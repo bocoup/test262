@@ -39,11 +39,11 @@ info: >
 ---*/
 var iter = {};
 iter[Symbol.iterator] = function() {
-  var callCount = 3;
+  var nextCount = 3;
   return {
     next: function() {
-      callCount += 1;
-      return { done: callCount === 6, value: callCount };
+      nextCount += 1;
+      return { done: nextCount === 6, value: nextCount };
     }
   };
 };
