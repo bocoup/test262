@@ -48,3 +48,8 @@ assert.sameValue(/\070/.exec('\x38')[0], '\x38', '\\070');
 assert.sameValue(/\300/.exec('\xc0')[0], '\xc0', '\\300');
 assert.sameValue(/\307/.exec('\xc7')[0], '\xc7', '\\307');
 assert.sameValue(/\370/.exec('\xf8')[0], '\xf8', '\\370');
+
+match = /(.)\1/.exec('a\x01 aa');
+assert.sameValue(
+  match[0], 'aa', 'DecimalEscape takes precedence over LegacyOctalEscapeSequence'
+)

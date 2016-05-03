@@ -16,5 +16,13 @@ var match;
 match = /\C/.exec('ABCDE');
 assert.sameValue(match[0], 'C');
 
+match = /\8/.exec('789');
+assert.sameValue(match[0], '8');
+
 match = /O\PQ/.exec('MNOPQRS')
 assert.sameValue(match[0], 'OPQ');
+
+match = /(.)(.)(.)(.)(.)(.)(.)(.)\8/.exec('123456788');
+assert.sameValue(
+  match[0], '123456788', 'DecimalEscape takes precedence over IdentityEscape'
+);
