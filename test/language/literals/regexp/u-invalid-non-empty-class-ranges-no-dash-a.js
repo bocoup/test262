@@ -4,14 +4,15 @@
 esid: sec-pattern-semantics
 es6id: 21.2.2
 description: >
-    NonEmptyClassRanges production cannot specify a multi-character set ("A"
-    parameter)
+    NonEmptyClassRangesNoDash production cannot specify a multi-character set
+    ("A" parameter)
 info: >
-    The production NonemptyClassRanges::ClassAtom-ClassAtomClassRanges
-    evaluates as follows:
+    The production
+    NonemptyClassRangesNoDash::ClassAtomNoDash-ClassAtomClassRanges evaluates
+    as follows:
 
-    1. Evaluate the first ClassAtom to obtain a CharSet A.
-    2. Evaluate the second ClassAtom to obtain a CharSet B.
+    1. Evaluate ClassAtomNoDash to obtain a CharSet A.
+    2. Evaluate ClassAtom to obtain a CharSet B.
     3. Evaluate ClassRanges to obtain a CharSet C.
     4. Call CharacterRange(A, B) and let D be the resulting CharSet.
 
