@@ -13,7 +13,7 @@ info: |
     2. Evaluate ClassAtom to obtain a CharSet B.
     3. Evaluate ClassRanges to obtain a CharSet C.
     4. Call CharacterRangeOrUnion(A, B) and let D be the resulting CharSet.
-    5. Return the union of CharSets D and C. 
+    5. Return the union of CharSets D and C.
 
     B.1.4.1.1 Runtime Semantics: CharacterRangeOrUnion Abstract Operation
 

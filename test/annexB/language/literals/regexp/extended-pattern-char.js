@@ -12,7 +12,7 @@ info: |
 
     1. Let ch be the character represented by ExtendedPatternCharacter.
     2. Let A be a one-element CharSet containing the character ch.
-    3. Call CharacterSetMatcher(A, false) and return its Matcher result. 
+    3. Call CharacterSetMatcher(A, false) and return its Matcher result.
 ---*/
 
 var match;
