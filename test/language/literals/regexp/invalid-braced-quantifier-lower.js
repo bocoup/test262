@@ -4,7 +4,7 @@
 esid: sec-patterns
 es6id: 21.2.1
 description: Braced quantifier in an Atom position (lower-bounds)
-info: >
+info: |
     SyntaxCharacter :: one of
         ^$\.*+?()[]{}|
 

@@ -4,7 +4,7 @@
 esid: sec-regular-expressions-patterns
 es6id: B1.4
 description: Quantifiable assertions - "not followed by": ( ?! Disjunction )
-info: >
+info: |
     Term[U] ::
          [~U] QuantifiableAssertion Quantifier
 

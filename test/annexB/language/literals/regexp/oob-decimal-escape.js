@@ -4,7 +4,7 @@
 esid: sec-regular-expressions-patterns
 es6id: B1.4
 description: Out-of-bounds decimal escapes
-info: >
+info: |
      AtomEscape[U] ::
          [+U] DecimalEscape
          [~U] DecimalEscape but only if the integer value of DecimalEscape is <= _NcapturingParens_

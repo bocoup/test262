@@ -6,7 +6,7 @@ es6id: 21.2.2
 description: >
     NonEmptyClassRangesNoDash production cannot specify a multi-character set
     ("B" parameter)
-info: >
+info: |
     The production
     NonemptyClassRangesNoDash::ClassAtomNoDash-ClassAtomClassRanges evaluates
     as follows:

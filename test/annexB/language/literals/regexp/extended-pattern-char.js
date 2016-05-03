@@ -4,7 +4,7 @@
 esid: sec-regular-expressions-patterns
 es6id: B1.4
 description: Extended Pattern Characters (as distinct from Pattern Characters)
-info: >
+info: |
     ExtendedPatternCharacter ::
         SourceCharacterbut not one of ^$.*+?()[|
 

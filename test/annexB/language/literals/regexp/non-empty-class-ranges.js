@@ -4,7 +4,7 @@
 esid: sec-regular-expressions-patterns
 es6id: B1.4
 description: Extensions to NonemptyClassRanges production
-info: >
+info: |
     The production NonemptyClassRanges :: ClassAtom-ClassAtom ClassRanges
     evaluates as follows:
 

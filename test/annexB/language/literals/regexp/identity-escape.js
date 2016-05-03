@@ -4,7 +4,7 @@
 esid: sec-regular-expressions-patterns
 es6id: B1.4
 description: Support for UnicodeIDContinue in IdentityEscape
-info: >
+info: |
     IdentityEscape[U] ::
         [+U]SyntaxCharacter
         [+U]/

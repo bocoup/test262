@@ -4,7 +4,7 @@
 esid: sec-regular-expressions-patterns
 es6id: B1.4
 description: Legacy Octal Escape Sequence
-info: >
+info: |
     CharacterEscape[U]::
         ControlEscape
         c ControlLetter
