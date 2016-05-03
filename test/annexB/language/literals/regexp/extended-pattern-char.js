@@ -3,7 +3,7 @@
 /*---
 esid: sec-regular-expressions-patterns
 es6id: B1.4
-description: ExtendedPatternCharacter
+description: Extended Pattern Characters (as distinct from Pattern Characters)
 info: >
     ExtendedPatternCharacter ::
         SourceCharacterbut not one of ^$.*+?()[|

@@ -5,8 +5,8 @@ esid: sec-regular-expressions-patterns
 es6id: B1.4
 description: Quantifiable assertions disallowed with `u` flag
 info: >
-    The `u` flag precludes the use of extended pattern characters (even when
-    Annex B is honored)
+    The `u` flag precludes the use of extended pattern characters irrespective
+    of the presence of Annex B extensions.
 
     Term[U] ::
          [~U] ExtendedAtom
