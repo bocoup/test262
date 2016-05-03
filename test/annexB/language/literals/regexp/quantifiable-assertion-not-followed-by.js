@@ -3,14 +3,14 @@
 /*---
 esid: sec-regular-expressions-patterns
 es6id: B1.4
-description: Quantifiable assertions - "not followed by": ( ?! Disjunction )
+description: Quantifiable assertions `?!` ("not followed by")
 info: |
     Term[U] ::
-         [~U] QuantifiableAssertion Quantifier
+        [~U] QuantifiableAssertion Quantifier
 
-     QuantifiableAssertion::
-         ( ?= Disjunction )
-         ( ?! Disjunction )
+    QuantifiableAssertion::
+        ( ?= Disjunction )
+        ( ?! Disjunction )
 
     The production Term::QuantifiableAssertionQuantifier evaluates the same as
     the production Term::AtomQuantifier but with QuantifiableAssertion

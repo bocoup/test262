@@ -3,12 +3,12 @@
 /*---
 esid: sec-regular-expressions-patterns
 es6id: B1.4
-description: Quantifiable assertions - "followed by": ( ?= Disjunction )
+description: Quantifiable assertions `?=` ("followed by")
 info: |
     Term[U] ::
          [~U] QuantifiableAssertion Quantifier
 
-     QuantifiableAssertion::
+    QuantifiableAssertion ::
          ( ?= Disjunction )
          ( ?! Disjunction )
 
