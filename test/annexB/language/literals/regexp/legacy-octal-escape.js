@@ -41,6 +41,12 @@ assert.sameValue(/\47/.exec('\x27')[0], '\x27', '\\47');
 assert.sameValue(/\70/.exec('\x38')[0], '\x38', '\\70');
 assert.sameValue(/\77/.exec('\x3f')[0], '\x3f', '\\77');
 
+// Set is bounded according to the String Value (not number of characters)
+assert.sameValue(/\400/.exec('\x200')[0], '\x200', '\\400');
+assert.sameValue(/\470/.exec('\x270')[0], '\x270', '\\470');
+assert.sameValue(/\700/.exec('\x380')[0], '\x380', '\\700');
+assert.sameValue(/\770/.exec('\x3f0')[0], '\x3f0', '\\770');
+
 assert.sameValue(/\000/.exec('\x00')[0], '\x00', '\\000');
 assert.sameValue(/\007/.exec('\x07')[0], '\x07', '\\007');
 assert.sameValue(/\070/.exec('\x38')[0], '\x38', '\\070');
