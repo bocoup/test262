@@ -7,8 +7,8 @@ description: Extensions to ClassEscape
 info: |
     ClassEscape[U] ::
         b
-        [+U]-
-        [~U]c ClassControlLetter
+        [+U] -
+        [~U] c ClassControlLetter
         CharacterClassEscape
         CharacterEscape[?U]
 

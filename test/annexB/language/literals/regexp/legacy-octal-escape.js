@@ -11,7 +11,7 @@ info: |
         0 [lookahead ∉ DecimalDigit]
         HexEscapeSequence
         RegExpUnicodeEscapeSequence[?U]
-        [~U]LegacyOctalEscapeSequence
+        [~U] LegacyOctalEscapeSequence
         IdentityEscape[?U]
 
     The production CharacterEscape::LegacyOctalEscapeSequence evaluates by

@@ -6,9 +6,9 @@ es6id: B1.4
 description: Support for UnicodeIDContinue in IdentityEscape
 info: |
     IdentityEscape[U] ::
-        [+U]SyntaxCharacter
-        [+U]/
-        [~U]SourceCharacter but not c
+        [+U] SyntaxCharacter
+        [+U] /
+        [~U] SourceCharacter but not c
 ---*/
 
 var match;

@@ -8,9 +8,9 @@ info: |
     The `u` flag precludes the use of LegacyOctalEscapeSequence irrespective
     of the presence of Annex B extensions.
 
-    CharacterEscape[U]::
+    CharacterEscape [U] ::
         ControlEscape
-        cControlLetter
+        c ControlLetter
         0[lookahead ∉ DecimalDigit]
         HexEscapeSequence
         RegExpUnicodeEscapeSequence[?U]

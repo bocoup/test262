@@ -1,14 +1,14 @@
 // Copyright (C) 2016 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-esid: sec-pattern-semantics
-es6id: 21.2.2
+esid: sec-patterns
+es6id: 21.2.1
 description: >
     ClassEscape does not recognize "class control" patterns
 info: |
     ClassEscape[U] ::
         b
-        [+U]-
+        [+U] -
         CharacterClassEscape
         CharacterEscape[?U]
 
