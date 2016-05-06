@@ -17,18 +17,21 @@ info: |
        [...]
 ---*/
 
+var result;
+
 assert.sameValue(
   escape('\u0100\u0101\u0102'),
   '%u0100%u0101%u0102',
   '\\u0100\\u0101\\u0102'
 );
 
-assert(
-  /^%ufffd%ufffe%uffff$/i.test(escape('\ufffd\ufffe\uffff')),
-  '\\ufffd\\ufffd\\ufffd'
-);
+result = escape('\ufffd\ufffe\uffff');
+assert(/^%.fffd%.fffe%.ffff$/i.test(result), '\\ufffd\\ufffd\\ufffd');
+assert.sameValue(result[1], 'u', '\\ufffd\\ufffd\\ufffd - U #1');
+assert.sameValue(result[7], 'u', '\\ufffd\\ufffd\\ufffd - U #2');
+assert.sameValue(result[13], 'u', '\\ufffd\\ufffd\\ufffd - U #3');
 
-assert(
-  /^%ud834%udf06$/i.test(escape('\ud834' + '\udf06')),
-  '\\ud834\\udf06 (surrogate pairs)'
-);
+result = escape('\ud834' + '\udf06');
+assert(/^%.d834%.df06$/i.test(result), '\\ud834\\udf06 (surrogate pairs)');
+assert.sameValue(result[1], 'u', '\\ud834\\udf06 - U #1');
+assert.sameValue(result[7], 'u', '\\ud834\\udf06 - U #2');
