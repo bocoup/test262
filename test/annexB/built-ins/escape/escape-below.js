@@ -12,8 +12,8 @@ info: |
        [...]
        d. Else char < 256,
           i. Let S be a String containing three code units "%xy" where xy are
-             the code units of two hexadecimal digits encoding the value of
-             char.
+             the code units of two uppercase hexadecimal digits encoding the
+             value of char.
        [...]
 ---*/
 
@@ -29,25 +29,26 @@ assert.sameValue(
   'characters preceeding "*": !"#$%&\'()'
 );
 
-assert(/^%2c$/i.test(escape(',')), 'character between "+" and "-": ,');
+assert.sameValue(escape(','), '%2C', 'character between "+" and "-": ,');
 
-assert(
-  /^%3a%3b%3c%3d%3e%3f$/i.test(escape(':;<=>?')),
+assert.sameValue(
+  escape(':;<=>?'),
+  '%3A%3B%3C%3D%3E%3F',
   'characters between "9" and "@": :;<=>?'
 );
 
-assert(
-  /^%5b%5c%5d%5e$/i.test(escape('[\\]^')),
-  'characters between "Z" and "_": [\\]^'
+assert.sameValue(
+  escape('[\\]^'), '%5B%5C%5D%5E', 'characters between "Z" and "_": [\\]^'
 );
 
 assert.sameValue(escape('`'), '%60', 'character between "_" and "a": `');
 
-assert(
-  /^%7b%7c%7d%7e%7f%80$/i.test(escape('{|}~\x7f\x80')),
+assert.sameValue(
+  escape('{|}~\x7f\x80'),
+  '%7B%7C%7D%7E%7F%80',
   'characters following "z": {|}~\\x7f\\x80'
 );
 
-assert(
-  /^%fd%fe%ff$/i.test(escape('\xfd\xfe\xff')), '\\xfd\\xfe\\xff'
+assert.sameValue(
+  escape('\xfd\xfe\xff'), '%FD%FE%FF', '\\xfd\\xfe\\xff'
 );
