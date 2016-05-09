@@ -5,7 +5,7 @@ esid: sec-additional-properties-of-the-object.prototype-object
 description: Behavior when getter is not callable
 info: |
     [...]
-    2. If IsCallable(getter) is false, throw a TypeError exception.
+    2. If IsCallable(setter) is false, throw a TypeError exception.
 features: [Symbol]
 ---*/
 

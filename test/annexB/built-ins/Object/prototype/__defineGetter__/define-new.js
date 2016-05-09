@@ -5,7 +5,7 @@ esid: sec-additional-properties-of-the-object.prototype-object
 description: Behavior when propery exists and is configurable
 info: |
     [...]
-    3. Let desc be PropertyDescriptor{[[Set]]: setter, [[Enumerable]]: true,
+    3. Let desc be PropertyDescriptor{[[Get]]: getter, [[Enumerable]]: true,
        [[Configurable]]: true}.
     4. Let key be ? ToPropertyKey(P).
     5. Perform ? DefinePropertyOrThrow(O, key, desc).
