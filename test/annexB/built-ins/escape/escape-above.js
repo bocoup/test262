@@ -26,7 +26,5 @@ assert.sameValue(
 );
 
 assert.sameValue(
-  escape('\ud834' + '\udf06'),
-  '%uD834%uDF06',
-  '\\ud834\\udf06 (surrogate pairs)'
+  escape('\ud834\udf06'), '%uD834%uDF06', '\\ud834\\udf06 (surrogate pairs)'
 );
