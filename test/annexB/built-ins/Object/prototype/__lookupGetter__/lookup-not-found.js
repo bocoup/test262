@@ -2,8 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-additional-properties-of-the-object.prototype-object
-description: >
-    Behavior when [[GetPrototypeOf]] of prototype returns an abrupt completion
+description: Behavior when property does not exist in prototype chain
 info: |
     [...]
     4. Repeat

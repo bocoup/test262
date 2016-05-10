@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-additional-properties-of-the-object.prototype-object
-description: Behavior when propery exists and is not configurable
+description: Behavior when property exists and is not configurable
 info: |
     [...]
     5. Perform ? DefinePropertyOrThrow(O, key, desc).

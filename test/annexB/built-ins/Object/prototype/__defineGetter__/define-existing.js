@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-additional-properties-of-the-object.prototype-object
-description: Behavior when propery exists and is configurable
+description: Behavior when property exists and is configurable
 info: |
     [...]
     3. Let desc be PropertyDescriptor{[[Get]]: getter, [[Enumerable]]: true,
@@ -10,7 +10,6 @@ info: |
     4. Let key be ? ToPropertyKey(P).
     5. Perform ? DefinePropertyOrThrow(O, key, desc).
     6. Return undefined.
-features: [Symbol]
 includes: [propertyHelper.js]
 ---*/
 

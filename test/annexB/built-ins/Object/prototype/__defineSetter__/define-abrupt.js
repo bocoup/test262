@@ -6,6 +6,7 @@ description: Behavior when [[DefineOwnProperty]] returns an abrupt completion
 info: |
     [...]
     5. Perform ? DefinePropertyOrThrow(O, key, desc).
+features: [Proxy]
 ---*/
 
 var noop = function() {};

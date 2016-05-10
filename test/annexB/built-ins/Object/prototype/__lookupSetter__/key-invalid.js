@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-additional-properties-of-the-object.prototype-object
-description: Behavior when propery key cannot be derived
+description: Behavior when property key cannot be derived
 info: |
     [...]
     2. Let key be ? ToPropertyKey(P).
