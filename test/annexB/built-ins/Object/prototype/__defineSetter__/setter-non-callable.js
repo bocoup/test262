@@ -38,6 +38,6 @@ assert.throws(TypeError, function() {
 
 assert.throws(TypeError, function() {
   subject.__defineSetter__(key, {});
-});
+}, 'object');
 
 assert.sameValue(toStringCount, 0);
