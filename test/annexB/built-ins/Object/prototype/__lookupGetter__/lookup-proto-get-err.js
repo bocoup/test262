@@ -18,7 +18,9 @@ features: [Proxy]
 
 var root = Object.defineProperty({}, 'target', { get: function() {} });
 var thrower = function() { throw new Test262Error(); };
-var intermediary = new Proxy(root, { getOwnPropertyDescriptor: thrower });
+var intermediary = new Proxy(
+  Object.create(root), { getOwnPropertyDescriptor: thrower }
+);
 var subject = Object.create(intermediary);
 
 assert.throws(Test262Error, function() {
