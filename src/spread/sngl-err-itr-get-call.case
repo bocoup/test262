@@ -1,7 +1,9 @@
 // Copyright (C) 2016 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-desc: Spread operator applied to the only argument when GetIterator fails
+desc: >
+    Spread operator applied to the only argument when GetIterator fails
+    (@@iterator function invocation)
 template: error
 features: [Symbol.iterator]
 info: |
