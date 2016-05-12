@@ -1,24 +1,21 @@
 // This file was procedurally generated from the following sources:
-// - src/spread/sngl-err-itr-get.case
-// - src/spread/error/call-expr.template
+// - src/spread/sngl-err-itr-get-call.case
+// - src/spread/error/super-call.template
 /*---
-description: Spread operator applied to the only argument when GetIterator fails (CallExpression)
-esid: sec-function-calls-runtime-semantics-evaluation
-es6id: 12.3.4.1
+description: Spread operator applied to the only argument when GetIterator fails (@@iterator function invocation) (SuperCall)
+esid: sec-super-keyword-runtime-semantics-evaluation
+es6id: 12.3.5.1
 features: [Symbol.iterator]
 
 flags: [generated]
 info: >
-    CallExpression : MemberExpression Arguments
+    SuperCall : super Arguments
     
-    [...]
-    9. Return EvaluateDirectCall(func, thisValue, Arguments, tailCall).
-    
-    12.3.4.3 Runtime Semantics: EvaluateDirectCall
-    
-    1. Let argList be ArgumentListEvaluation(arguments).
-    [...]
-    6. Let result be Call(func, thisValue, argList).
+    1. Let newTarget be GetNewTarget().
+    2. If newTarget is undefined, throw a ReferenceError exception.
+    3. Let func be GetSuperConstructor().
+    4. ReturnIfAbrupt(func).
+    5. Let argList be ArgumentListEvaluation of Arguments.
     [...]
 
     12.3.6.1 Runtime Semantics: ArgumentListEvaluation
@@ -42,6 +39,16 @@ iter[Symbol.iterator] = function() {
   throw new Test262Error();
 };
 
+class Test262ParentClass {
+  constructor() {}
+}
+
+class Test262ChildClass extends Test262ParentClass {
+  constructor() {
+    super(...iter);
+  }
+}
+
 assert.throws(Test262Error, function() {
-  (function() {}(...iter));
+  new Test262ChildClass();
 });

@@ -1,8 +1,8 @@
 // This file was procedurally generated from the following sources:
-// - src/spread/mult-err-itr-get.case
+// - src/spread/mult-err-itr-get-call.case
 // - src/spread/error/call-expr.template
 /*---
-description: Spread operator following other arguments when GetIterator fails (CallExpression)
+description: Spread operator following other arguments when GetIterator fails (@@iterator function invocation) (CallExpression)
 esid: sec-function-calls-runtime-semantics-evaluation
 es6id: 12.3.4.1
 features: [Symbol.iterator]

@@ -1,8 +1,8 @@
 // This file was procedurally generated from the following sources:
-// - src/spread/sngl-err-itr-get.case
+// - src/spread/sngl-err-itr-get-call.case
 // - src/spread/error/member-expr.template
 /*---
-description: Spread operator applied to the only argument when GetIterator fails (`new` operator)
+description: Spread operator applied to the only argument when GetIterator fails (@@iterator function invocation) (`new` operator)
 esid: sec-new-operator-runtime-semantics-evaluation
 es6id: 12.3.3.1
 features: [Symbol.iterator]

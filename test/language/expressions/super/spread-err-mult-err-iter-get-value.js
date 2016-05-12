@@ -1,8 +1,8 @@
 // This file was procedurally generated from the following sources:
-// - src/spread/mult-err-itr-get.case
+// - src/spread/mult-err-iter-get-value.case
 // - src/spread/error/super-call.template
 /*---
-description: Spread operator following other arguments when GetIterator fails (SuperCall)
+description: Spread operator following other arguments when GetIterator fails (@@iterator function return value) (SuperCall)
 esid: sec-super-keyword-runtime-semantics-evaluation
 es6id: 12.3.5.1
 features: [Symbol.iterator]
@@ -30,13 +30,15 @@ info: >
     7.4.1 GetIterator ( obj, method )
     
     [...]
-    3. Let iterator be Call(method,obj).
-    4. ReturnIfAbrupt(iterator).
+    2. Let iterator be ? Call(method, obj).
+    3. If Type(iterator) is not Object, throw a TypeError exception.
 ---*/
 var iter = {};
-iter[Symbol.iterator] = function() {
-  throw new Test262Error();
-};
+Object.defineProperty(iter, Symbol.iterator, {
+  get: function() {
+    return null;
+  }
+});
 
 class Test262ParentClass {
   constructor() {}
@@ -48,6 +50,6 @@ class Test262ChildClass extends Test262ParentClass {
   }
 }
 
-assert.throws(Test262Error, function() {
+assert.throws(TypeError, function() {
   new Test262ChildClass();
 });
