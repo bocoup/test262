@@ -11,7 +11,16 @@ function $CREATEREALM() {
       Realm.create(),
       // V8 prevents direct access to realm globals, so property access must be
       // facilitated with a Proxy
-      '(function(g) { return new Proxy({}, { set(_, p, v) { g[p] = v; }, get(_, x) {return g[x];}}); }(this));'
+      '(function(g) {' +
+      '  return new Proxy({}, {' +
+      '    set(_, p, v) {' +
+      '      return Reflect.set(g, p, v);' +
+      '    },' +
+      '    get(_, x) {' +
+      '      return g[x];' +
+      '    }'+
+      '  });' +
+      '}(this));'
     );
   }
 

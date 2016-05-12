@@ -10,6 +10,8 @@ includes: [createRealm.js]
 ---*/
 
 var other = $CREATEREALM();
+var otherEval = other.eval;
 
-other.eval("var x = 23;");
+otherEval("var x = 23;");
 assert.sameValue(typeof x, 'undefined');
+assert.sameValue(other.x, 23);
