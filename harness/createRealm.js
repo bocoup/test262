@@ -7,8 +7,13 @@ function $CREATEREALM() {
 
   // V8
   if (typeof Realm !== 'undefined') {
+    var realmId = Realm.create();
+    if (typeof Realm.makeSameOrigin === 'function') {
+      Realm.makeSameOrigin(realmId);
+      return Realm.eval(realmId, 'this');
+    }
     return Realm.eval(
-      Realm.create(),
+      realmId,
       // V8 prevents direct access to realm globals, so property access must be
       // facilitated with a Proxy
       '(function(g) {' +
