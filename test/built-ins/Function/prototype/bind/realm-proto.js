@@ -6,7 +6,7 @@ es6id: 9.4.1.2
 description: Default [[Prototype]] value derived from realm of the constructor
 info: |
     [...]
-    6. Return ? Construct(target, args, newTarget). 
+    6. Return ? Construct(target, args, newTarget).
 
     9.1.14 GetPrototypeFromConstructor
 

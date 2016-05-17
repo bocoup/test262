@@ -7,7 +7,7 @@ description: Default [[Prototype]] value derived from realm of the newTarget
 info: |
     [...]
     4. Return ? StringCreate(s, ? GetPrototypeFromConstructor(NewTarget,
-       "%StringPrototype%")). 
+       "%StringPrototype%")).
 
     9.1.14 GetPrototypeFromConstructor
 
