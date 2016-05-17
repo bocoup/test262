@@ -3,7 +3,7 @@
 /*---
 esid: sec-typedarray-typedarray
 description: >
-  Use default ArrayBuffer constructor on undefined buffer.constructor.@@species
+  Derive the ArrayBuffer prototype from the realm of the species constructor
 info: >
   22.2.4.3 TypedArray ( typedArray )
 
