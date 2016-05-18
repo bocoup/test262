@@ -38,10 +38,10 @@ info: |
      a. If the value of the [[ProxyHandler]] internal slot of obj is null,
         throw a TypeError exception.
 features: [Proxy]
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 // Defer proxy revocation until after the `constructor` property has been
 // accessed
 var handlers = {

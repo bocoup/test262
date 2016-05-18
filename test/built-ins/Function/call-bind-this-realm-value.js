@@ -20,10 +20,10 @@ info: >
         i. Let thisValue be ! ToObject(thisArgument).
         ii. NOTE ToObject produces wrapper objects using calleeRealm.
   [...]
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var func = new other.Function('return this;');
 var subject;
 

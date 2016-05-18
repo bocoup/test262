@@ -15,11 +15,11 @@ info: >
        a. Let realm be ? GetFunctionRealm(constructor).
        b. Let proto be realm's intrinsic object named intrinsicDefaultProto.
     [...]
-includes: [createRealm.js]
+includes: [realm.js]
 features: [Symbol.species]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 other.shared = null;
 var C = new other.Function('shared = this; return /./;');
 C.prototype = null;

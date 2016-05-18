@@ -18,10 +18,10 @@ info: |
     ...
     3. If Type(obj) is not Object, throw a TypeError exception.
 features: [Symbol]
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var p = new other.Proxy({}, {
     ownKeys: function() {
         return undefined;

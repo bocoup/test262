@@ -10,7 +10,7 @@ info: |
     3. If Type(ref) is Reference and IsPropertyReference(ref) is false and GetReferencedName(ref) is "eval", then
        a. If SameValue(func, %eval%) is true, then
           [...]
-includes: [createRealm.js]
+includes: [realm.js]
 flags: [noStrict]
 ---*/
 
@@ -18,7 +18,7 @@ var x = 'outside';
 var result;
 
 (function() {
-  var eval = $CREATEREALM().eval;
+  var eval = $.createRealm().global.eval;
 
   eval('var x = "inside";');
 

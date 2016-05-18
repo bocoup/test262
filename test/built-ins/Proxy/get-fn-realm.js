@@ -16,10 +16,10 @@ info: |
           throw a TypeError exception.
        b. Let proxyTarget be the value of obj's [[ProxyTarget]] internal slot.
        c. Return ? GetFunctionRealm(proxyTarget).
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var C = new other.Function();
 // Ensure that the proxy does not report a `prototype` property
 var P = new Proxy(C, { get: function() {} });

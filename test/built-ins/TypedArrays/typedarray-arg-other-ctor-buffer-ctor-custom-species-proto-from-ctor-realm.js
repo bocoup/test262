@@ -33,13 +33,13 @@ info: >
      a. Let realm be ? GetFunctionRealm(constructor).
      b. Let proto be realm's intrinsic object named intrinsicDefaultProto.
   ...
-includes: [createRealm.js, testTypedArray.js]
+includes: [realm.js, testTypedArray.js]
 features: [Symbol.species]
 ---*/
 
 var sample1 = new Int8Array();
 var sample2 = new Int16Array();
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var C = new other.Function();
 C.prototype = null;
 

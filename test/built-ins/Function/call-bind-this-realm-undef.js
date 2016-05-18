@@ -19,10 +19,10 @@ info: >
         ii. Let globalEnvRec be globalEnv's EnvironmentRecord.
         iii. Let thisValue be globalEnvRec.[[GlobalThisValue]].
   [...]
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var func = new other.Function('return this;');
 var subject;
 

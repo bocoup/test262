@@ -26,12 +26,12 @@ info: |
        a. Let realm be ? GetFunctionRealm(constructor).
        b. Let proto be realm's intrinsic object named intrinsicDefaultProto.
     [...]
-includes: [createRealm.js]
+includes: [realm.js]
 features: [Reflect]
 ---*/
 
 var GeneratorFunction = Object.getPrototypeOf(function* () {}).constructor;
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var OtherGeneratorFunction = Object.getPrototypeOf(
     other.eval('(0, function* () {})')
 ).constructor;

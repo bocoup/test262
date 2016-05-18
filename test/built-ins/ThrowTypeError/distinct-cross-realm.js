@@ -9,10 +9,10 @@ info: >
 
   The %ThrowTypeError% intrinsic is an anonymous built-in function
   object that is defined once for each realm.
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var localArgs = function(){ "use strict"; return arguments; }();
 var otherArgs = (new other.Function('return arguments;'))();
 var localThrowTypeError = Object.getOwnPropertyDescriptor(localArgs, "callee").get;

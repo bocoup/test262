@@ -21,11 +21,11 @@ info: |
        a. Let realm be ? GetFunctionRealm(constructor).
        b. Let proto be realm's intrinsic object named intrinsicDefaultProto.
     5. Return proto.
-includes: [testTypedArray.js, createRealm.js]
+includes: [testTypedArray.js, realm.js]
 features: [Reflect]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var C = new other.Function();
 C.prototype = null;
 

@@ -20,12 +20,12 @@ info: |
           i. If SameValue(C, realmC.[[Intrinsics]].[[%Array%]]) is true, let C
              be undefined.
     [...]
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
 var array = [];
 var callCount = 0;
-var OArray = $CREATEREALM().Array;
+var OArray = $.createRealm().global.Array;
 var speciesDesc = {
   get: function() {
     callCount += 1;

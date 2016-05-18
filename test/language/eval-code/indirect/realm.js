@@ -6,10 +6,10 @@ es6id: TODO
 description: TODO
 info: |
   TODO
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var otherEval = other.eval;
 
 otherEval("var x = 23;");

@@ -28,10 +28,10 @@ info: |
         a, If e.[[Strings]] and rawStrings contain the same values in the same
            order, then
            i. Return e.[[Array]].
-includes: [createRealm.js]
+includes: [realm.js]
 ---*/
 
-var other = $CREATEREALM();
+var other = $.createRealm().global;
 var strings1, strings2;
 
 strings1 = (function(strings) { return strings; })`1234`;
