@@ -1,5 +1,10 @@
-var $ = $ || {};
-$.global = this;
+/**
+ * Realm API
+ *
+ * https://github.com/FUDCo/proposal-frozen-realms
+ */
+var $ = { global: this };
+
 (function() {
   var createGlobal = function() {
 
