@@ -11,11 +11,12 @@ es6id: 12.14.5.3
 flags: [noStrict]
 ---*/
 
-var value = [{}];
+//- setup
 var yield = 2;
-var result, x;
-
-result = [{ x = yield }] = value;
-
-assert.sameValue(result, value);
+var x;
+//- elems
+[{ x = yield }]
+//- vals
+[{}]
+//- body
 assert.sameValue(x, 2);

@@ -5,12 +5,15 @@
 desc: >
     When DestructuringAssignmentTarget is an array literal and no value is
     defined, a TypeError should be thrown.
-template: default
+template: error
 es6id: 12.14.5.3
 ---*/
 
-var x;
-
-assert.throws(TypeError, function() {
-  [[ x ]] = [];
-});
+//- setup
+var _;
+//- error
+TypeError
+//- elems
+[[ x ]]
+//- vals
+[]
