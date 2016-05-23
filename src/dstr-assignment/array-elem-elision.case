@@ -10,7 +10,6 @@ es6id: 12.14.5
 
 //- setup
 var x, y;
-var result;
 //- elems
 [, x, , y, ,]
 //- vals

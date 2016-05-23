@@ -8,18 +8,13 @@ template: default
 es6id: 12.14.5.3
 ---*/
 
-var result, value, x, flag;
-
-value = [];
-flag = false;
-result = [ x = flag = true ] = value;
-assert.sameValue(result, value);
-assert.sameValue(x, true);
-assert.sameValue(flag, true);
-
-value = [14];
-flag = false;
-result = [ x = flag = true ] = value;
-assert.sameValue(result, value);
-assert.sameValue(x, 14);
-assert.sameValue(flag, false);
+//- setup
+var flag1 = false, flag2 = false;
+var _;
+//- elems
+[ _ = flag1 = true, _ = flag2 = true ]
+//- vals
+[14]
+//- body
+assert.sameValue(flag1, false);
+assert.sameValue(flag2, true);

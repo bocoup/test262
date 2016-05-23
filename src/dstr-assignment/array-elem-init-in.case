@@ -8,10 +8,11 @@ template: default
 es6id: 12.14.5
 ---*/
 
-var value = [];
-var result, x;
-
-result = [ x = 'x' in {} ] = value;
-
-assert.sameValue(result, value);
+//- setup
+var x;
+//- elems
+[ x = 'x' in {} ]
+//- valus
+[]
+//- body
 assert.sameValue(x, false);

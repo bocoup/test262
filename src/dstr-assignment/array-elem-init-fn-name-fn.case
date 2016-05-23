@@ -20,11 +20,13 @@ includes: [propertyHelper.js]
 features: [class]
 ---*/
 
+//- setup
 var xFn, fn;
-
-[ xFn = function x() {} ] = [];;
-[ fn = function() {} ] = [];
-
+//- elems
+[ xFn = function x() {}, fn = function() {} ]
+//- vals
+[]
+//- body
 assert(xFn.name !== 'xFn');
 
 assert.sameValue(fn.name, 'fn');

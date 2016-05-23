@@ -9,34 +9,15 @@ template: default
 es6id: 12.14.5.3
 ---*/
 
-var result, value, x;
-
-value = [];
-result = [ x = 10 ] = value;
-
-assert.sameValue(result, value);
-assert.sameValue(x, 10, 'no element at index');
-
-value = [2];
-result = [ x = 11 ] = value;
-
-assert.sameValue(result, value);
-assert.sameValue(x, 2, 'element at index (truthy value)');
-
-value = [ null ];
-result = [ x = 12 ] = value;
-
-assert.sameValue(result, value);
-assert.sameValue(x, null, 'element at index (`null`)');
-
-value = [ undefined ];
-result = [ x = 13 ] = value;
-
-assert.sameValue(result, value);
-assert.sameValue(x, 13, 'element at index (`undefined`)');
-
-value = [ , ];
-result = [ x = 14 ] = value;
-
-assert.sameValue(result, value);
-assert.sameValue(x, 14, 'element at index (sparse array)');
+//- setup
+var v2, vNull, vHole, vUndefined, vOob;
+//- elems
+[v2 = 10, vNull = 11, vHole = 12, vUndefined = 13, vOob = 14]
+//- vals
+[2, null, , undefined]
+//- body
+assert.sameValue(v2, 2);
+assert.sameValue(vNull, null);
+assert.sameValue(vHole, 12);
+assert.sameValue(vUndefined, 13);
+assert.sameValue(vOob, 14);
