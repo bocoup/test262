@@ -13,4 +13,7 @@ flags: [onlyStrict]
 negative: SyntaxError
 ---*/
 
-([arguments] = []);
+//- elems
+[arguments]
+//- values
+[]

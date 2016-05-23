@@ -20,12 +20,13 @@ info: |
     9. If Type(innerResult.[[value]]) is not Object, throw a TypeError
        exception.
 features: [Symbol.iterator]
-template: default
+template: error
 es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
-var x;
+//- setup
+var _;
 var iterable = {};
 var nextCount = 0;
 var iterator = {
@@ -42,7 +43,9 @@ var iterator = {
 iterable[Symbol.iterator] = function() {
   return iterator;
 };
-
-assert.throws(TypeError, function() {
-  [ x ] = iterable;
-});
+//- elems
+[ _ ]
+//- vals
+iterable
+//- error
+TypeError

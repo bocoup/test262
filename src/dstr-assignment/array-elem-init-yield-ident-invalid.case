@@ -11,5 +11,9 @@ flags: [onlyStrict]
 negative: SyntaxError
 ---*/
 
-var x;
-[ x = yield ] = [];
+//- setup
+var _;
+//- elems
+[ x = yield ]
+//- vals
+[]

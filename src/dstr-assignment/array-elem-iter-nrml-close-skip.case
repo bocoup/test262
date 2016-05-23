@@ -16,9 +16,10 @@ es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
+//- setup
 var nextCount = 0;
 var returnCount = 0;
-var x;
+var _;
 var iterable = {};
 var iterator = {
   next: function() {
@@ -33,8 +34,10 @@ var iterator = {
 iterable[Symbol.iterator] = function() {
   return iterator;
 };
-
-[ x ] = iterable;
-
+//- elems
+[ _ ]
+//- vals
+iterable
+//- body
 assert.sameValue(nextCount, 1);
 assert.sameValue(returnCount, 0);

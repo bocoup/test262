@@ -8,13 +8,14 @@ template: default
 es6id: 12.14.5.3
 ---*/
 
-var value = [];
+//- setup
 var x = 0;
-var a, b, result;
-
-result = [ a = x += 1, b = x *= 2 ] = value;
-
-assert.sameValue(result, value);
+var a, b;
+// elems
+[ a = x += 1, b = x *= 2 ]
+//- vals
+[]
+//- body
 assert.sameValue(a, 1);
 assert.sameValue(b, 2);
 assert.sameValue(x, 2);

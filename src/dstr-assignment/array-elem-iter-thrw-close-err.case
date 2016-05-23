@@ -12,11 +12,12 @@ info: |
        result).
     6. Return result.
 features: [Symbol.iterator]
-template: default
+template: error
 es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
+//- setup
 var nextCount = 0;
 var returnCount = 0;
 function ReturnError() {}
@@ -39,10 +40,12 @@ var thrower = function() {
 iterable[Symbol.iterator] = function() {
   return iterator;
 };
-
-assert.throws(Test262Error, function() {
-  [ {}[thrower()] ] = iterable;
-});
-
+//- error
+Test262Error
+//- elems
+[ {}[thrower()] ]
+//- vals
+iterable
+//- teardown
 assert.sameValue(nextCount, 0);
 assert.sameValue(returnCount, 1);
