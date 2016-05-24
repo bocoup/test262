@@ -18,5 +18,5 @@ info: |
 ---*/
 
 assert.throws(/*{ error }*/, function() {
-  /*{ elems }*/ = /*{ vals }*/;
+  0, /*{ elems }*/ = /*{ vals }*/;
 });
