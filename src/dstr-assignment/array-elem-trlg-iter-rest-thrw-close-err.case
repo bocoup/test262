@@ -22,11 +22,12 @@ info: |
     [...]
     7. If completion.[[type]] is throw, return Completion(completion)
 features: [Symbol.iterator]
-template: default
+template: error
 es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
+//- setup
 var nextCount = 0;
 var returnCount = 0;
 var x;
@@ -52,10 +53,12 @@ var thrower = function() {
 iterable[Symbol.iterator] = function() {
   return iterator;
 };
-
-assert.throws(Test262Error, function() {
-  [ x , ...{}[thrower()] ] = iterable;
-});
-
+//- error
+Test262Error
+//- elems
+[ x , ...{}[thrower()] ]
+//- vals
+iterable
+//- teardown
 assert.sameValue(nextCount, 1);
 assert.sameValue(returnCount, 1);

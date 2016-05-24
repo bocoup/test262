@@ -10,11 +10,13 @@ template: default
 es6id: 12.14.5.3
 ---*/
 
-var value = [];
-var result, x, length;
-
-result = [...{ 0: x, length }] = value;
-
-assert.sameValue(result, value);
+//- setup
+var x = null;
+var length;
+//- elems
+[...{ 0: x, length }]
+//- vals
+[]
+//- body
 assert.sameValue(x, undefined);
 assert.sameValue(length, 0);

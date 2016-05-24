@@ -22,6 +22,7 @@ es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
+//- setup
 var nextCount = 0;
 var returnCount = 0;
 var iterable = {};
@@ -38,9 +39,11 @@ var iterator = {
 iterable[Symbol.iterator] = function() {
   return iterator;
 };
-
-[ x , ...y ] = iterable;
-
+//- elems
+[ x , ...y ]
+//- vals
+iterable
+//- teardown
 assert.sameValue(nextCount, 2, 'nextCount');
 assert.sameValue(returnCount, 0, 'returnCount');
 assert.sameValue(x, 1, 'x');

@@ -31,6 +31,7 @@ es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
+//- setup
 var iterable = {};
 var iterator = {
   return: function() {
@@ -43,7 +44,11 @@ iterable[Symbol.iterator] = function() {
 };
 
 function* g() {
-  [ {}[yield] , ] = iterable;
+//- elems
+  [ {}[yield] , ]
+//- vals
+iterable
+//- teardown
 }
 
 iter = g();

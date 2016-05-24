@@ -10,6 +10,7 @@ es6id: 12.14.5.3
 features: [generators]
 ---*/
 
+//- setup
 var count = 0;
 var g = function*() {
   count += 1;
@@ -18,10 +19,12 @@ var g = function*() {
   yield;
   count += 1;
 }
-var iter, result, x;
+var x;
 
 iter = g();
-result = [...x] = iter;
-
-assert.sameValue(result, iter);
+//- elems
+[...x]
+//- vals
+g()
+//- body
 assert.sameValue(count, 3);

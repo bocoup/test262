@@ -12,5 +12,9 @@ flags: [onlyStrict]
 negative: SyntaxError
 ---*/
 
+//- setup
 var x = {};
-[...x[yield]] = [];
+//- elems
+[...x[yield]]
+//- vals
+[]

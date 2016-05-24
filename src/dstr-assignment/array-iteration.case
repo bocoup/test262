@@ -10,7 +10,8 @@ es6id: 12.14.5.3
 features: [generators]
 ---*/
 
-var count, iter, result;
+//- setup
+var count = 0;
 var g = function*() {
   count += 1;
   yield;
@@ -18,37 +19,9 @@ var g = function*() {
   yield;
   count += 1;
 }
-
-count = 0;
-iter = g();
-result = [] = iter;
-
-assert.sameValue(result, iter);
-assert.sameValue(count, 0);
-
-iter = g();
-result = [,] = iter;
-
-assert.sameValue(result, iter);
-assert.sameValue(count, 1);
-
-count = 0;
-iter = g();
-result = [,,] = iter;
-
-assert.sameValue(result, iter);
+//- elems
+[,,]
+//- vals
+g()
+//- body
 assert.sameValue(count, 2);
-
-count = 0;
-iter = g();
-result = [,,,] = iter;
-
-assert.sameValue(result, iter);
-assert.sameValue(count, 3);
-
-count = 0;
-iter = g();
-result = [,,,,] = iter;
-
-assert.sameValue(result, iter);
-assert.sameValue(count, 3);

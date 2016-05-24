@@ -29,6 +29,7 @@ es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
+//- setup
 var nextCount = 0;
 var returnCount = 0;
 var unreachable = 0;
@@ -56,8 +57,13 @@ iterable[Symbol.iterator] = function() {
 };
 
 function* g() {
-  [ x , ...{}[yield] ] = iterable;
+//- elems
+[ x , ...{}[yield] ]
+//- vals
+iterable
+//- body
   unreachable += 1;
+//- teardown
 }
 
 iter = g();

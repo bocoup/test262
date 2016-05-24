@@ -10,6 +10,9 @@ es6id: 12.14.5
 negative: SyntaxError
 ---*/
 
+//- setup
 var x, y;
-
-[...x, ...y] = [];
+//- elems
+[...x, ...y]
+//- vals
+[]
