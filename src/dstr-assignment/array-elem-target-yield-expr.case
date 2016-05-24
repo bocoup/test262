@@ -11,24 +11,27 @@ es6id: 12.14.5.4
 features: [generators]
 ---*/
 
+//- setup
 var value = [33];
 var x = {};
-var assignmentResult, iterationResult, iter;
+var iterationResult, iter;
 
 iter = (function*() {
-  assignmentResult = [ x[yield] ] = value;
+//- elems
+[ x[yield] ]
+//- vals
+[33]
+//- teardown
 }());
 
 iterationResult = iter.next();
 
-assert.sameValue(assignmentResult, undefined);
 assert.sameValue(iterationResult.value, undefined);
 assert.sameValue(iterationResult.done, false);
 assert.sameValue(x.prop, undefined);
 
 iterationResult = iter.next('prop');
 
-assert.sameValue(assignmentResult, value);
 assert.sameValue(iterationResult.value, undefined);
 assert.sameValue(iterationResult.done, true);
 assert.sameValue(x.prop, 33);

@@ -10,13 +10,13 @@ template: default
 es6id: 12.14.5.3
 ---*/
 
-var value = [1, 2, 3];
+//- setup
 var x, y, z;
-var result;
-
-result = [x, y, z] = value;
-
-assert.sameValue(result, value);
+//- elems
+[x, y, z]
+//- vals
+[1, 2, 3]
+//- body
 assert.sameValue(x, 1);
 assert.sameValue(y, 2);
 assert.sameValue(z, 3);

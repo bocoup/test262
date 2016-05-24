@@ -9,17 +9,20 @@ info: |
     1. Let iterator be GetIterator(value).
     2. ReturnIfAbrupt(iterator).
 features: [Symbol.iterator]
-template: default
+template: error
 es6id: 12.14.5.2
 esid: sec-runtime-semantics-destructuringassignmentevaluation
 ---*/
 
+//- setup
 var iterable = {};
 iterable[Symbol.iterator] = function() {
   throw new Test262Error();
 };
 var x;
-
-assert.throws(Test262Error, function() {
-  [ x , ] = iterable;
-});
+//- error
+Test262Error
+//- elems
+[ x , ]
+//- vals
+iterable

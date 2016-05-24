@@ -4,13 +4,16 @@
 /*---
 desc: >
     The assignment target should obey `let` semantics.
-template: default
+template: error
 es6id: 12.14.5.3
 features: [let]
 ---*/
 
-assert.throws(ReferenceError, function() {
-  'use strict';
-  [ x ] = [];
-  let x;
-});
+//- elems
+[ x ]
+//- vals
+[]
+//- error
+ReferenceError
+//- teardown
+let x;

@@ -9,8 +9,8 @@ template: default
 es6id: 12.14.5.3
 ---*/
 
-var value = [23];
-var x, setValue, result;
+//- setup
+var x, setValue;
 x = {
   get y() {
     $ERROR('The property should not be accessed.');
@@ -19,8 +19,9 @@ x = {
     setValue = val;
   }
 };
-
-result = [x.y] = value;
-
-assert.sameValue(result, value);
+//- elems
+[x.y]
+//- vals
+[23]
+//- body
 assert.sameValue(setValue, 23);

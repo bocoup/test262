@@ -12,4 +12,7 @@ flags: [onlyStrict]
 negative: SyntaxError
 ---*/
 
-[ x[yield] ] = [];
+//- elems
+[ x[yield] ]
+//- vals
+[]
