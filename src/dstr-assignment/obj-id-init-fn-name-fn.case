@@ -18,12 +18,14 @@ info: >
 includes: [propertyHelper.js]
 ---*/
 
+//- setup
 var xFn, fn;
-
-({ xFn = function x() {} } = {});
-({ fn = function() {} } = {});
-
-assert(xFn.name !== 'xFn');
+//- elems
+{ xFn = function x() {}, fn = function() {} }
+//- vals
+{}
+//- body
+assert.notSameValue(xFn.name, 'xFn');
 
 assert.sameValue(fn.name, 'fn');
 verifyNotEnumerable(fn, 'name');

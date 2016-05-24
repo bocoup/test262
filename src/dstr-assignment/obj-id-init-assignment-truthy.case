@@ -3,19 +3,18 @@
 
 /*---
 desc: >
-    Initializer values should be assigned in left-to-right order.
+  If the Initializer is present and v is undefined, the Initializer should be
+  evaluated and the result assigned to the target reference (truthy property
+  value defined).
 template: default
 es6id: 12.14.5.4
 ---*/
 
 //- setup
-var x = 0;
-var a, b;
+var x;
 //- elems
-{ a = x += 1, b = x *= 2 }
+{ x = 1 }
 //- vals
-{}
+{ x: 2 }
 //- body
-assert.sameValue(a, 1);
-assert.sameValue(b, 2);
-assert.sameValue(x, 2);
+assert.sameValue(x, 1);

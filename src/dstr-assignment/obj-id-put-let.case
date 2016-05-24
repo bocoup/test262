@@ -4,12 +4,16 @@
 /*---
 desc: >
     The assignment target should obey `let` semantics.
-template: default
+template: error
 es6id: 12.14.5.4
 features: [let]
 ---*/
 
-assert.throws(ReferenceError, function() {
-  ({ x } = {});
-  let x;
-});
+//- error
+ReferenceError
+//- elems
+{ x }
+//- vals
+{}
+//- teardown
+let x;

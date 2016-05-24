@@ -3,17 +3,18 @@
 
 /*---
 desc: >
-    `yield` is a valid IdentifierReference in an AssignmentProperty outside of
-    strict mode and generator functions.
+  yield is a valid IdentifierReference in an AssignmentProperty outside of
+  strict mode and generator functions.
 template: default
 es6id: 12.14.5
 flags: [noStrict]
 ---*/
 
-var value = { yield: 3 };
-var result, yield;
-
-result = { yield } = value;
-
-assert.sameValue(result, value);
+//- setup
+var yield;
+//- elems
+{ yield }
+//- vals
+{ yield: 3 }
+//- body
 assert.sameValue(yield, 3);

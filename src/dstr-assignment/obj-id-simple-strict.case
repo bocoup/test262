@@ -11,4 +11,7 @@ flags: [onlyStrict]
 negative: SyntaxError
 ---*/
 
-({ eval } = {});
+//- elems
+{ eval }
+//- vals
+{}

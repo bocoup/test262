@@ -9,11 +9,12 @@ es6id: 12.14.5.4
 flags: [noStrict]
 ---*/
 
-var value = { eval: 1, arguments: 2 };
-var eval, arguments, result;
-
-result = { eval, arguments } = value;
-
-assert.sameValue(result, value);
+//- setup
+var eval, arguments;
+//- elems
+{ eval, arguments }
+//- vals
+{ eval: 1, arguments: 2 }
+//- teardown
 assert.sameValue(eval, 1);
 assert.sameValue(arguments, 2);

@@ -18,10 +18,13 @@ info: >
 includes: [propertyHelper.js]
 ---*/
 
+//- setup
 var arrow;
-
-({ arrow = () => {} } = {});
-
+//- elems
+{ arrow = () => {} }
+//- vals
+{}
+//- body
 assert.sameValue(arrow.name, 'arrow');
 verifyNotEnumerable(arrow, 'name');
 verifyNotWritable(arrow, 'name');

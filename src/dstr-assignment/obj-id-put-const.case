@@ -4,13 +4,16 @@
 /*---
 desc: >
     The assignment target should obey `const` semantics.
-template: default
+template: error
 es6id: 12.14.5.4
 features: [const]
 ---*/
 
+//- setup
 const c = null;
-
-assert.throws(TypeError, function() {
-  ({ c } = { c: 1 });
-});
+//- error
+TypeError
+//- elems
+{ c }
+//- vals
+{ c: 1 }

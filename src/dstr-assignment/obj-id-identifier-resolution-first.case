@@ -1,17 +1,18 @@
 // Copyright (C) 2015 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
-
 /*---
 desc: >
-    It is a Syntax Error if IsValidSimpleAssignmentTarget of
-    IdentifierReference is false.
+  Evaluation of DestructuringAssignmentTarget (first of many)
 template: default
-es6id: 12.14.5.1
-flags: [onlyStrict]
-negative: SyntaxError
+es6id: 12.14.5.4
 ---*/
 
+//- setup
+var x = null;
+var y;
 //- elems
-{ eval = 0 }
+{ x, y }
 //- vals
-{}
+{ x: 3 }
+//- body
+assert.sameValue(x, 3);
