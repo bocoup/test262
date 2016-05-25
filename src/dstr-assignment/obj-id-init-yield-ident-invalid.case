@@ -6,14 +6,12 @@ desc: >
     When a `yield` token appears within the Initializer of an
     AssignmentProperty and outside of a generator function body, it should
     behave as an IdentifierReference.
-template: default
+template: syntax
 es6id: 12.14.5
 flags: [onlyStrict]
 negative: SyntaxError
 ---*/
 
-//- setup
-var x;
 //- elems
 { x = yield }
 //- vals

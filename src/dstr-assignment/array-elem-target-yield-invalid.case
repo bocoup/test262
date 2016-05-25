@@ -6,7 +6,7 @@ desc: >
     When a `yield` token appears within the DestructuringAssignmentTarget of an
     AssignmentElement and outside of a generator function body, it behaves as
     an IdentifierReference.
-template: default
+template: syntax
 es6id: 12.14.5.4
 flags: [onlyStrict]
 negative: SyntaxError

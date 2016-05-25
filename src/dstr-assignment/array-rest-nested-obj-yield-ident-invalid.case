@@ -6,7 +6,7 @@ desc: >
     When a `yield` token appears within the Initializer of a nested
     destructuring assignment and outside of a generator function body, it
     should behave as an IdentifierExpression.
-template: default
+template: syntax
 es6id: 12.14.5.3
 flags: [onlyStrict]
 negative: SyntaxError

@@ -8,7 +8,7 @@ desc: >
     token sequence matched by LeftHandSideExpression cannot be
     parsed with no tokens left over using AssignmentPattern as
     the goal symbol.
-template: default
+template: syntax
 es6id: 12.14.5.1
 negative: SyntaxError
 ---*/

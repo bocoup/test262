@@ -5,7 +5,7 @@
 desc: >
   yield is not a valid IdentifierReference in an AssignmentProperty within
   strict mode code.
-template: default
+template: syntax
 es6id: 12.14.5
 flags: [onlyStrict]
 negative: SyntaxError
