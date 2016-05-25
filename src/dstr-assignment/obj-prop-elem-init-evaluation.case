@@ -8,18 +8,16 @@ template: default
 es6id: 12.14.5.4
 ---*/
 
-var result, value, x, flag;
-
-value = {};
-flag = false;
-result = { x: x = flag = true } = value;
-assert.sameValue(result, value);
-assert.sameValue(x, true);
-assert.sameValue(flag, true);
-
-value = { y: 1 };
-flag = false;
-result = { y: x = flag = true } = value;
-assert.sameValue(result, value);
-assert.sameValue(x, 1);
-assert.sameValue(flag, false);
+//- setup
+var flag1 = false;
+var flag2 = false;
+var x, y;
+//- elems
+{ x: x = flag1 = true, y: y = flag2 = true }
+//- vals
+{ y: 1 }
+//- body
+assert.sameValue(x, true, 'value of `x`');
+assert.sameValue(flag1, true, 'value of `flag1`');
+assert.sameValue(y, 1, 'value of `y`');
+assert.sameValue(flag2, false, 'value of `flag2`');

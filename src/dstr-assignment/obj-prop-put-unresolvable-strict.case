@@ -5,11 +5,14 @@
 desc: >
     In strict mode, if the the assignment target is an unresolvable reference,
     a ReferenceError should be thrown.
-template: default
+template: error
 es6id: 12.14.5.4
 flags: [onlyStrict]
 ---*/
 
-assert.throws(ReferenceError, function() {
-  ({ x: unresolvable } = {});
-});
+//- error
+ReferenceError
+//- elems
+{ x: unresolvable }
+//- vals
+{}

@@ -5,12 +5,15 @@
 desc: >
     When DestructuringAssignmentTarget is an object literal and the value is
     `undefined`, a TypeError should be thrown.
-template: default
+template: error
 es6id: 12.14.5.4
 ---*/
 
+//- setup
 var x;
-
-assert.throws(TypeError, function() {
-  ({ x: { x } } = { x: undefined });
-});
+//- error
+TypeError
+//- elems
+{ x: { x } }
+//- vals
+{ x: undefined }

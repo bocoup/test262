@@ -20,12 +20,14 @@ includes: [propertyHelper.js]
 features: [class]
 ---*/
 
+//- setup
 var xCls, cls;
-
-({ x: xCls = class x {} } = {});
-({ x: cls = class {} } = {});
-
-assert(xCls.name !== 'xCls');
+//- elems
+{ x: xCls = class x {}, x: cls = class {} }
+//- vals
+{}
+//- body
+assert.notSameValue(xCls.name, 'xCls');
 
 assert.sameValue(cls.name, 'cls');
 verifyNotEnumerable(cls, 'name');

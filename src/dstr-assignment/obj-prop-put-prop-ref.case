@@ -9,11 +9,11 @@ template: default
 es6id: 12.14.5.4
 ---*/
 
-var value = { xy: 4 };
+//- setup
 var x = {};
-var result;
-
-result = { xy: x.y } = value;
-
-assert.sameValue(result, value);
+//- elems
+{ xy: x.y }
+//- vals
+{ xy: 4 }
+//- body
 assert.sameValue(x.y, 4);

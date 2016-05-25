@@ -20,12 +20,14 @@ includes: [propertyHelper.js]
 features: [generators]
 ---*/
 
+//- setup
 var xGen, gen;
-
-({ x: xGen = function* x() {} } = {});
-({ x: gen = function*() {} } = {});
-
-assert(xGen.name !== 'xGen');
+//- elems
+{ x: xGen = function* x() {}, x: gen = function*() {} }
+//- vals
+{}
+//- body
+assert.notSameValue(xGen.name, 'xGen');
 
 assert.sameValue(gen.name, 'gen');
 verifyNotEnumerable(gen, 'name');

@@ -13,4 +13,7 @@ es6id: 12.14.5.1
 negative: SyntaxError
 ---*/
 
-({ x: { get x() {} } } = { x: {} });
+//- elems
+{ x: { get x() {} } }
+//- vals
+{ x: {} }

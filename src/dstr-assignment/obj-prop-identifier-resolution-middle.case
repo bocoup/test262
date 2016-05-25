@@ -3,17 +3,16 @@
 
 /*---
 desc: >
-    Any error raised as a result of evaluating PropertyName should be forwarded
-    to the runtime.
-template: error
-es6id: 12.14.5.2
+  Evaluation of DestructuringAssignmentTarget (within many).
+template: default
+es6id: 12.14.5.4
 ---*/
 
 //- setup
-var a, x;
-//- error
-TypeError
+var x = null;
 //- elems
-{ [a.b]: x }
+{ w, a: x, y }
 //- vals
-{}
+{ a: 5 }
+//- body
+assert.sameValue(x, 5);

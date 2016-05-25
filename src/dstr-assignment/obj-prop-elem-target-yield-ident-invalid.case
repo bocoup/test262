@@ -12,5 +12,7 @@ flags: [onlyStrict]
 negative: SyntaxError
 ---*/
 
-var x = {};
-0, { x: x[yield] } = {};
+//- elems
+{ x: x[yield] }
+//- vals
+{}

@@ -3,17 +3,16 @@
 
 /*---
 desc: >
-    Any error raised as a result of evaluating PropertyName should be forwarded
-    to the runtime.
-template: error
+  An ObjectAssignmentPattern without an AssignmentPropertyList requires an
+  object-coercible value (symbol value)
+template: default
 es6id: 12.14.5.2
+features: [Symbol]
 ---*/
 
 //- setup
-var a, x;
-//- error
-TypeError
+var s = Symbol();
 //- elems
-{ [a.b]: x }
-//- vals
 {}
+//- vals
+s

@@ -3,18 +3,17 @@
 
 /*---
 desc: >
-    When DestructuringAssignmentTarget is an array literal, it should be parsed
-    parsed as a DestructuringAssignmentPattern and evaluated as a destructuring
-    assignment.
+  If the Initializer is present and v is undefined, the Initializer should be
+  evaluated and the result assigned to the target reference (undefined value)
 template: default
 es6id: 12.14.5.4
 ---*/
 
 //- setup
-var y;
+var x;
 //- elems
-{ x: [y] }
+{ y: x = 1 }
 //- vals
-{ x: [321] }
+{ y: undefined }
 //- body
-assert.sameValue(y, 321);
+assert.sameValue(x, 1);

@@ -10,10 +10,11 @@ template: default
 es6id: 12.14.5.4
 ---*/
 
-var value = { x: { y: 2 } };
+//- setup
 var result, y;
-
-result = { x: { y } } = value;
-
-assert.sameValue(result, value);
+//- elems
+{ x: { y } }
+//- vals
+{ x: { y: 2 } }
+//- body
 assert.sameValue(y, 2);

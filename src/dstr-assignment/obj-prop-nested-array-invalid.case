@@ -12,6 +12,7 @@ es6id: 12.14.5.1
 negative: SyntaxError
 ---*/
 
-var x, y;
-
-({ x: [(x, y)] } = { x: [] });
+//- elems
+{ x: [(x, y)] }
+//- vals
+{ x: [] }

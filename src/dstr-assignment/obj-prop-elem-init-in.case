@@ -8,10 +8,11 @@ template: default
 es6id: 12.14.5
 ---*/
 
-var value = {};
-var result, prop;
-
-result = { x: prop = 'x' in {} } = value;
-
-assert.sameValue(result, value);
+//- setup
+var prop;
+//- elems
+{ x: prop = 'x' in {} }
+//- vals
+{}
+//- body
 assert.sameValue(prop, false);
