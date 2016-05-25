@@ -20,8 +20,6 @@ var g = function*() {
   count += 1;
 }
 var x;
-
-iter = g();
 //- elems
 [...x]
 //- vals

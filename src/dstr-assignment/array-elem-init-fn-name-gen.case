@@ -25,9 +25,9 @@ var xGen, gen;
 //- elems
 [ xGen = function* x() {}, gen = function*() {} ]
 //- vals
-[];
+[]
 //- body
-assert(xGen.name !== 'xGen');
+assert.notSameValue(xGen.name, 'xGen');
 
 assert.sameValue(gen.name, 'gen');
 verifyNotEnumerable(gen, 'name');

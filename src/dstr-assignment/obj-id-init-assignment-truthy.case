@@ -17,4 +17,4 @@ var x;
 //- vals
 { x: 2 }
 //- body
-assert.sameValue(x, 1);
+assert.sameValue(x, 2);
