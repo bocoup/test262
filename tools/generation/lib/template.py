@@ -136,8 +136,15 @@ class Template:
         if len(includes):
             lines += ['includes: ' + yaml.dump(includes).strip()]
 
-        if case_values['meta'].get('negative'):
-            lines += ['negative: ' + case_values['meta'].get('negative')]
+        negative1 = case_values['meta'].get('negative')
+        negative2 = self.attribs['meta'].get('negative')
+        if negative1 or negative2:
+            if negative1 and negative2 and negative1 != negative2:
+                raise TypeError(
+                          'Incompatable values for "negative": "%s" and %s' %
+                              (negative1, negative2)
+                          )
+            lines += ['negative: ' + (negative1 or negative2)]
 
         info = []
 
