@@ -30,8 +30,12 @@ info: |
 includes: [script.js]
 ---*/
 
+var executed = false;
+
 Object.preventExtensions(this);
 
 assert.throws(TypeError, function() {
-  $.evalScript('var test262;');
+  $.evalScript('executed = true; var test262;');
 });
+
+assert.sameValue(executed, false);

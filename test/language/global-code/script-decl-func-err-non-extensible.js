@@ -4,8 +4,8 @@
 esid: sec-globaldeclarationinstantiation
 es6id: 15.1.8
 description: >
-  Declaration of function when there is a corresponding global property that is
-  non-configurable but *not* a writable and configurable data property.
+  Declaration of function when there is no corresponding global property and
+  the global object is non-extensible
 info: |
   [...]
   9. Let declaredFunctionNames be a new empty List.
@@ -31,62 +31,12 @@ info: |
 includes: [script.js]
 ---*/
 
-Object.defineProperty(
-  this,
-  'data1',
-  { configurable: false, value: 0, writable: true, enumerable: false }
-);
+var executed = false;
 
-Object.defineProperty(
-  this,
-  'data2',
-  { configurable: false, value: 0, writable: false, enumerable: true }
-);
-
-Object.defineProperty(
-  this,
-  'data3',
-  { configurable: false, value: 0, writable: false, enumerable: false }
-);
-
-Object.defineProperty(
-  this,
-  'accessor1',
-  { 
-    configurable: false,
-    get: function() {},
-    set: function() {},
-    enumerable: true
-  }
-);
-
-Object.defineProperty(
-  this,
-  'accessor2',
-  { 
-    configurable: false,
-    get: function() {},
-    set: function() {},
-    enumerable: true
-  }
-);
+Object.preventExtensions(this);
 
 assert.throws(TypeError, function() {
-  $.evalScript('function data1() {}');
-}, 'writable, non-enumerable data property');
+  $.evalScript('executed = true; function test262() {}');
+});
 
-assert.throws(TypeError, function() {
-  $.evalScript('function data2() {}');
-}, 'non-writable, enumerable data property');
-
-assert.throws(TypeError, function() {
-  $.evalScript('function data3() {}');
-}, 'non-writable, non-enumerable data property');
-
-assert.throws(TypeError, function() {
-  $.evalScript('function accessor1() {}');
-}, 'enumerable accessor property');
-
-assert.throws(TypeError, function() {
-  $.evalScript('function accessor2() {}');
-}, 'non-enumerable accessor property');
+assert.sameValue(executed, false);

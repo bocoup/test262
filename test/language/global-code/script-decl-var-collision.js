@@ -21,25 +21,43 @@ $.evalScript('var test262Var;');
 $.evalScript('function test262Var() {}');
 
 assert.throws(SyntaxError, function() {
-  $.evalScript('var test262Let;');
-}, 'var on let');
+  $.evalScript('var x; var test262Let;');
+}, '`var` on `let` binding');
+assert.throws(ReferenceError, function() {
+  x;
+}, 'no bindings created (script declaring a `var` on a `let` binding)');
 
 assert.throws(SyntaxError, function() {
-  $.evalScript('var test262Const;');
-}, 'var on const');
+  $.evalScript('var x; var test262Const;');
+}, '`var` on `const` binding');
+assert.throws(ReferenceError, function() {
+  x;
+}, 'no bindings created (script declaring a `var` on a `const` binding)');
 
 assert.throws(SyntaxError, function() {
-  $.evalScript('var test262Class;');
-}, 'var on class');
+  $.evalScript('var x; var test262Class;');
+}, '`var` on `class` binding');
+assert.throws(ReferenceError, function() {
+  x;
+}, 'no bindings created (script declaring a `var` on a `class` binding)');
 
 assert.throws(SyntaxError, function() {
-  $.evalScript('function test262Let() {}');
-}, 'function on let');
+  $.evalScript('var x; function test262Let() {}');
+}, 'function on `let` binding');
+assert.throws(ReferenceError, function() {
+  x;
+}, 'no bindings created (script declaring a function on a `let` binding)');
 
 assert.throws(SyntaxError, function() {
-  $.evalScript('function test262Const() {}');
-}, 'function on const');
+  $.evalScript('var x; function test262Const() {}');
+}, 'function on `const` binding');
+assert.throws(ReferenceError, function() {
+  x;
+}, 'no bindings created (script declaring a function on a `const` binding)');
 
 assert.throws(SyntaxError, function() {
-  $.evalScript('function test262Class() {}');
-}, 'function on class');
+  $.evalScript('var x; function test262Class() {}');
+} , 'function on `class` binding');
+assert.throws(ReferenceError, function() {
+  x;
+}, 'no bindings created (script declaring a function on a class binding)');

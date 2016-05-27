@@ -24,5 +24,9 @@ Object.defineProperty(this, 'test262NonConfigurable', { configurable: false });
 $.evalScript('let test262Configurable;');
 
 assert.throws(SyntaxError, function() {
-  $.evalScript('let test262NonConfigurable;');
+  $.evalScript('var x; let test262NonConfigurable;');
+});
+
+assert.throws(ReferenceError, function() {
+  x;
 });
