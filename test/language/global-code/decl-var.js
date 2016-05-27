@@ -29,7 +29,7 @@ info: |
   4. Let hasProperty be ? HasOwnProperty(globalObject, N).
   5. If hasProperty is true, return true.
   6. Return ? IsExtensible(globalObject). 
-includes: [script.js, propertyHelper.js]
+includes: [propertyHelper.js]
 ---*/
 
 assert.sameValue(
