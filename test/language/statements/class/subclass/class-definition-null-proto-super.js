@@ -6,9 +6,6 @@ description: >
   The `this` value of a null-extending class is automatically initialized,
   obviating the need for an explicit return value in the constructor.
 info: |
-  The behavior under test was introduced in the "ES2017" revision of the
-  specification and conflicts with prior editions.
-
   Runtime Semantics: ClassDefinitionEvaluation
 
   [...]
@@ -31,13 +28,35 @@ info: |
      a. Let thisArgument be ? OrdinaryCreateFromConstructor(newTarget,
         "%ObjectPrototype%").
   [...]
-  15. Return ? envRec.GetThisBinding().
+
+  12.3.5.1 Runtime Semantics: Evaluation
+
+  SuperCall:superArguments
+
+  1. Let newTarget be GetNewTarget().
+  2. If newTarget is undefined, throw a ReferenceError exception.
+  3. Let func be ? GetSuperConstructor().
+
+  12.3.5.2 Runtime Semantics: GetSuperConstructor
+
+  4. Let superConstructor be ? activeFunction.[[GetPrototypeOf]]().
+  5. If IsConstructor(superConstructor) is false, throw a TypeError exception.
 ---*/
 
-class Foo extends null {
-  constructor() {}
+var unreachable = 0;
+var reachable = 0;
+
+class C extends null {
+  constructor() {
+    reachable += 1;
+    super();
+    unreachable += 1;
+  }
 }
 
-var foo = new Foo();
+assert.throws(TypeError, function() {
+  new C();
+});
 
-assert.sameValue(Object.getPrototypeOf(foo), Foo);
+assert.sameValue(reachable, 1);
+assert.sameValue(unreachable, 0);
