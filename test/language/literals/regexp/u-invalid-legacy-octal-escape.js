@@ -15,7 +15,9 @@ info: |
         HexEscapeSequence
         RegExpUnicodeEscapeSequence[?U]
         IdentityEscape[?U]
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 ---*/
 
 /\1/u;

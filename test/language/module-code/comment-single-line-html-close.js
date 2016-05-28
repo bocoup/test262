@@ -6,7 +6,9 @@ description: >
     (SingleLineHTMLCloseComment)
 esid: sec-html-like-comments
 es6id: B1.3
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 flags: [module]
 ---*/
 

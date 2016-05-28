@@ -4,7 +4,9 @@
 description: Class declaration not allowed in statement position
 esid: sec-do-while-statement
 es6id: 13.7.2
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 ---*/
 
 do function f() {} while (false)

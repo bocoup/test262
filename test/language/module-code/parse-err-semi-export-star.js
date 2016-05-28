@@ -14,7 +14,9 @@ info: |
       export default HoistableDeclaration[Default]
       export default ClassDeclaration[Default]
       export default [lookahead ∉ { function, class }] AssignmentExpression[In];
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 flags: [module]
 ---*/
 

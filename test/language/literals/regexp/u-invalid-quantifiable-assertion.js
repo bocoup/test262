@@ -10,7 +10,9 @@ info: |
 
     Term[U] ::
          [~U] QuantifiableAssertion Quantifier
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 ---*/
 
 /.(?=.)?/u;

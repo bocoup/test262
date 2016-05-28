@@ -22,7 +22,9 @@ info: >
      NonOctalDigit :: one of
        8 9
 flags: [onlyStrict]
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 ---*/
 
 08;

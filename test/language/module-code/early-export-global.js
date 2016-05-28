@@ -9,7 +9,9 @@ info: >
     ModuleItemList does not also occur in either the VarDeclaredNames of
     ModuleItemList, or the LexicallyDeclaredNames of ModuleItemList.
 flags: [module]
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 ---*/
 
 export { Number };

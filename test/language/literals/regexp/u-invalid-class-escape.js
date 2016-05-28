@@ -13,7 +13,9 @@ info: |
         CharacterEscape[?U]
 
     The `u` flag precludes the Annex B extension that enables this pattern.
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 ---*/
 
 /\c0/u;
