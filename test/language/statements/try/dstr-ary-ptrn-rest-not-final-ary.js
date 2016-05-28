@@ -7,7 +7,9 @@ esid: sec-runtime-semantics-catchclauseevaluation
 es6id: 13.15.7
 features: [destructuring-binding]
 flags: [generated]
-negative: SyntaxError
+negative:
+  stage: early
+  type: SyntaxError
 info: |
     Catch : catch ( CatchParameter ) Block
 
