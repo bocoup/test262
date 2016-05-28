@@ -35,7 +35,9 @@ info: |
         { }
         { ImportsList }
         { ImportsList , }
-negative: ReferenceError
+negative:
+  stage: early
+  type: ReferenceError
 flags: [module]
 ---*/
 

@@ -10,7 +10,9 @@ info: |
        [...]
        b. Let requiredModule be ? HostResolveImportedModule(module, required).
     [...]
-negative: ReferenceError
+negative:
+  stage: early
+  type: ReferenceError
 flags: [module]
 ---*/
 

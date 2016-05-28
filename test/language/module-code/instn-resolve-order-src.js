@@ -3,7 +3,9 @@
 /*---
 description: Modules dependencies are resolved in source text order
 esid: sec-moduledeclarationinstantiation
-negative: ReferenceError
+negative:
+  stage: early
+  type: ReferenceError
 flags: [module]
 ---*/
 
