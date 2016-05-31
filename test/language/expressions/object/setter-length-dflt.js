@@ -4,8 +4,16 @@
 es6id: 14.1.6
 description: >
   Default parameters' effect on function length
-info: >
+info: |
   Function length is counted by the non initialized parameters in the left.
+
+  9.2.4 FunctionInitialize (F, kind, ParameterList, Body, Scope)
+
+  [...]
+  2. Let len be the ExpectedArgumentCount of ParameterList.
+  3. Perform ! DefinePropertyOrThrow(F, "length", PropertyDescriptor{[[Value]]:
+     len, [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true}).
+  [...]
 
   FormalsList : FormalParameter
 
@@ -18,9 +26,14 @@ info: >
     2. If HasInitializer of FormalsList is true or HasInitializer of
     FormalParameter is true, return count.
     3. Return count+1.
+features: [default-parameters]
+includes: [propertyHelper.js]
 ---*/
 
-assert.sameValue((function (x = 42) {}).length, 0);
-assert.sameValue((function (x = 42, y) {}).length, 0);
-assert.sameValue((function (x, y = 42) {}).length, 1);
-assert.sameValue((function (x, y = 42, z) {}).length, 1);
+
+var set = Object.getOwnPropertyDescriptor({ set m(x = 42) {} }, 'm').set;
+
+assert.sameValue(set.length, 0, 'FormalsList: x = 42');
+verifyNotEnumerable(set, 'length');
+verifyNotWritable(set, 'length');
+verifyConfigurable(set, 'length');
