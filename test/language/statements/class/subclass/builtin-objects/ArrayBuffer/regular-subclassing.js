@@ -20,12 +20,10 @@ class AB extends ArrayBuffer {}
 
 var ab = new AB(4);
 
+assert(ab instanceof AB, "ab instanceof AB");
+assert(ab instanceof ArrayBuffer, "ab instanceof ArrayBuffer");
+
 var sliced = ab.slice(0, 1);
 
-assert(sliced instanceof AB);
-assert(sliced instanceof ArrayBuffer);
-assert.notSameValue(ab, sliced);
-
-assert.throws(RangeError, function() {
-  new AB();
-});
+assert(sliced instanceof AB, "sliced instanceof AB");
+assert(sliced instanceof ArrayBuffer, "sliced instanceof ArrayBuffer");
