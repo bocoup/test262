@@ -1,14 +1,14 @@
 // Copyright (C) 2016 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-es6id: 22.1.3.23
-esid: sec-array.prototype.slice
+es6id: 22.1.3.25
+esid: sec-array.prototype.splice
 description: Species constructor of a Proxy object whose target is an array
 info: |
     [...]
-    8. Let A be ? ArraySpeciesCreate(O, count).
+    9. Let A be ? ArraySpeciesCreate(O, actualDeleteCount).
     [...]
-    12. Return A.
+    20. Return A.
 
     9.4.2.3 ArraySpeciesCreate
 
@@ -35,6 +35,6 @@ var result;
 array.constructor = function() {};
 array.constructor[Symbol.species] = Ctor;
 
-result = Array.prototype.slice.call(proxy);
+result = Array.prototype.splice.call(proxy);
 
 assert.sameValue(Object.getPrototypeOf(result), Ctor.prototype);
