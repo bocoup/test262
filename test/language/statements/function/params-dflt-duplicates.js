@@ -39,6 +39,19 @@ info: |
         b. Let formalStatus be IteratorBindingInitialization for formals with
            iteratorRecord and env as arguments.
     [...]
+
+    14.1.2 Static Semantics: Early Errors
+
+    StrictFormalParameters : FormalParameters
+
+    - It is a Syntax Error if BoundNames of FormalParameters contains any
+      duplicate elements.
+
+    FormalParameters : FormalParameterList
+
+    - It is a Syntax Error if IsSimpleParameterList of FormalParameterList is
+      false and BoundNames of FormalParameterList contains any duplicate
+      elements.
 ---*/
 
 function f(x = 0, x) {
