@@ -31,3 +31,9 @@ result = iter.next();
 assert.sameValue(result.value, iterSpy);
 assert.sameValue(result.done, false);
 assert.sameValue(callCount, 0);
+
+result = iter.next();
+
+assert.sameValue(result.value, undefined);
+assert.sameValue(result.done, true);
+assert.sameValue(callCount, 0);
