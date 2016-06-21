@@ -74,7 +74,7 @@ var caught;
 iter.next();
 iter.throw();
 
-assert.sameValue(throwCount, 1);
-assert.sameValue(returnCount, 1);
+assert.sameValue(throwCount, 1, '`throw` property access');
+assert.sameValue(returnCount, 1, '`return` property access');
 assert.sameValue(typeof caught, 'object');
 assert.sameValue(caught.constructor, TypeError);
