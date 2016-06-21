@@ -19,6 +19,7 @@ info: |
         ii. If throw is not undefined, then
             1. Let innerResult be ? Call(throw, iterator, « received.[[Value]]
                »).
+            [...]
 features: [Symbol.iterator]
 ---*/
 

@@ -3,6 +3,7 @@
 /*---
 esid: sec-generator-function-definitions-runtime-semantics-evaluation
 es6id: 14.4.14
+description: >
   TypeError thrown when iterator `throw` method returns a non-object value
 info: |
   YieldExpression : yield * AssignmentExpression 

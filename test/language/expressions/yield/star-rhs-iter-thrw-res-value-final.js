@@ -3,9 +3,7 @@
 /*---
 esid: sec-generator-function-definitions-runtime-semantics-evaluation
 es6id: 14.4.14
-description: >
-  Abrupt completion returned when accessing `value` property of iteration
-  result
+description: Value received from invocation of generator's `throw` method
 info: |
   YieldExpression : yield * AssignmentExpression 
 

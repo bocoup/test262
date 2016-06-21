@@ -28,6 +28,10 @@ info: |
             5. If done is true, then
                a. Return ? IteratorValue(innerResult).
 
+  7.4.3 IteratorComplete
+
+  1. Assert: Type(iterResult) is Object.
+  2. Return ToBoolean(? Get(iterResult, "done")).
 features: [Symbol.iterator]
 ---*/
 

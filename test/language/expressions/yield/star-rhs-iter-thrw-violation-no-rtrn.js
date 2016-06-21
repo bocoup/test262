@@ -43,23 +43,23 @@ features: [Symbol.iterator]
 var badIter = {};
 var throwCount = 0;
 var returnCount = 0;
-var poisonedReturn = {
+var spyResult = {
   next: function() {
     return { done: false };
   }
 };
-Object.defineProperty(poisonedReturn, 'throw', {
+Object.defineProperty(spyResult, 'throw', {
   get: function() {
     throwCount += 1;
   }
 });
-Object.defineProperty(poisonedReturn, 'return', {
+Object.defineProperty(spyResult, 'return', {
   get: function() {
     returnCount += 1;
   }
 });
 badIter[Symbol.iterator] = function() {
-  return poisonedReturn;
+  return spyResult;
 };
 function* g() {
   try {
