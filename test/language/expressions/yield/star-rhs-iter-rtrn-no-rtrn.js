@@ -4,7 +4,7 @@
 esid: sec-generator-function-definitions-runtime-semantics-evaluation
 es6id: 14.4.14
 description: >
-  Abrupt completion returned after when `return` method is not defined
+  "Return" completion returned when `return` method is not defined
 info: |
   YieldExpression : yield * AssignmentExpression
 

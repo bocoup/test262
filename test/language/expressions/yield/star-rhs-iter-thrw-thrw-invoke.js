@@ -3,7 +3,7 @@
 /*---
 esid: sec-generator-function-definitions-runtime-semantics-evaluation
 es6id: 14.4.14
-description: Invocation of iterator `next` method
+description: Invocation of iterator `throw` method
 info: |
   YieldExpression : yield * AssignmentExpression
 

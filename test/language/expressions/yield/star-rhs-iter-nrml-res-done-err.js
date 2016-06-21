@@ -16,13 +16,11 @@ info: |
      a. If received.[[Type]] is normal, then
         i. Let innerResult be ? IteratorNext(iterator, received.[[Value]]).
         ii. Let done be ? IteratorComplete(innerResult).
-        iii. If done is true, then
-             1. Return ? IteratorValue(innerResult).
 
-  7.4.4 IteratorValue
+  7.4.3 IteratorComplete
 
   1. Assert: Type(iterResult) is Object.
-  2. Return ? Get(iterResult, "value").
+  2. Return ToBoolean(? Get(iterResult, "done")).
 features: [Symbol.iterator]
 ---*/
 
