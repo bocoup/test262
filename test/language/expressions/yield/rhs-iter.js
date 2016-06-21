@@ -10,7 +10,7 @@ info: |
 
   1. Let exprRef be the result of evaluating AssignmentExpression.
   2. Let value be ? GetValue(exprRef).
-  3. Return ? GeneratorYield(CreateIterResultObject(value, false)). 
+  3. Return ? GeneratorYield(CreateIterResultObject(value, false)).
 features: [Symbol.iterator]
 ---*/
 

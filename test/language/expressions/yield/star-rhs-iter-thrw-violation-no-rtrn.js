@@ -7,7 +7,7 @@ description: >
   Abrupt completion returned after protocol violation (and a `return` method
   is not defined)
 info: |
-  YieldExpression : yield * AssignmentExpression 
+  YieldExpression : yield * AssignmentExpression
 
   1. Let exprRef be the result of evaluating AssignmentExpression.
   2. Let value be ? GetValue(exprRef).

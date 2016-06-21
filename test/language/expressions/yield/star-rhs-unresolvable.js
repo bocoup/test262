@@ -5,7 +5,7 @@ esid: sec-generator-function-definitions-runtime-semantics-evaluation
 es6id: 14.4.14
 description: GetValue invoked on Reference value
 info: |
-  YieldExpression : yield * AssignmentExpression 
+  YieldExpression : yield * AssignmentExpression
 
   1. Let exprRef be the result of evaluating AssignmentExpression.
   2. Let value be ? GetValue(exprRef).

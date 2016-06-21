@@ -6,7 +6,7 @@ es6id: 14.4.14
 description: >
   `value` property is not accessed when iteration is complete
 info: |
-  YieldExpression : yield * AssignmentExpression 
+  YieldExpression : yield * AssignmentExpression
 
   1. Let exprRef be the result of evaluating AssignmentExpression.
   2. Let value be ? GetValue(exprRef).

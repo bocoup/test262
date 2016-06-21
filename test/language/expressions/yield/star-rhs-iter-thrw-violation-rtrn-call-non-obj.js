@@ -7,7 +7,7 @@ description: >
   Non-object value returned by iterator `return` method following protocol
   violation
 info: |
-  YieldExpression : yield * AssignmentExpression 
+  YieldExpression : yield * AssignmentExpression
 
   1. Let exprRef be the result of evaluating AssignmentExpression.
   2. Let value be ? GetValue(exprRef).
