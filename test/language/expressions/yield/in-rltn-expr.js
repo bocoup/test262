@@ -12,12 +12,13 @@ info: |
   yield [no LineTerminator here] AssignmentExpression[?In, +Yield]
 ---*/
 
-var obj = Object.create({ hit: true });
+var obj = Object.create(null);
 var iter, iterResult, value;
 function* g() {
   value = yield 'hit' in obj;
   value = yield 'miss' in obj;
 }
+obj.hit = true;
 
 iter = g();
 
