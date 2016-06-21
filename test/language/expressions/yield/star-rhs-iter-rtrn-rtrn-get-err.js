@@ -54,6 +54,9 @@ var iter = g();
 var result, caught;
 
 iter.next();
+
+assert.sameValue(caught, undefined, '`return` property not accessed eagerly');
+
 result = iter.return();
 
 assert.sameValue(result.value, undefined);
