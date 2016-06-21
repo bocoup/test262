@@ -56,10 +56,18 @@ badIter[Symbol.iterator] = function() {
     }
   };
 };
+var normalCompletion = false;
+var errorCompletion = false;
 var delegationComplete = false;
 function* g() {
-  yield * badIter;
-  delegationComplete = true;
+  try {
+    yield * badIter;
+    normalCompletion = true;
+  } catch (_) {
+    errorCompletion = true;
+  } finally {
+    delegationComplete = true;
+  }
 }
 var iter = g();
 var result, caught;
@@ -80,3 +88,5 @@ spyValue.done = true;
 iter.return();
 assert.sameValue(callCount, 1, 'access count (final iteration)');
 assert.sameValue(delegationComplete, true, 'delegation complete');
+assert.sameValue(normalCompletion, false, 'completion was abrupt');
+assert.sameValue(errorCompletion, false, 'completion was not of type "throw"');

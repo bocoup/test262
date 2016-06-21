@@ -35,7 +35,10 @@ features: [Symbol.iterator]
 ---*/
 
 var quickIter = {};
-var iter, exprValue, returnReceived;
+var normalCompletion = false;
+var errorCompletion = false;
+var delegationComplete = false;
+var iter, returnReceived;
 quickIter[Symbol.iterator] = function() {
   return {
     next: function() {
@@ -48,7 +51,14 @@ quickIter[Symbol.iterator] = function() {
   };
 };
 function* g() {
-  exprValue = yield * quickIter;
+  try {
+    yield * quickIter;
+    normalCompletion = true;
+  } catch (e) {
+    errorCompletion = true;
+  } finally {
+    delegationComplete = true;
+  }
 }
 
 iter = g();
@@ -56,4 +66,6 @@ iter = g();
 iter.next();
 iter.return(2222);
 assert.sameValue(returnReceived, 2222);
-assert.sameValue(exprValue, 3333);
+assert.sameValue(delegationComplete, true, 'delegation complete');
+assert.sameValue(normalCompletion, false, 'completion was abrupt');
+assert.sameValue(errorCompletion, false, 'completion was not of type "throw"');
