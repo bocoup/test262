@@ -11,6 +11,8 @@ info: |
 
 var evaluatedArg = false;
 function f() {
+  // Early errors restricting the usage of SuperCall necessitate the use of
+  // `eval`.
   eval('super(evaluatedArg = true);');
 }
 
