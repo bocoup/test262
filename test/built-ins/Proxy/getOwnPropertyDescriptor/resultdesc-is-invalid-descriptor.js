@@ -17,7 +17,7 @@ info: >
 var target = {};
 
 var p = new Proxy(target, {
-    getOwnPropertyDescriptor: function(t, prop) {
+    getOwnPropertyDescriptor: function() {
         var foo = { bar: 1 };
 
         return Object.getOwnPropertyDescriptor(foo, "bar");

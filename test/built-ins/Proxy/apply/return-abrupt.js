@@ -8,7 +8,7 @@ description: >
 
 var target = function(a, b) { return a + b; };
 var p = new Proxy(target, {
-    apply: function(t, c, args) {
+    apply: function() {
         throw new Test262Error();
     }
 });

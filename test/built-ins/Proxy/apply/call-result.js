@@ -13,7 +13,7 @@ info: >
 var target = function(a, b) { return a + b; };
 var result = {};
 var handler = {
-    apply: function(t, c, args) {
+    apply: function() {
         return result;
     }
 };

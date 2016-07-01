@@ -19,7 +19,7 @@ info: >
 
 var target = {};
 var handler = {
-    has: function(t, prop) {
+    has: function() {
         return 0;
     }
 };

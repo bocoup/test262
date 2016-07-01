@@ -15,7 +15,7 @@ info: >
 ---*/
 
 var p = new Proxy({}, {
-    defineProperty: function(t, prop, desc) {
+    defineProperty: function() {
         throw new Test262Error();
     }
 });

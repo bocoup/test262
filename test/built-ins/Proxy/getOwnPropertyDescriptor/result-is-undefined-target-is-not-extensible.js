@@ -20,7 +20,7 @@ var target = {
 };
 
 var p = new Proxy(target, {
-    getOwnPropertyDescriptor: function(t, prop) {
+    getOwnPropertyDescriptor: function() {
         return;
     }
 });

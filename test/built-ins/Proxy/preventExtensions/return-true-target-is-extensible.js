@@ -17,7 +17,7 @@ info: >
 ---*/
 
 var p = new Proxy({}, {
-    preventExtensions: function(t) {
+    preventExtensions: function() {
         return true;
     }
 });

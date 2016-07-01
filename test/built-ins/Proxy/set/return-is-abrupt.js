@@ -14,7 +14,7 @@ info: >
 ---*/
 
 var p = new Proxy({}, {
-    set: function(t, prop, value, receiver) {
+    set: function() {
         throw new Test262Error();
     }
 });

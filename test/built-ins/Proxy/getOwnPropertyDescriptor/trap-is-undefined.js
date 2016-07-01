@@ -17,9 +17,9 @@ includes: [propertyHelper.js]
 var target = {attr: 1};
 var p = new Proxy(target, {});
 
-var proxyDesc = Object.getOwnPropertyDescriptor(p, "attr");
+Object.getOwnPropertyDescriptor(p, "attr");
 
-verifyEqualTo(p, "attr", 1);
+assert.sameValue(p.attr, 1);
 verifyWritable(p, "attr");
 verifyEnumerable(p, "attr");
 verifyConfigurable(p, "attr");

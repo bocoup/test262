@@ -9,7 +9,7 @@ features: [Reflect]
 
 var target = {};
 var p = new Proxy(target, {
-    preventExtensions: function(t) {
+    preventExtensions: function() {
         return 1;
     }
 });

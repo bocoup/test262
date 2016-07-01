@@ -14,7 +14,7 @@ function Target(a, b) {
     this.sum = a + b;
 };
 var handler = {
-    construct: function(t, c, args) {
+    construct: function() {
         return { sum: 42 };
     }
 };

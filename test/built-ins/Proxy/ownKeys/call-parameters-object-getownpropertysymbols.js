@@ -23,7 +23,7 @@ var handler = {
         _target = t;
         return Object.getOwnPropertySymbols(t);
     }
-}
+};
 var p = new Proxy(target, handler);
 
 var symbols = Object.getOwnPropertySymbols(p);

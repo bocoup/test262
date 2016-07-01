@@ -14,7 +14,7 @@ info: >
 ---*/
 
 var p = new Proxy({}, {
-    preventExtensions: function(t) {
+    preventExtensions: function() {
         throw new Test262Error();
     }
 });

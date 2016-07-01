@@ -26,7 +26,7 @@ var result = Reflect.defineProperty(p, "attr", {
 
 assert.sameValue(result, true, "result === true");
 
-verifyEqualTo(target, "attr", 1);
+assert.sameValue(target.attr, 1);
 verifyWritable(target, "attr");
 verifyEnumerable(target, "attr");
 verifyConfigurable(target, "attr");
@@ -40,7 +40,7 @@ result = Reflect.defineProperty(p, "attr", {
 
 assert.sameValue(result, true, "result === true");
 
-verifyEqualTo(target, "attr", 2);
+assert.sameValue(target.attr, 2);
 verifyNotWritable(target, "attr");
 verifyNotEnumerable(target, "attr");
 verifyNotConfigurable(target, "attr");

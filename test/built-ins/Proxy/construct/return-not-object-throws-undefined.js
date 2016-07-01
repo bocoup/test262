@@ -12,7 +12,7 @@ info: >
 
 function Target() {
     this.attr = "done";
-};
+}
 var P = new Proxy(Target, {
     construct: function() {
         return undefined;

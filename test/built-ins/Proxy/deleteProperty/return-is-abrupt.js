@@ -10,7 +10,7 @@ info: >
 ---*/
 
 var p = new Proxy({}, {
-    deleteProperty: function(t, prop) {
+    deleteProperty: function() {
         throw new Test262Error();
     }
 });

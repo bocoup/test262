@@ -11,7 +11,7 @@ features: [Reflect]
 
 var target = {};
 var handler = {
-    set: function(t, prop, value, receiver) {
+    set: function() {
         return "";
     }
 };

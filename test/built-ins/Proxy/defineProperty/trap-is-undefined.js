@@ -24,7 +24,7 @@ Object.defineProperty(p, "attr", {
     value: 1
 });
 
-verifyEqualTo(target, "attr", 1);
+assert.sameValue(target.attr, 1);
 verifyWritable(target, "attr");
 verifyEnumerable(target, "attr");
 verifyConfigurable(target, "attr");
@@ -36,7 +36,7 @@ Object.defineProperty(p, "attr", {
     value: 2
 });
 
-verifyEqualTo(target, "attr", 2);
+assert.sameValue(target.attr, 2);
 verifyNotWritable(target, "attr");
 verifyNotEnumerable(target, "attr");
 verifyNotConfigurable(target, "attr");

@@ -8,7 +8,7 @@ description: >
 ---*/
 
 var p = new Proxy({}, {
-    has: function(t, prop) {
+    has: function() {
         return true;
     }
 });

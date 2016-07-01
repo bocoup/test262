@@ -20,7 +20,7 @@ var handler = {
         _target = t;
         return Object.getOwnPropertyNames(t);
     }
-}
+};
 var p = new Proxy(target, handler);
 
 var names = Object.getOwnPropertyNames(p);

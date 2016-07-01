@@ -14,7 +14,7 @@ info: >
 ---*/
 
 var p = new Proxy({}, {
-    isExtensible: function(t) {
+    isExtensible: function() {
         throw new Test262Error();
     }
 });

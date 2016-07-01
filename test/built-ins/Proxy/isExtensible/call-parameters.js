@@ -22,7 +22,7 @@ var handler = {
         _target = t;
         return Object.isExtensible(t);
     }
-}
+};
 var p = new Proxy(target, handler);
 
 Object.isExtensible(p);
