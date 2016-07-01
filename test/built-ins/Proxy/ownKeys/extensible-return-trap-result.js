@@ -2,33 +2,29 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 es6id: 9.5.12
+esid: sec-proxy-object-internal-methods-and-internal-slots-ownpropertykeys
 description: >
-    If target is extensible, return the non-falsy trap result if it contains all
-    of target's non-configurable keys.
-info: >
-    [[OwnPropertyKeys]] ( )
+  Return trapResult if extensibleTarget is true and targetNonconfigurableKeys is
+  empty
+info: |
+  [[OwnPropertyKeys]] ( )
 
-    ...
-    22. If extensibleTarget is true, return trapResult.
+  5. Let trap be ? GetMethod(handler, "ownKeys").
+  ...
+  7. Let trapResultArray be ? Call(trap, handler, « target »).
+  8. Let trapResult be ? CreateListFromArrayLike(trapResultArray, « String,
+     Symbol »).
+  ...
+  15. If extensibleTarget is true and targetNonconfigurableKeys is empty, then
+    a. Return trapResult.
+includes: [compareArray.js]
 ---*/
 
-var target = {};
-
-Object.defineProperty(target, "foo", {
-    configurable: false,
-    enumerable: true,
-    value: true
+var expected = ["foo", "bar"];
+var proxy = new Proxy({ baz: 1 }, {
+  ownKeys: function() {
+    return expected;
+  }
 });
 
-var p = new Proxy(target, {
-    ownKeys: function() {
-        return ["foo", "bar"];
-    }
-});
-
-var keys = Object.getOwnPropertyNames(p);
-
-assert.sameValue(keys[0], "foo");
-assert.sameValue(keys[1], "bar");
-
-assert.sameValue(keys.length, 2);
+assert(compareArray(Object.keys(proxy), expected));
