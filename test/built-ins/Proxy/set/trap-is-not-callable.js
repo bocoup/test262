@@ -13,16 +13,42 @@ info: >
     7.3.9 GetMethod (O, P)
 
     5. If IsCallable(func) is false, throw a TypeError exception.
+features: [Symbol]
 ---*/
 
-var p = new Proxy({}, {
+var proxy;
+
+proxy = new Proxy({}, {
     set: {}
 });
-
 assert.throws(TypeError, function() {
-    p.attr = 1;
-});
+    proxy.attr = 1;
+}, "{}");
 
-assert.throws(TypeError, function() {
-    p["attr"] = 1;
+proxy = new Proxy({}, {
+    set: 42
 });
+assert.throws(TypeError, function() {
+    proxy.attr = 1;
+}, "number");
+
+proxy = new Proxy({}, {
+    set: "function() { 'this is a trap'; }"
+});
+assert.throws(TypeError, function() {
+    proxy.attr = 1;
+}, "string");
+
+proxy = new Proxy({}, {
+    set: false
+});
+assert.throws(TypeError, function() {
+    proxy.attr = 1;
+}, "boolean");
+
+proxy = new Proxy({}, {
+    set: Symbol(1)
+});
+assert.throws(TypeError, function() {
+    proxy.attr = 1;
+}, "symbol");

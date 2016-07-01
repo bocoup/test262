@@ -17,13 +17,43 @@ info: >
         2. Let func be GetV(O, P).
         5. If IsCallable(func) is false, throw a TypeError exception.
         ...
+features: [Reflect, Symbol]
 ---*/
 
 var target = {};
-var p = new Proxy(target, {
+var proxy;
+
+proxy = new Proxy({}, {
     preventExtensions: {}
 });
-
 assert.throws(TypeError, function() {
-    Object.preventExtensions(p);
+    Reflect.preventExtensions(proxy);
+}, "object");
+
+proxy = new Proxy({}, {
+    preventExtensions: 42
 });
+assert.throws(TypeError, function() {
+    Reflect.preventExtensions(proxy);
+}, "number");
+
+proxy = new Proxy({}, {
+    preventExtensions: "function() { 'this is a trap' }"
+});
+assert.throws(TypeError, function() {
+    Reflect.preventExtensions(proxy);
+}, "string");
+
+proxy = new Proxy({}, {
+    preventExtensions: false
+});
+assert.throws(TypeError, function() {
+    Reflect.preventExtensions(proxy);
+}, "boolean");
+
+proxy = new Proxy({}, {
+    preventExtensions: Symbol(1)
+});
+assert.throws(TypeError, function() {
+    Reflect.preventExtensions(proxy);
+}, "symbol");
