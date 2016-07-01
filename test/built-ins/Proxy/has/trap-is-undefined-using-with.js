@@ -15,10 +15,10 @@ flags: [noStrict]
 ---*/
 
 var target = Object.create(Array.prototype);
-var p = new Proxy(target, {});
+var proxy = new Proxy(target, {});
 
 var foo = 3;
-with (target) {
+with (proxy) {
     assert.sameValue(length, 0);
     assert.sameValue(foo, 3);
 }
