@@ -3,13 +3,7 @@
 
 /*---
 description: Tests for existance and behavior of Intl.DateTimeFormat.prototype.formatToParts
-includes: [compareArray.js]
 ---*/
-
-
-function assertArray(l, r) {
-  assert(compareArray(l, r), r);
-}
 
 function reduce(parts) {
   return parts.map(part => part.value).join('');
