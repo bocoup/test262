@@ -11,7 +11,7 @@ info: |
   MatchAllIterator ( R, O )
     1. Let S be ? ToString(O).
 features: [Symbol.matchAll]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 var str = 'a*b';

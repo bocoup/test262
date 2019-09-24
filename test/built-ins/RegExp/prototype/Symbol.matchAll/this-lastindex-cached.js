@@ -15,7 +15,7 @@ info: |
       f. Let lastIndex be ? ToLength(? Get(R, "lastIndex")).
       g. Perform ? Set(matcher, "lastIndex", lastIndex, true).
 features: [Symbol.matchAll]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 var regexp = /./g;

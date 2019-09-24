@@ -12,7 +12,7 @@ info: |
     4. Let rx be ? RegExpCreate(R, "g").
     5. Return ? Invoke(rx, @@matchAll, « S »).
 features: [String.prototype.matchAll]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 var str = '-null-';

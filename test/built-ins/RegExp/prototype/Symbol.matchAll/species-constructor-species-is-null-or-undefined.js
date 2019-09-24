@@ -21,7 +21,7 @@ info: |
     5. Let S be ? Get(C, @@species).
     6. If S is either undefined or null, return defaultConstructor.
 features: [Symbol.matchAll, Symbol.species]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 function TestWithConstructor(ctor) {

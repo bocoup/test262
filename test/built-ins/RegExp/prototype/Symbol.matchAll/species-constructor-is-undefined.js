@@ -18,7 +18,7 @@ info: |
     2. Let C be ? Get(O, "constructor").
     3. If C is undefined, return defaultConstructor.
 features: [Symbol.matchAll]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 var regexp = /\w/g;

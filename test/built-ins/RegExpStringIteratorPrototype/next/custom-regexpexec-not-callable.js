@@ -18,7 +18,7 @@ info: |
        TypeError exception.
     6. Return ? RegExpBuiltinExec(R, S).
 features: [Symbol.matchAll]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 function TestWithRegExpExec(exec) {

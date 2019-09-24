@@ -20,7 +20,7 @@ info: |
         i. Set O.[[Done]] to true.
         ii. Return ! CreateIterResultObject(match, false).
 features: [Symbol.matchAll]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 var regexp = /\w/;

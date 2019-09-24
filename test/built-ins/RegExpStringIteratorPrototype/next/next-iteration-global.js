@@ -22,7 +22,7 @@ info: |
           3. Perform ? Set(R, "lastIndex", nextIndex, true).
         iii. Return ! CreateIterResultObject(match, false).
 features: [Symbol.matchAll]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 var regexp = /\w/g;

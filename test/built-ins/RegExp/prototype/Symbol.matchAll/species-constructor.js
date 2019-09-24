@@ -14,7 +14,7 @@ info: |
     10. Else, let global be false.
     [...]
 features: [Symbol.matchAll, Symbol.species]
-includes: [compareArray.js, compareIterator.js, regExpUtils.js]
+includes: [compareIterator.js, regExpUtils.js]
 ---*/
 
 var callCount = 0;
