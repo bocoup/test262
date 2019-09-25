@@ -18,9 +18,7 @@ Object.defineProperties(obj, {
   }
 });
 
-if (isWritable(obj, "prop")) {
-  $ERROR('Expected obj["prop"] not to be writable.');
-}
+verifyWritable(obj, "prop");
 
 if (!obj.hasOwnProperty("prop")) {
   $ERROR('Expected obj.hasOwnProperty("prop") to be true, actually ' + obj.hasOwnProperty("prop"));
