@@ -3,6 +3,7 @@
 /*---
 description: |
     Collection of functions used to assert the correctness of SharedArrayBuffer objects.
+features: [ArrayBuffer, Atomics, DataView, SharedArrayBuffer, Symbol, TypedArray]
 defines:
   - testWithAtomicsOutOfBoundsIndices
   - testWithAtomicsInBoundsIndices

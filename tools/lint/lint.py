@@ -35,7 +35,6 @@ from lib.collect_files import collect_files
 from lib.checks.esid import CheckEsid
 from lib.checks.features import CheckFeatures
 from lib.checks.frontmatter import CheckFrontmatter
-from lib.checks.harnessfeatures import CheckHarnessFeatures
 from lib.checks.harness import CheckHarness
 from lib.checks.includes import CheckIncludes
 from lib.checks.license import CheckLicense
@@ -60,7 +59,6 @@ checks = [
     CheckFileName(),
     CheckFrontmatter(),
     CheckFeatures('features.txt'),
-    CheckHarnessFeatures(),
     CheckHarness(),
     CheckIncludes(),
     CheckLicense(),

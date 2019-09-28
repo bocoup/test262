@@ -4,6 +4,7 @@
 /*---
 description: |
     Test if a given function is a constructor function.
+features: [Reflect.construct]
 defines: [isConstructor]
 ---*/
 

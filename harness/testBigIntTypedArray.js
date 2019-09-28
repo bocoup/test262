@@ -3,6 +3,7 @@
 /*---
 description: |
     Collection of functions used to assert the correctness of BigInt TypedArray objects.
+features: [BigInt, TypedArray]
 defines: [TypedArray, testWithBigIntTypedArrayConstructors]
 ---*/
 

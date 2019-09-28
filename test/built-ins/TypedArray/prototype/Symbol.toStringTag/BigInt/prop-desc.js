@@ -14,7 +14,7 @@ info: |
   This property has the attributes { [[Enumerable]]: false, [[Configurable]]:
   true }.
 includes: [propertyHelper.js, testBigIntTypedArray.js]
-features: [BigInt, Symbol.toStringTag]
+features: [BigInt, TypedArray, Symbol.toStringTag]
 ---*/
 
 var TypedArrayPrototype = TypedArray.prototype;

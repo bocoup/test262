@@ -14,7 +14,7 @@ info: |
   This property has the attributes { [[Enumerable]]: false, [[Configurable]]:
   true }.
 includes: [propertyHelper.js, testTypedArray.js]
-features: [Symbol.toStringTag]
+features: [TypedArray, Symbol.toStringTag]
 ---*/
 
 var TypedArrayPrototype = TypedArray.prototype;

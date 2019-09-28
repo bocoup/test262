@@ -17,7 +17,7 @@ info: |
     object, if it exists, has the attributes { [[Writable]]: false,
     [[Enumerable]]: false, [[Configurable]]: true }.
 includes: [propertyHelper.js, testBigIntTypedArray.js]
-features: [BigInt, Symbol.toStringTag]
+features: [BigInt, TypedArray, Symbol.toStringTag]
 ---*/
 
 var desc = Object.getOwnPropertyDescriptor(TypedArray.prototype, Symbol.toStringTag);

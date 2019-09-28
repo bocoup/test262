@@ -3,6 +3,7 @@
 /*---
 description: |
     Collection of functions used to assert the correctness of TypedArray objects.
+features: [TypedArray]
 defines:
   - typedArrayConstructors
   - floatArrayConstructors

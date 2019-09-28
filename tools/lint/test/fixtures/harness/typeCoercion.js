@@ -4,6 +4,7 @@
 description: |
     Functions to help generate test cases for testing type coercion abstract
     operations like ToNumber.
+features: [Symbol.toPrimitive, BigInt]
 defines:
   - testCoercibleToIndexZero
   - testCoercibleToIndexOne

@@ -3,6 +3,7 @@
 /*---
 description: >
     Collection of functions used to interact with Atomics.* operations across agent boundaries.
+features: [Atomics]
 defines:
   - $262.agent.getReport
   - $262.agent.safeBroadcast

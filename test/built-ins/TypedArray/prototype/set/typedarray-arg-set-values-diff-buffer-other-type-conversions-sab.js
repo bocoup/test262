@@ -7,7 +7,7 @@ esid: sec-%typedarray%.prototype.set-typedarray-offset
 description: >
   Set converted values from different buffer of different types and different type instances
 includes: [byteConversionValues.js, testTypedArray.js]
-features: [SharedArrayBuffer]
+features: [TypedArray, SharedArrayBuffer]
 ---*/
 
 testTypedArrayConversions(byteConversionValues, function(TA, value, expected, initial) {
