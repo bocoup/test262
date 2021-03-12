@@ -14,13 +14,23 @@ esid: sec-relational-operators-runtime-semantics-evaluation
 features: [class-fields-private, class-fields-private-in]
 ---*/
 
-class Class {
+let Child;
+
+class Parent {
   #field;
 
-  static isNameIn(value) {
-    return #field in value;
+  static init() {
+    Child = class {
+      #field;
+
+      static isNameIn(value) {
+        return #field in value;
+      }
+    };
   }
 }
 
-assert.sameValue(Class.isNameIn({}), false);
-assert.sameValue(Class.isNameIn(new Class()), true);
+Parent.init();
+
+assert.sameValue(Child.isNameIn(new Parent()), false);
+assert.sameValue(Child.isNameIn(new Child()), true);

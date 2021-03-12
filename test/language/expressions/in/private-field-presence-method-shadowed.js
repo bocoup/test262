@@ -16,18 +16,31 @@ esid: sec-relational-operators-runtime-semantics-evaluation
 features: [class-methods-private, class-fields-private-in]
 ---*/
 
-let count = 0;
+let Child;
+let parentCount = 0;
+let childCount = 0;
 
-class Class {
+class Parent {
   #method() {
-    count += 1;
+    parentCount += 1;
   }
 
-  static isNameIn(value) {
-    return #method in value;
+  static init() {
+    Child = class {
+      #method() {
+        childCount += 1;
+      }
+
+      static isNameIn(value) {
+        return #method in value;
+      }
+    };
   }
 }
 
-assert.sameValue(Class.isNameIn({}), false);
-assert.sameValue(Class.isNameIn(new Class()), true);
-assert.sameValue(count, 0);
+Parent.init();
+
+assert.sameValue(Child.isNameIn(new Parent()), false);
+assert.sameValue(parentCount, 0, 'parent method not invoked');
+assert.sameValue(Child.isNameIn(new Child()), true);
+assert.sameValue(childCount, 0, 'child method not invoked');
