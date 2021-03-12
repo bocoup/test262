@@ -19,7 +19,7 @@ esid: sec-relational-operators-runtime-semantics-evaluation
 negative:
   phase: parse
   type: SyntaxError
-features: [class-fields-private-in]
+features: [class-fields-private, class-fields-private-in]
 ---*/
 
 $DONOTEVALUATE();

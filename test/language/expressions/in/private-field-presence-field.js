@@ -11,7 +11,7 @@ info: |
   [...]
   11. Return false.
 esid: sec-relational-operators-runtime-semantics-evaluation
-features: [class-fields-private-in]
+features: [class-fields-private, class-fields-private-in]
 ---*/
 
 let Child;

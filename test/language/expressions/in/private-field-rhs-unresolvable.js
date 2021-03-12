@@ -8,7 +8,7 @@ info: |
   2. Let rref be the result of evaluating ShiftExpression.
   3. Let rval be ? GetValue(rref).
 esid: sec-relational-operators-runtime-semantics-evaluation
-features: [class-fields-private-in]
+features: [class-fields-private, class-fields-private-in]
 ---*/
 
 let caught = null;
