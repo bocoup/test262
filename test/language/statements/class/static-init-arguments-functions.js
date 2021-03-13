@@ -9,6 +9,7 @@ info: |
   - It is a Syntax Error if ContainsArguments of ClassStaticBlockStatementList
     is true.
 includes: [compareArray.js]
+features: [class-static-block]
 ---*/
 
 var fn, fnParam;

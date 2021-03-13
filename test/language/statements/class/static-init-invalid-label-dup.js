@@ -11,6 +11,7 @@ info: |
 negative:
   phase: parse
   type: SyntaxError
+features: [class-static-block]
 ---*/
 
 $DONOTEVALUATE();
