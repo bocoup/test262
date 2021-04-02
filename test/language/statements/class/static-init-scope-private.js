@@ -18,7 +18,7 @@ class C {
   static #test262 = 'private';
 
   static {
-    probe = this.#test262;
+    probe = C.#test262;
   }
 }
 
