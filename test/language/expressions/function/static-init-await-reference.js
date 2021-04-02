@@ -20,7 +20,7 @@ class C {
   static {
     (function (x = fromParam = await) {
       fromBody = await;
-    });
+    })();
   }
 }
 
