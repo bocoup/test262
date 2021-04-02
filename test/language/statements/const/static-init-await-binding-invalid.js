@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-identifiers
-description: The restriction on `await` as a BindingIdentifier does not cross function boundaries
+description: BindingIdentifier may not be `await` within class static blocks
 info: |
   BindingIdentifier : Identifier
 
@@ -11,31 +11,14 @@ info: |
     directly or indirectly (but not crossing function or static initialization
     block boundaries), within a ClassStaticBlock and the StringValue of
     Identifier is "await".
+negative:
+  phase: parse
+  type: SyntaxError
 features: [class-static-block]
 ---*/
 
 class C {
   static {
-    (function await(await) {});
-
-    (function * await (await) {});
-
-    (class await {});
-
-    (await => 0);
-
-    (() => { try {} catch (await) {} });
-
-    (() => { var await; });
-
-    (() => { let await; });
-
-    (() => { const await = 0; });
-
-    ({method(await) {}});
-
-    ({*method(await) {}});
-
-    ({set accessor(await) {}});
+    const await = 0;
   }
 }
