@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-runtime-semantics-classstaticblockdefinitionevaluation
-description: Creation of new environment record for variable-scoped bindings
+description: Creation of new environment record for lexically-scoped bindings
 info: |
   ClassStaticBlock : static { ClassStaticBlockBody }
 
@@ -12,16 +12,16 @@ info: |
 features: [class-static-block]
 ---*/
 
-var test262 = 'outer scope';
-var probe1, probe2;
+let test262 = 'outer scope';
+let probe1, probe2;
 
 class C {
   static {
-    var test262 = 'first block';
+    let test262 = 'first block';
     probe1 = test262;
   }
   static {
-    var test262 = 'second block';
+    let test262 = 'second block';
     probe2 = test262;
   }
 }

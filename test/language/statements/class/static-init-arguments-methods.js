@@ -41,7 +41,6 @@ class C {
   }
 }
 
-new C();
 instance.method('method');
 instance.accessor;
 instance.accessor = 'setter';

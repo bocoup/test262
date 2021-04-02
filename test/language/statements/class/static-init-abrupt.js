@@ -21,19 +21,18 @@ features: [class-static-block]
 
 var thrown = new Test262Error();
 var count = 0;
-
-class C {
-  static {
-    throw thrown;
-    count += 1;
-  }
-  static {
-    count += 1;
-  }
-}
+var caught;
 
 try {
-  new C();
+  class C {
+    static {
+      throw thrown;
+      count += 1;
+    }
+    static {
+      count += 1;
+    }
+  }
 } catch (error) {
   caught = error;
 }

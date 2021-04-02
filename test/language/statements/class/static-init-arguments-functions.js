@@ -32,8 +32,6 @@ class C {
   }
 }
 
-new C();
-
 assert(compareArray(['function'], fn), 'body');
 assert(compareArray(['function'], fnParam), 'parameter');
 assert(compareArray(['generator function'], gen), 'body');
