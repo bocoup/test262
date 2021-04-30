@@ -19,15 +19,18 @@ info: |
   AssertionKey:
     IdentifierName
     StringLiteral
+
+  This test uses all four LineFeed characters in order to completely verify the
+  grammar.
 features: [import-assertions]
 flags: [module]
 ---*/
 
 import x from './import-assertion_FIXTURE.js' assert
-{
-test262
-:
-''
-};
+  {
+  test262
+  :
+  ''
+  };
 
 assert.sameValue(x, 262);
