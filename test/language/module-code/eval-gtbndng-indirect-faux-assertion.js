@@ -23,7 +23,7 @@ info: |
   The restriction LineTerminator could be verified more simply with a negative
   syntax test. This test is designed to parse successfully in order to verify
   the restriction more precisely.
-features: [import-assertions]
+features: [import-assertions, globalThis]
 flags: [module, raw]
 ---*/
 
