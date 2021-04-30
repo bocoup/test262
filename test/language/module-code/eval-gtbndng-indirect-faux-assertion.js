@@ -23,15 +23,16 @@ info: |
   The restriction LineTerminator could be verified more simply with a negative
   syntax test. This test is designed to parse successfully in order to verify
   the restriction more precisely.
-flags: [module, import-assertions]
+features: [import-assertions]
+flags: [module, raw]
 ---*/
 
 var callCount = 0;
 
 // Define a property on the global "this" value so that the effect of the
 // expected IdentifierReference can be observed.
-Object.defineProperty(this, 'assert', {
-  get() {
+Object.defineProperty(globalThis, 'assert', {
+  get: function() {
     callCount += 1;
   }
 });
@@ -40,5 +41,10 @@ import x from './eval-gtbndng-indirect-assertion_FIXTURE.js'
 assert
 {test262:''};
 
-assert.sameValue(x, 1);
-assert.sameValue(callCount, 1);
+if (x !== 262) {
+  throw 'module value incorrectly imported';
+}
+
+if (callCount !== 1) {
+  throw 'IdentifierReference not recognized';
+}

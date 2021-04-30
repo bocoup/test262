@@ -19,7 +19,8 @@ info: |
   AssertionKey:
     IdentifierName
     StringLiteral
-flags: [module, import-assertions]
+features: [import-assertions]
+flags: [module]
 ---*/
 
 import x from './eval-gtbndng-indirect-assertion_FIXTURE.js' assert
@@ -29,4 +30,4 @@ test262
 ''
 };
 
-assert.sameValue(x, 1);
+assert.sameValue(x, 262);
