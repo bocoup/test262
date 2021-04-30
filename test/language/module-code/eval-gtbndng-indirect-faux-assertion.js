@@ -37,7 +37,7 @@ Object.defineProperty(globalThis, 'assert', {
   }
 });
 
-import x from './eval-gtbndng-indirect-assertion_FIXTURE.js'
+import x from './import-assertion_FIXTURE.js'
 assert
 {test262:''};
 

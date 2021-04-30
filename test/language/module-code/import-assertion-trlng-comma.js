@@ -23,6 +23,6 @@ features: [import-assertions]
 flags: [module]
 ---*/
 
-import x from './eval-gtbndng-indirect-assertion_FIXTURE.js' assert {test262:'',};
+import x from './import-assertion_FIXTURE.js' assert {test262:'',};
 
 assert.sameValue(x, 262);

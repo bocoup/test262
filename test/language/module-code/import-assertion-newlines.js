@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 description: >
-  AssertClause in ImportDeclaration may use a string literal as a value (delimited with U+0027)
+  AssertClause in ImportDeclaration may include line terminators
 esid: sec-modules
 info: |
   ImportDeclaration:
@@ -23,6 +23,11 @@ features: [import-assertions]
 flags: [module]
 ---*/
 
-import x from './eval-gtbndng-indirect-assertion_FIXTURE.js' assert {test262:''};
+import x from './import-assertion_FIXTURE.js' assert
+{
+test262
+:
+''
+};
 
 assert.sameValue(x, 262);
