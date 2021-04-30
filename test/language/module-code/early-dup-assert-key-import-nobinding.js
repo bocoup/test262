@@ -18,7 +18,7 @@ negative:
 
 $DONOTEVALUATE();
 
-import './import-assertion_FIXTURE.js' assert {
+import './import-assertion-2_FIXTURE.js' assert {
   test262_a: '',
   test262_b: '',
   'test262_a': '',
