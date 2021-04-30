@@ -37,14 +37,34 @@ Object.defineProperty(globalThis, 'assert', {
   }
 });
 
-import x from './import-assertion_FIXTURE.js'
+import x from './import-assertion-1_FIXTURE.js'
 assert
 {test262:''};
 
-if (x !== 262) {
-  throw 'module value incorrectly imported';
+if (x !== 262.1) {
+  throw 'module value incorrectly imported - first declaration';
 }
 
 if (callCount !== 1) {
-  throw 'IdentifierReference not recognized';
+  throw 'IdentifierReference not recognized - first declaration';
+}
+
+import './import-assertion-2_FIXTURE.js'
+assert
+{test262:''};
+
+if (globalThis.test262 !== 262.2) {
+  throw 'module value incorrectly imported - second declaration';
+}
+
+if (callCount !== 2) {
+  throw 'IdentifierReference not recognized - second declaration';
+}
+
+export * from './import-assertion-3_FIXTURE.js'
+assert
+{test262:''};
+
+if (callCount !== 3) {
+  throw 'IdentifierReference not recognized - third declaration';
 }

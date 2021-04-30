@@ -23,6 +23,9 @@ features: [import-assertions]
 flags: [module]
 ---*/
 
-import x from './import-assertion_FIXTURE.js' assert {if:''};
+import x from './import-assertion-1_FIXTURE.js' assert {if:''};
+import './import-assertion-2_FIXTURE.js' assert {if:''};
+export * from './import-assertion-3_FIXTURE.js' assert {if:''};
 
-assert.sameValue(x, 262);
+assert.sameValue(x, 262.1);
+assert.sameValue(globalThis.test262, 262.2);

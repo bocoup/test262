@@ -22,15 +22,28 @@ info: |
 
   This test uses all four LineFeed characters in order to completely verify the
   grammar.
-features: [import-assertions]
+features: [import-assertions, globalThis]
 flags: [module]
 ---*/
 
-import x from './import-assertion_FIXTURE.js' assert
+import x from './import-assertion-1_FIXTURE.js' assert
+  {
+  test262
+  :
+  ''
+  };
+import './import-assertion-2_FIXTURE.js' assert
+  {
+  test262
+  :
+  ''
+  };
+export * from './import-assertion-3_FIXTURE.js' assert
   {
   test262
   :
   ''
   };
 
-assert.sameValue(x, 262);
+assert.sameValue(x, 262.1);
+assert.sameValue(globalThis.test262, 262.2);
