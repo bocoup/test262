@@ -27,7 +27,7 @@ flags: [async]
 
 function test(promise, valueType) {
   return promise.then(function() {
-      throw new Test262Error('Test for ' + valueType + ' did not throw.');
+      throw new Test262Error('Promise for ' + valueType + ' was not rejected.');
     }, function(error) {
       assert.sameValue(error.constructor, TypeError, valueType);
     });

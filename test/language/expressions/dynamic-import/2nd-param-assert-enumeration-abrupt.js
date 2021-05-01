@@ -1,9 +1,7 @@
 // Copyright (C) 2021 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-description: >
-  Follows the semantics of the EnumerableOwnPropertyNames abstract operation
-  during assertion enumeration
+description: Reports abrupt completions produced by assertion enumeration
 esid: sec-import-call-runtime-semantics-evaluation
 info: |
   2.1.1.1 EvaluateImportCall ( specifierExpression [ , optionsExpression ] )
@@ -21,48 +19,25 @@ info: |
            i. If Type(assertionsObj) is not Object,
               [...]
            ii. Let keys be EnumerableOwnPropertyNames(assertionsObj, key).
+           iii. IfAbruptRejectPromise(keys, promiseCapability).
     [...]
-features: [dynamic-import, import-assertions, Symbol, Proxy]
+features: [dynamic-import, import-assertions, Proxy]
 flags: [async]
 ---*/
 
-var symbol = Symbol('');
-var target = {
-  enumerable1: '',
-  enumerable2: '',
-  [symbol]: '',
-  unreported: '',
-  nonEnumerable: ''
-};
-var descriptors = {
-  enumerable1: {configurable: true, enumerable: true},
-  enumerable2: {configurable: true, enumerable: true},
-  [symbol]: {configurable: true, enumerable: true},
-  nonEnumerable: {configurable: true, enumerable: false}
-};
-var log = [];
-
+var thrown = new Test262Error();
 var options = {
   assert: new Proxy({}, {
     ownKeys: function() {
-      return ['enumerable1', symbol, 'nonEnumerable', 'absent', 'enumerable2'];
+      throw thrown;
     },
-    get(_, name) {
-      log.push(name);
-      return target[name];
-    },
-    getOwnPropertyDescriptor(target, name) {
-      return descriptors[name];
-    }
   })
 };
 
 import('./2nd-param_FIXTURE.js', options)
-  .then(function(module) {
-    assert.sameValue(module.default, 262);
+  .then(function() {
+    throw new Test262Error('Expected promise to be rejected, but promise was fulfilled.');
+  }, function(error) {
+    assert.sameValue(error, thrown);
   })
   .then($DONE, $DONE);
-
-assert.sameValue(log.length, 2);
-assert.sameValue(log[0], 'enumerable1');
-assert.sameValue(log[1], 'enumerable2');
