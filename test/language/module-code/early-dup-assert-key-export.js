@@ -20,5 +20,5 @@ $DONOTEVALUATE();
 export * from './import-assertion-3_FIXTURE.js' assert {
   test262_a: '',
   test262_b: '',
-  'test262_a': '',
+  'test262_\u0061': ''
 };
