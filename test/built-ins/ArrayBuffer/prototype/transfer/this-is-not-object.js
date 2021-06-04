@@ -7,7 +7,7 @@ info: |
   ArrayBuffer.prototype.transfer ( [ newLength ] )
 
   1. Let O be the this value.
-  2. Perform ? RequireInternalSlot(O, [[ArrayBufferMaxByteLength]]).
+  2. Perform ? RequireInternalSlot(O, [[ArrayBufferData]]).
   [...]
 includes: [detachArrayBuffer.js]
 features: [resizable-arraybuffer, Symbol, bigint]
