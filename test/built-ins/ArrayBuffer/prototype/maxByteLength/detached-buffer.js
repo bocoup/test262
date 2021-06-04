@@ -19,4 +19,4 @@ var ab = new ArrayBuffer(1);
 
 $DETACHBUFFER(ab);
 
-assert.sameValue(ab.maxByteLength, 0, 'The value of ab.maxByteLength is 0');
+assert.sameValue(ab.maxByteLength, 0);

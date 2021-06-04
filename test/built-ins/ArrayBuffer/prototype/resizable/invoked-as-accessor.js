@@ -1,10 +1,10 @@
 // Copyright (C) 2021 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-esid: sec-get-arraybuffer.prototype.maxbytelength
-description: Throws a TypeError exception when invoked as a function
+esid: sec-get-arraybuffer.prototype.resizable
+description: Requires this value to have a [[ArrayBufferData]] internal slot
 info: |
-  get ArrayBuffer.prototype.maxByteLength
+  get ArrayBuffer.prototype.resizable
 
   1. Let O be the this value.
   2. Perform ? RequireInternalSlot(O, [[ArrayBufferData]]).
@@ -12,12 +12,6 @@ info: |
 features: [resizable-arraybuffer]
 ---*/
 
-var getter = Object.getOwnPropertyDescriptor(
-  ArrayBuffer.prototype, 'maxByteLength'
-).get;
-
-assert.sameValue(typeof getter, 'function');
-
 assert.throws(TypeError, function() {
-  getter();
+  ArrayBuffer.prototype.resizable;
 });

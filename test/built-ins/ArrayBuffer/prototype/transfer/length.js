@@ -1,11 +1,11 @@
 // Copyright (C) 2021 the V8 project authors. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
-esid: sec-get-arraybuffer.prototype.maxbytelength
+esid: sec-arraybuffer.prototype.transfer
 description: >
-  get ArrayBuffer.prototype.maxByteLength.length is 0.
+  ArrayBuffer.prototype.transfer.length is 0.
 info: |
-  get ArrayBuffer.prototype.maxByteLength
+  ArrayBuffer.prototype.transfer ( [ newLength ] )
 
   17 ECMAScript Standard Built-in Objects:
     Every built-in Function object, including constructors, has a length
@@ -22,7 +22,7 @@ includes: [propertyHelper.js]
 features: [resizable-arraybuffer]
 ---*/
 
-verifyProperty(ArrayBuffer.prototype.maxByteLength, 'length', {
+verifyProperty(ArrayBuffer.prototype.transfer, 'length', {
   value: 0,
   enumerable: false,
   writable: false,

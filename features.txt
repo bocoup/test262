@@ -315,3 +315,7 @@ error-cause
 # Import Assertions
 # https://github.com/tc39/proposal-import-assertions/
 import-assertions
+
+# Resizable Arraybuffer
+# https://github.com/tc39/proposal-resizablearraybuffer
+resizable-arraybuffer
