@@ -14,8 +14,10 @@ includes: [propertyHelper.js]
 features: [resizable-arraybuffer]
 ---*/
 
-verifyProperty(ArrayBuffer.prototype.resizable, 'name', {
-  value: 'resizable',
+var desc = Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, 'resizable');
+
+verifyProperty(desc.get, 'name', {
+  value: 'get resizable',
   enumerable: false,
   writable: false,
   configurable: true

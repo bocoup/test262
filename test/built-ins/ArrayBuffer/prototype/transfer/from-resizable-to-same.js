@@ -2,8 +2,9 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-arraybuffer.prototype.transfer
-description: >
-  Throws a TypeError if `this` does not have an [[ArrayBufferData]] internal slot.
+description: |
+  Transfering from a resizable ArrayBuffer into an ArrayBuffer with the same
+  byte length
 info: |
   ArrayBuffer.prototype.transfer ( [ newLength ] )
 
@@ -29,16 +30,28 @@ includes: [detachArrayBuffer.js]
 features: [resizable-arraybuffer]
 ---*/
 
-assert.sameValue(typeof ArrayBuffer.prototype.transfer, 'function');
+var source = new ArrayBuffer(4, { maxByteLength: 8 });
 
-assert.throws(TypeError, function() {
-  ArrayBuffer.prototype.transfer();
-}, '`this` value is the ArrayBuffer prototype');
+var sourceArray = new Uint8Array(source);
+sourceArray[0] = 1;
+sourceArray[1] = 2;
+sourceArray[2] = 3;
+sourceArray[3] = 4;
 
-assert.throws(TypeError, function() {
-  ArrayBuffer.prototype.transfer.call({});
-}, '`this` value is an object');
+var dest = source.transfer();
 
+assert.sameValue(source.byteLength, 0, 'source.byteLength');
 assert.throws(TypeError, function() {
-  ArrayBuffer.prototype.transfer.call([]);
-}, '`this` value is an array');
+  source.slice();
+});
+
+assert.sameValue(dest.resizable, false, 'dest.resizable');
+assert.sameValue(dest.byteLength, 4, 'dest.byteLength');
+assert.sameValue(dest.maxByteLength, 4, 'dest.maxByteLength');
+
+var destArray = new Uint8Array(dest);
+
+assert.sameValue(destArray[0], 1, 'destArray[0]');
+assert.sameValue(destArray[1], 2, 'destArray[1]');
+assert.sameValue(destArray[2], 3, 'destArray[2]');
+assert.sameValue(destArray[3], 4, 'destArray[3]');

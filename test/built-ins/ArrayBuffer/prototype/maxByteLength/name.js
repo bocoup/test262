@@ -14,8 +14,10 @@ includes: [propertyHelper.js]
 features: [resizable-arraybuffer]
 ---*/
 
-verifyProperty(ArrayBuffer.prototype.maxByteLength, 'name', {
-  value: 'maxByteLength',
+var desc = Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, 'maxByteLength');
+
+verifyProperty(desc.get, 'name', {
+  value: 'get maxByteLength',
   enumerable: false,
   writable: false,
   configurable: true

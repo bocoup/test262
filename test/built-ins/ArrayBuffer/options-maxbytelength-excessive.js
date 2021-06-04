@@ -24,5 +24,5 @@ features: [resizable-arraybuffer]
 
 assert.throws(RangeError, function() {
   // Math.pow(2, 53) = 9007199254740992
-  new ArrayBuffer(0, 9007199254740992);
+  new ArrayBuffer(0, { maxByteLength: 9007199254740992 });
 });

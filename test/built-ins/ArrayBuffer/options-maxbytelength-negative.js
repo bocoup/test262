@@ -21,5 +21,5 @@ features: [resizable-arraybuffer]
 ---*/
 
 assert.throws(RangeError, function() {
-  new ArrayBuffer(0, -1);
+  new ArrayBuffer(0, { maxByteLength: -1 });
 });

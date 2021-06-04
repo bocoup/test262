@@ -22,7 +22,9 @@ includes: [propertyHelper.js]
 features: [resizable-arraybuffer]
 ---*/
 
-verifyProperty(ArrayBuffer.prototype.resizable, 'length', {
+var desc = Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, 'resizable');
+
+verifyProperty(desc.get, 'length', {
   value: 0,
   enumerable: false,
   writable: false,
