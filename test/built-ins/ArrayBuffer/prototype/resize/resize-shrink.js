@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-arraybuffer.prototype.resize
-description: Behavior when attempting to shrink an resizable array buffer
+description: Behavior when attempting to shrink a resizable array buffer
 info: |
   ArrayBuffer.prototype.resize ( newLength )
 
@@ -73,5 +73,5 @@ assert(caught || ab.byteLength === 3, 'byteLength');
 // All three conditions have the same effect on the value of `result`.
 assert.sameValue(result, undefined, 'normal completion value');
 
-// The contents of the ArrayBuffer are not guarunteed by the host-defined
+// The contents of the ArrayBuffer are not guaranteed by the host-defined
 // abstract operation, so they are not asserted in this test.
