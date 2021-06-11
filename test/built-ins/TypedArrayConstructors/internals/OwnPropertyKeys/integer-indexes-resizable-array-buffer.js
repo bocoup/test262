@@ -17,14 +17,6 @@ includes: [testTypedArray.js, compareArray.js]
 features: [Reflect, TypedArray, resizable-arraybuffer]
 ---*/
 
-var keysByLength = {
-  1: "0",
-  2: "0,1",
-  4: "0,1,2,3",
-  8: "0,1,2,3,4,5,6,7",
-  16: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-};
-
 // If the host chooses to throw as allowed by the specification, the observed
 // behavior will be identical to the case where `ArrayBuffer.prototype.resize`
 // has not been implemented. The following assertion prevents this test from
@@ -32,19 +24,15 @@ var keysByLength = {
 assert.sameValue(typeof ArrayBuffer.prototype.resize, "function");
 
 testWithTypedArrayConstructors(function(TA) {
-  var ab = new ArrayBuffer(8, {maxByteLength: 16});
   var BPE = TA.BYTES_PER_ELEMENT;
+  var ab = new ArrayBuffer(BPE * 3, {maxByteLength: BPE * 4});
   var array = new TA(ab);
   var caught = false;
 
-  assert.sameValue(
-    Reflect.ownKeys(array).join(","),
-    keysByLength[8 / BPE],
-    "initial"
-  );
+  assert.sameValue(Reflect.ownKeys(array).join(","), "0,1,2", "initial");
 
   try {
-    ab.resize(16);
+    ab.resize(BPE * 4);
   } catch (_) {
     caught = true;
   }
@@ -53,14 +41,12 @@ testWithTypedArrayConstructors(function(TA) {
     caught = false;
   } else {
     assert.sameValue(
-      Reflect.ownKeys(array).join(","),
-      keysByLength[16 / BPE],
-      "following grow"
+      Reflect.ownKeys(array).join(","), "0,1,2,3", "following grow"
     );
   }
 
   try {
-    ab.resize(8);
+    ab.resize(BPE*2);
   } catch (_) {
     caught = true;
   }
@@ -69,9 +55,7 @@ testWithTypedArrayConstructors(function(TA) {
     caught = false;
   } else {
     assert.sameValue(
-      Reflect.ownKeys(array).join(","),
-      keysByLength[8 / BPE],
-      "following shrink"
+      Reflect.ownKeys(array).join(","), "0,1", "following shrink"
     );
   }
 });
