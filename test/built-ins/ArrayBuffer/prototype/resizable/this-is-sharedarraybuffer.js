@@ -13,11 +13,11 @@ info: |
 features: [SharedArrayBuffer, resizable-arraybuffer]
 ---*/
 
-var byteLength = Object.getOwnPropertyDescriptor(
+var resizable = Object.getOwnPropertyDescriptor(
   ArrayBuffer.prototype, "resizable"
 );
 
-var getter = byteLength.get;
+var getter = resizable.get;
 var sab = new SharedArrayBuffer(4);
 
 assert.sameValue(typeof getter, "function");
@@ -26,7 +26,8 @@ assert.throws(TypeError, function() {
   getter.call(sab);
 }, "`this` cannot be a SharedArrayBuffer");
 
+Object.defineProperties(sab, { resizable: resizable });
+
 assert.throws(TypeError, function() {
-  Object.defineProperties(sab, { byteLength });
-  sab.byteLength;
+  sab.resizable;
 }, "`this` cannot be a SharedArrayBuffer");
