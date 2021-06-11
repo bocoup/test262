@@ -9,12 +9,11 @@ info: |
   1. Let O be the this value.
   2. Perform ? RequireInternalSlot(O, [[ArrayBufferData]]).
   3. If IsSharedArrayBuffer(O) is false, throw a TypeError exception.
-  4. If IsDetachedBuffer(O) is true, return +0𝔽.
-  5. If IsResizableArrayBuffer(O) is true, then
+  4. If IsResizableArrayBuffer(O) is true, then
      a. Let length be O.[[ArrayBufferMaxByteLength]].
-  6. Else,
+  5. Else,
      [...]
-  7. Return 𝔽(length).
+  6. Return 𝔽(length).
 features: [resizable-arraybuffer]
 ---*/
 
