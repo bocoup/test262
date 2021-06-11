@@ -26,7 +26,8 @@ assert.throws(TypeError, function() {
   getter.call(sab);
 }, "`this` cannot be a SharedArrayBuffer");
 
+Object.defineProperties(sab, { maxByteLength: maxByteLength });
+
 assert.throws(TypeError, function() {
-  Object.defineProperties(sab, { maxByteLength });
   sab.maxByteLength;
 }, "`this` cannot be a SharedArrayBuffer");
