@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-integer-indexed-exotic-objects-ownpropertykeys
-description: Return keys reflects resized ArrayBuffer
+description: returned keys reflect resized ArrayBuffer for a dynamically-sized TypedArray
 info: |
   9.4.5.6 [[OwnPropertyKeys]] ()
 
@@ -25,37 +25,48 @@ assert.sameValue(typeof ArrayBuffer.prototype.resize, "function");
 
 testWithTypedArrayConstructors(function(TA) {
   var BPE = TA.BYTES_PER_ELEMENT;
-  var ab = new ArrayBuffer(BPE * 3, {maxByteLength: BPE * 4});
-  var array = new TA(ab);
-  var caught = false;
+  var ab = new ArrayBuffer(BPE * 4, {maxByteLength: BPE * 5});
+  var array = new TA(ab, BPE);
+  var resizeFailed;
 
   assert.sameValue(Reflect.ownKeys(array).join(","), "0,1,2", "initial");
 
+  resizeFailed = false;
   try {
-    ab.resize(BPE * 4);
+    ab.resize(BPE * 5);
   } catch (_) {
-    caught = true;
+    resizeFailed = true;
   }
 
-  if (caught) {
-    caught = false;
-  } else {
+  if (!resizeFailed) {
     assert.sameValue(
       Reflect.ownKeys(array).join(","), "0,1,2,3", "following grow"
     );
   }
 
+  resizeFailed = false;
   try {
-    ab.resize(BPE*2);
+    ab.resize(BPE*3);
   } catch (_) {
-    caught = true;
+    resizeFailed = true;
   }
 
-  if (caught) {
-    caught = false;
-  } else {
+  if (!resizeFailed) {
     assert.sameValue(
-      Reflect.ownKeys(array).join(","), "0,1", "following shrink"
+      Reflect.ownKeys(array).join(","), "0,1", "following shrink (within bounds)"
+    );
+  }
+
+  resizeFailed = false;
+  try {
+    ab.resize(BPE);
+  } catch (_) {
+    resizeFailed = true;
+  }
+
+  if (!resizeFailed) {
+    assert.sameValue(
+      Reflect.ownKeys(array).length, 0, "following shrink (out of bounds)"
     );
   }
 });
