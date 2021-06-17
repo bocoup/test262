@@ -21,19 +21,36 @@ assert.sameValue(
 
 testWithTypedArrayConstructors(TA => {
   var BPE = TA.BYTES_PER_ELEMENT;
-  var ab = new ArrayBuffer(BPE * 4, {maxByteLength: BPE * 4});
-  var array = new TA(ab, 0, 4);
+  var ab = new ArrayBuffer(BPE * 4, {maxByteLength: BPE * 5});
+  var array = new TA(ab, BPE, 2);
+
+  try {
+    ab.resize(BPE * 5);
+  } catch (_) {}
+
+  // no error following grow:
+  array.map(() => {});
 
   try {
     ab.resize(BPE * 3);
+  } catch (_) {}
+
+  // no error following shrink (within bounds):
+  array.map(() => {});
+
+  var expectedError;
+  try {
+    ab.resize(BPE * 3);
+    expectedError = TypeError;
   } catch (_) {
     // The host is permitted to fail any "resize" operation at its own
-    // discretion. If that occurs, the semantics that this test is designed to
-    // verify cannot be observed, so bail out.
-    return;
+    // discretion. If that occurs, the map operation should complete
+    // successfully.
+    expectedError = Test262Error;
   }
 
-  assert.throws(TypeError, () => {
+  assert.throws(expectedError, () => {
     array.map(() => {});
+    throw new Test262Error('map completed successfully');
   });
 });
