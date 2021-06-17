@@ -29,19 +29,18 @@ testWithTypedArrayConstructors(function(TA) {
   assert.sameValue(array.byteOffset, BPE, "following grow");
 
   try {
-    ab.resize(BPE*3);
+    ab.resize(BPE * 3);
   } catch (_) {}
 
   assert.sameValue(array.byteOffset, BPE, "following shrink (within bounds)");
 
-  var resizeFailed = false;
+  var expected;
   try {
     ab.resize(BPE);
+    expected = 0;
   } catch (_) {
-    resizeFailed = true;
+    expected = BPE;
   }
 
-  if (!resizeFailed) {
-    assert.sameValue(array.byteOffset, 0, "following shrink (out of bounds)");
-  }
+  assert.sameValue(array.byteOffset, expected, "following shrink (out of bounds)");
 });
