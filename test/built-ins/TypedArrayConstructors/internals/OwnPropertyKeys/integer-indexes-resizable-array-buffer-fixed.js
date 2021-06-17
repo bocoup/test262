@@ -27,46 +27,32 @@ testWithTypedArrayConstructors(function(TA) {
   var BPE = TA.BYTES_PER_ELEMENT;
   var ab = new ArrayBuffer(BPE * 4, {maxByteLength: BPE * 5});
   var array = new TA(ab, BPE, 2);
-  var resizeFailed;
 
   assert.sameValue(Reflect.ownKeys(array).join(","), "0,1", "initial");
 
-  resizeFailed = false;
   try {
     ab.resize(BPE * 5);
-  } catch (_) {
-    resizeFailed = true;
-  }
+  } catch (_) {}
 
-  if (!resizeFailed) {
-    assert.sameValue(
-      Reflect.ownKeys(array).join(","), "0,1", "following grow"
-    );
-  }
+  assert.sameValue(Reflect.ownKeys(array).join(","), "0,1", "following grow");
 
-  resizeFailed = false;
   try {
-    ab.resize(BPE*3);
-  } catch (_) {
-    resizeFailed = true;
-  }
+    ab.resize(BPE * 3);
+  } catch (_) {}
 
-  if (!resizeFailed) {
-    assert.sameValue(
-      Reflect.ownKeys(array).join(","), "0,1", "following shrink (within bounds)"
-    );
-  }
+  assert.sameValue(
+    Reflect.ownKeys(array).join(","), "0,1", "following shrink (within bounds)"
+  );
 
-  resizeFailed = false;
+  var expected;
   try {
-    ab.resize(BPE*2);
+    ab.resize(BPE * 2);
+    expected = "";
   } catch (_) {
-    resizeFailed = true;
+    expected = "0,1";
   }
 
-  if (!resizeFailed) {
-    assert.sameValue(
-      Reflect.ownKeys(array).length, 0, "following shrink (out of bounds)"
-    );
-  }
+  assert.sameValue(
+    Reflect.ownKeys(array).join(","), expected, "following shrink (out of bounds)"
+  );
 });
