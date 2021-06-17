@@ -13,60 +13,42 @@ features: [Reflect, TypedArray, resizable-arraybuffer]
 // passing in runtimes which have not implemented the method.
 assert.sameValue(typeof ArrayBuffer.prototype.resize, "function");
 
+function inspect(array) {
+  return [
+    Reflect.has(array, 0),
+    Reflect.has(array, 1),
+    Reflect.has(array, 2),
+    Reflect.has(array, 3),
+    Reflect.has(array, 4)
+  ].join(",");
+}
+
 testWithTypedArrayConstructors(function(TA) {
   var BPE = TA.BYTES_PER_ELEMENT;
   var ab = new ArrayBuffer(BPE * 4, {maxByteLength: BPE * 5});
   var array = new TA(ab, BPE);
-  var resizeFailed;
+  var expected = "true,true,true,false,false";
 
-  assert.sameValue(
-    [Reflect.has(array, 2), Reflect.has(array, 3)].join(","),
-    "true,false",
-    "initial"
-  );
+  assert.sameValue(inspect(array), expected, "initial");
 
-  resizeFailed = false;
   try {
     ab.resize(BPE * 5);
-  } catch (_) {
-    resizeFailed = true;
-  }
+    expected = "true,true,true,true,false";
+  } catch (_) {}
 
-  if (!resizeFailed) {
-    assert.sameValue(
-      [Reflect.has(array, 3), Reflect.has(array, 4)].join(","),
-      "true,false",
-      "following grow"
-    );
-  }
+  assert.sameValue(inspect(array), expected, "following grow");
 
-  resizeFailed = false;
   try {
-    ab.resize(BPE*3);
-  } catch (_) {
-    resizeFailed = true;
-  }
+    ab.resize(BPE * 3);
+    expected = "true,true,false,false,false";
+  } catch (_) {}
 
-  if (!resizeFailed) {
-    assert.sameValue(
-      [Reflect.has(array, 1), Reflect.has(array, 2)].join(","),
-      "true,false",
-      "following shrink (within bounds)"
-    );
-  }
+  assert.sameValue(inspect(array), expected, "following shrink (within bounds)");
 
-  resizeFailed = false;
   try {
     ab.resize(BPE);
-  } catch (_) {
-    resizeFailed = true;
-  }
+    expected = "false,false,false,false,false";
+  } catch (_) {}
 
-  if (!resizeFailed) {
-    assert.sameValue(
-      Reflect.has(array, 0),
-      false,
-      "following shrink (out of bounds)"
-    );
-  }
+  assert.sameValue(inspect(array), expected, "following shrink (out of bounds)");
 });
