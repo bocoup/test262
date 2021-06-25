@@ -20,7 +20,7 @@ testWithTypedArrayConstructors(function(TA) {
   var ab = new ArrayBuffer(BPE * 4, {maxByteLength: BPE * 5});
   var source = new TA(ab);
   var target = new TA(ab);
-  var expected;
+  var expected = [10, 20, 30, 40];
 
   source[0] = 10;
   source[1] = 20;
@@ -30,9 +30,7 @@ testWithTypedArrayConstructors(function(TA) {
   try {
     ab.resize(BPE * 5);
     expected = [10, 20, 30, 40, 0];
-  } catch (_) {
-    expected = [10, 20, 30, 40];
-  }
+  } catch (_) {}
 
   target.set(source);
   assert(compareArray(target, expected), 'following grow');
