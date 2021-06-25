@@ -24,7 +24,6 @@ testWithTypedArrayConstructors(function(TA) {
 
   try {
     ab.resize(BPE * 5);
-    expected = BPE * 5;
   } catch (_) {}
 
   assert.sameValue(array.byteLength, BPE * 2, "following grow");
