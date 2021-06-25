@@ -7,3 +7,4 @@ description: Date.now - returns number
 ---*/
 
 assert.sameValue(typeof Date.now(), "number", 'typeof Date.now()');
+assert(Date.now() > 1624651053111, 'does not return an invalid number');
