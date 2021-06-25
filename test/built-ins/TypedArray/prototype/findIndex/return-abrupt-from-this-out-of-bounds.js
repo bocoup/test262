@@ -4,7 +4,7 @@
 esid: sec-%typedarray%.prototype.findindex
 description: Return abrupt when "this" value fails buffer boundary checks
 includes: [testTypedArray.js]
-features: [TypedArray, TypedArray.prototype.at, resizable-arraybuffer]
+features: [TypedArray, resizable-arraybuffer]
 ---*/
 
 assert.sameValue(
