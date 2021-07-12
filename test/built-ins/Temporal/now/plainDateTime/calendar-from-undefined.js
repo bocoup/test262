@@ -3,6 +3,7 @@
 
 /*---
 esid: sec-temporal.now.plaindatetime
+description: Behavior when provided calendar value describes an unrecognized valendar
 includes: [compareArray.js]
 features: [Temporal]
 ---*/
