@@ -4,7 +4,6 @@
 /*---
 esid: sec-temporal.now.plaindatetime
 description: Return value describes the start of a day
-includes: [compareArray.js]
 features: [Temporal]
 ---*/
 
