@@ -10,17 +10,17 @@ features: [Temporal]
 
 const actual = [];
 const expected = [
-  "has calendar.calendar",
-  "get calendar.calendar",
-  "has nestedCalendar.calendar",
-  "get nestedCalendar.Symbol(Symbol.toPrimitive)",
-  "get nestedCalendar.toString",
-  "call nestedCalendar.toString"
+  'has calendar.calendar',
+  'get calendar.calendar',
+  'has nestedCalendar.calendar',
+  'get nestedCalendar.Symbol(Symbol.toPrimitive)',
+  'get nestedCalendar.toString',
+  'call nestedCalendar.toString'
 ];
 const nestedCalendar = new Proxy({
   toString: function() {
     actual.push('call nestedCalendar.toString');
-    return '';
+    return 'iso8601';
   }
 }, {
   has(target, property) {
@@ -45,9 +45,9 @@ const calendar = new Proxy({
   },
 });
 
-Object.defineProperty(Temporal.Calendar, "from", {
+Object.defineProperty(Temporal.Calendar, 'from', {
   get() {
-    actual.push("get Temporal.Calendar.from");
+    actual.push('get Temporal.Calendar.from');
     return undefined;
   },
 });
