@@ -3,30 +3,44 @@
 
 /*---
 esid: sec-temporal.now.plaindatetime
-description: Behavior when provided calendar value is an object
+description: Observable interactions with the provided calendar-like object
 includes: [compareArray.js]
 features: [Temporal]
 ---*/
 
 const actual = [];
 const expected = [
-  "has timeZone.timeZone",
-  "get timeZone.getOffsetNanosecondsFor",
-  "call timeZone.getOffsetNanosecondsFor",
+  "has calendar.calendar",
+  "get calendar.calendar",
+  "has nestedCalendar.calendar",
+  "get nestedCalendar.Symbol(Symbol.toPrimitive)",
+  "get nestedCalendar.toString",
+  "call nestedCalendar.toString"
 ];
-const calendar = {};
-const timeZone = new Proxy({
-  getOffsetNanosecondsFor(instant) {
-    actual.push("call timeZone.getOffsetNanosecondsFor");
-    return -Number(instant.epochNanoseconds % 86400_000_000_000n);
-  },
+const nestedCalendar = new Proxy({
+  toString: function() {
+    actual.push('call nestedCalendar.toString');
+    return '';
+  }
 }, {
   has(target, property) {
-    actual.push(`has timeZone.${property}`);
+    actual.push(`has nestedCalendar.${String(property)}`);
     return property in target;
   },
   get(target, property) {
-    actual.push(`get timeZone.${property}`);
+    actual.push(`get nestedCalendar.${String(property)}`);
+    return target[property];
+  },
+});
+const calendar = new Proxy({
+  calendar: nestedCalendar
+}, {
+  has(target, property) {
+    actual.push(`has calendar.${String(property)}`);
+    return property in target;
+  },
+  get(target, property) {
+    actual.push(`get calendar.${String(property)}`);
     return target[property];
   },
 });
@@ -38,9 +52,6 @@ Object.defineProperty(Temporal.Calendar, "from", {
   },
 });
 
-const result = Temporal.now.plainDateTime(calendar, timeZone);
-for (const property of ["hour", "minute", "second", "millisecond", "microsecond", "nanosecond"]) {
-  assert.sameValue(result[property], 0, property);
-}
+Temporal.now.plainDateTime(calendar);
 
 assert.compareArray(actual, expected);
