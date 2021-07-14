@@ -33,7 +33,11 @@ const nestedCalendar = new Proxy({
   },
 });
 const calendar = new Proxy({
-  calendar: nestedCalendar
+  calendar: nestedCalendar,
+  toString: function() {
+    actual.push('call calendar.toString');
+    return 'iso8601';
+  },
 }, {
   has(target, property) {
     actual.push(`has calendar.${String(property)}`);
