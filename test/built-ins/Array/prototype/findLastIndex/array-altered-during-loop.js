@@ -44,4 +44,4 @@ arr.findLastIndex(function(kValue) {
 
 assert.sameValue(results.length, 2, 'predicate called twice');
 assert.sameValue(results[0], 'Barefoot');
-assert.sameValue(results[1], 'Magic Carpet');
+assert.sameValue(results[1], 'Skateboard');
