@@ -33,16 +33,16 @@ testWithBigIntTypedArrayConstructors(function(TA) {
     }
   });
   var source = new TA(ab, BPE);
-  var expected = [10, 20, 30];
+  var expected = [10n, 20n, 30n];
 
-  source[0] = 10;
-  source[1] = 20;
-  source[2] = 30;
+  source[0] = 10n;
+  source[1] = 20n;
+  source[2] = 30n;
 
   onGetSpecies = function() {
     try {
       ab.resize(BPE * 5);
-      expected = [10, 20, 30, 0];
+      expected = [10n, 20n, 30n, 0n];
     } catch (_) {}
   };
 
@@ -51,7 +51,7 @@ testWithBigIntTypedArrayConstructors(function(TA) {
   onGetSpecies = function() {
     try {
       ab.resize(BPE * 3);
-      expected = [10, 20];
+      expected = [10n, 20n];
     } catch (_) {}
   };
 
