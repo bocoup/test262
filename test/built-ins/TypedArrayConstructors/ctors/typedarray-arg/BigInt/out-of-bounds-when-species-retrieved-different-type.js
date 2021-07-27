@@ -18,7 +18,7 @@ assert.sameValue(typeof ArrayBuffer.prototype.resize, 'function');
 
 testWithBigIntTypedArrayConstructors(function(TA) {
   var BPE = TA.BYTES_PER_ELEMENT;
-  var TargetCtor = TA !== Int32Array ? Int32Array : Uint32Array;
+  var TargetCtor = TA !== BigInt64Array ? BigInt64Array : BigUint64Array;
   var ab = new ArrayBuffer(BPE * 4, {maxByteLength: BPE * 5});
   var speciesConstructor = Object.defineProperty(function(){}.bind(), 'prototype', {
     get: function() {
