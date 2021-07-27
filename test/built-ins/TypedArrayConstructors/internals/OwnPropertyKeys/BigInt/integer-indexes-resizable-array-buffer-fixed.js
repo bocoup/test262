@@ -13,7 +13,7 @@ info: |
   5. For each integer i starting with 0 such that i < len, in ascending order,
     a. Add ! ToString(i) as the last element of keys.
   ...
-includes: [testBigIntTypedArray.js]
+includes: [detachArrayBuffer.js, testBigIntTypedArray.js]
 features: [Reflect, TypedArray, BigInt, resizable-arraybuffer]
 ---*/
 
@@ -47,6 +47,7 @@ testWithBigIntTypedArrayConstructors(function(TA) {
   var expected;
   try {
     ab.resize(BPE * 2);
+$DETACHBUFFER(ab);
     expected = "";
   } catch (_) {
     expected = "0,1";

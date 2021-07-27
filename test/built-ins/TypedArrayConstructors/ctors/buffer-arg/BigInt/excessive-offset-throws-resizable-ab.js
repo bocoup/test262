@@ -4,7 +4,7 @@
 esid: sec-typedarray-buffer-byteoffset-length
 description: >
   Throws a RangeError for resizable ArrayBuffers when offset > byteLength
-includes: [testBigIntTypedArray.js]
+includes: [detachArrayBuffer.js, testBigIntTypedArray.js]
 features: [TypedArray, BigInt, resizable-arraybuffer]
 ---*/
 

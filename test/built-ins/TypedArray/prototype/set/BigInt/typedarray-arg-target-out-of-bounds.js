@@ -3,7 +3,7 @@
 /*---
 esid: sec-%typedarray%.prototype.set-typedarray-offset
 description: Error when target TypedArray fails boundary checks
-includes: [testBigIntTypedArray.js]
+includes: [detachArrayBuffer.js, testBigIntTypedArray.js]
 features: [TypedArray, BigInt, resizable-arraybuffer]
 ---*/
 
@@ -28,6 +28,7 @@ testWithBigIntTypedArrayConstructors(TA => {
   var expectedError;
   try {
     ab.resize(BPE * 3);
+$DETACHBUFFER(ab);
     expectedError = TypeError;
   } catch (_) {
     // The host is permitted to fail any "resize" operation at its own

@@ -3,7 +3,7 @@
 /*---
 esid: sec-integer-indexed-exotic-objects-hasproperty-p
 description: returned keys reflect resized ArrayBuffer for a fixed-sized TypedArray
-includes: [testBigIntTypedArray.js]
+includes: [detachArrayBuffer.js, testBigIntTypedArray.js]
 features: [Reflect, TypedArray, BigInt, resizable-arraybuffer]
 ---*/
 
@@ -45,6 +45,7 @@ testWithBigIntTypedArrayConstructors(function(TA) {
   var expected;
   try {
     ab.resize(BPE * 2);
+$DETACHBUFFER(ab);
     expected = "false,false,false,false,false";
   } catch (_) {
     expected = "true,true,false,false,false";

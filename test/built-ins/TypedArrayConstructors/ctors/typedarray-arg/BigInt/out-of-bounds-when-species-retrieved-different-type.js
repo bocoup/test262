@@ -6,7 +6,7 @@ description: >
   Error when a TypedArray is created from another TypedArray with a different
   element-type and SpeciesConstructor causes the "source" array to go
   out-of-bounds.
-includes: [testBigIntTypedArray.js, compareArray.js]
+includes: [detachArrayBuffer.js, testBigIntTypedArray.js, compareArray.js]
 features: [TypedArray, Symbol.species, BigInt, resizable-arraybuffer]
 ---*/
 

@@ -5,7 +5,7 @@ esid: sec-%typedarray%.prototype.set-typedarray-offset
 description: >
   Set values from different instances using the same buffer and same
   constructor when underlying ArrayBuffer has been resized
-includes: [testBigIntTypedArray.js, compareArray.js]
+includes: [detachArrayBuffer.js, testBigIntTypedArray.js, compareArray.js]
 features: [TypedArray, BigInt, resizable-arraybuffer]
 ---*/
 

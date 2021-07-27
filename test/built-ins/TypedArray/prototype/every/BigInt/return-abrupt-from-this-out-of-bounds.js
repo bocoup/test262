@@ -3,7 +3,7 @@
 /*---
 esid: sec-%typedarray%.prototype.every
 description: Return abrupt when "this" value fails buffer boundary checks
-includes: [testBigIntTypedArray.js]
+includes: [detachArrayBuffer.js, testBigIntTypedArray.js]
 features: [TypedArray, BigInt, resizable-arraybuffer]
 ---*/
 
@@ -41,6 +41,7 @@ testWithBigIntTypedArrayConstructors(TA => {
   var expectedError;
   try {
     ab.resize(BPE * 2);
+$DETACHBUFFER(ab);
     // If the preceding "resize" operation is successful, the typed array will
     // be out out of bounds, so the subsequent prototype method should produce
     // a TypeError due to the semantics of ValidateTypedArray.
