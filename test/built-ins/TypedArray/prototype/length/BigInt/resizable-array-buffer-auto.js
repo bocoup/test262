@@ -25,6 +25,7 @@ testWithBigIntTypedArrayConstructors(function(TA) {
 
   try {
     ab.resize(BPE * 5);
+array = new TA(new ArrayBuffer(BPE * 5), BPE);
     expected = 4;
   } catch (_) {}
 
@@ -32,6 +33,7 @@ testWithBigIntTypedArrayConstructors(function(TA) {
 
   try {
     ab.resize(BPE * 3);
+array = new TA(new ArrayBuffer(BPE * 3), BPE);
     expected = 2;
   } catch (_) {}
 
