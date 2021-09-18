@@ -3,7 +3,7 @@
 
 /*---
 description: Basic matching cases with non-unicode matches.
-includes: [compareArray.js, propertyHelper.js, deepEqual.js]
+includes: [compareArray.js, propertyHelper.js]
 esid: sec-regexpbuiltinexec
 features: [regexp-match-indices]
 info: |
@@ -39,13 +39,21 @@ info: |
     5. Return _eUTF_.
 ---*/
 
-assert.deepEqual([[1, 2], [1, 2]], "bab".match(/(a)/du).indices);
-assert.deepEqual([[0, 3], [1, 2]], "bab".match(/.(a)./du).indices);
-assert.deepEqual([[0, 3], [1, 2], [2, 3]], "bab".match(/.(a)(.)/du).indices);
-assert.deepEqual([[0, 3], [1, 3]], "bab".match(/.(\w\w)/du).indices);
-assert.deepEqual([[0, 3], [0, 3]], "bab".match(/(\w\w\w)/du).indices);
-assert.deepEqual([[0, 3], [0, 2], [2, 3]], "bab".match(/(\w\w)(\w)/du).indices);
-assert.deepEqual([[0, 2], [0, 2], undefined], "bab".match(/(\w\w)(\W)?/du).indices);
+function spread(indices) {
+  if (indices.length === 2) {
+    return indices[0].concat("x").concat(indices[1]);
+  } else if (indices.length === 3) {
+    return indices[0].concat("x").concat(indices[1]).concat("x").concat(indices[2]);
+  }
+}
+
+assert.compareArray([1, 2, "x", 1, 2], spread("bab".match(/(a)/du).indices));
+assert.compareArray([0, 3, "x", 1, 2], spread("bab".match(/.(a)./du).indices));
+assert.compareArray([0, 3, "x", 1, 2, "x", 2, 3], spread("bab".match(/.(a)(.)/du).indices));
+assert.compareArray([0, 3, "x", 1, 3], spread("bab".match(/.(\w\w)/du).indices));
+assert.compareArray([0, 3, "x", 0, 3], spread("bab".match(/(\w\w\w)/du).indices));
+assert.compareArray([0, 3, "x", 0, 2, "x", 2, 3], spread("bab".match(/(\w\w)(\w)/du).indices));
+assert.compareArray([0, 2, "x", 0, 2, "x", undefined], spread("bab".match(/(\w\w)(\W)?/du).indices));
 
 let groups = /(?<a>.)(?<b>.)(?<c>.)\k<c>\k<b>\k<a>/du.exec("abccba").indices.groups;
 assert.compareArray([0, 1], groups.a);
