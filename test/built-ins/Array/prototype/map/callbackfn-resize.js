@@ -17,7 +17,7 @@ testWithTypedArrayConstructors(function(TA) {
   elements = [];
   indices = [];
   arrays = [];
-  result = sample.map(function(element, index, array) {
+  result = Array.prototype.map.call(sample, function(element, index, array) {
     if (elements.length === 0) {
       buffer.resize(2 * BPE);
     }
@@ -37,7 +37,7 @@ testWithTypedArrayConstructors(function(TA) {
   elements = [];
   indices = [];
   arrays = [];
-  result = sample.map(function(element, index, array) {
+  result = Array.prototype.map.call(sample, function(element, index, array) {
     if (elements.length === 0) {
       buffer.resize(3 * BPE);
     }

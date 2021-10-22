@@ -17,7 +17,7 @@ testWithTypedArrayConstructors(function(TA) {
   nexts = [];
   indices = [];
   arrays = [];
-  result = sample.reduce(function(prev, next, index, array) {
+  result = Array.prototype.reduce.call(sample, function(prev, next, index, array) {
     if (prevs.length === 0) {
       buffer.resize(2 * BPE);
     }
@@ -39,7 +39,7 @@ testWithTypedArrayConstructors(function(TA) {
   nexts = [];
   indices = [];
   arrays = [];
-  result = sample.reduce(function(prev, next, index, array) {
+  result = Array.prototype.reduce.call(sample, function(prev, next, index, array) {
     if (prevs.length === 0) {
       buffer.resize(3 * BPE);
     }
