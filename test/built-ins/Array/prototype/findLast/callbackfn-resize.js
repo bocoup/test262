@@ -2,7 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-array.prototype.findlast
-description: Instance buffer can be resized during iteration
+description: TypedArray instance buffer can be resized during iteration
 includes: [testTypedArray.js, compareArray.js]
 features: [TypedArray, resizable-arraybuffer]
 ---*/
