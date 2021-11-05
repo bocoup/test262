@@ -35,7 +35,7 @@ testWithTypedArrayConstructors(function(TA) {
         expectedArrays = [sample, sample];
       } catch (_) {
         finalElement = 0;
-        finalResult = 0;
+        finalResult = 2;
         expectedElements = [0, 0, 0];
         expectedIndices = [0, 1, 2];
         expectedArrays = [sample, sample, sample];
