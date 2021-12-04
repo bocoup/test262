@@ -2,9 +2,7 @@
 // This code is governed by the BSD license found in the LICENSE file.
 /*---
 esid: sec-intl.numberformat.prototype.format
-description: >
-  When roungingPriority is "auto", the constraint on significant digits is
-  preferred over the constraint on fraction digits
+description: When set to `200`, roundingIncrement is correctly applied
 features: [Intl.NumberFormat-v3]
 includes: [testIntl.js]
 ---*/
@@ -17,15 +15,25 @@ var numberingSystems = ['arab', 'latn', 'thai', 'hanidec'];
 testNumberFormat(
   locales,
   numberingSystems,
-  {roundingIncrement: 5, maximumFractionDigits: 2},
+  {roundingIncrement: 200, maximumFractionDigits: 3},
   {
-    '1.05': '1.05',
-    '1.06': '1.05',
-    '1.07': '1.05',
-    '1.08': '1.1',
-    '1.09': '1.1',
-    '1.10': '1.1',
+    '1.20': '1.2',
+    '1.25': '1.2',
+    '1.30': '1.4',
+    '1.35': '1.4',
+    '1.40': '1.4',
   }
 );
 
-// TODO: add many more test cases, organized in some methodical way
+testNumberFormat(
+  locales,
+  numberingSystems,
+  {roundingIncrement: 200, maximumFractionDigits: 4},
+  {
+    '1.020': '1.02',
+    '1.025': '1.02',
+    '1.030': '1.04',
+    '1.035': '1.04',
+    '1.040': '1.04',
+  }
+);
