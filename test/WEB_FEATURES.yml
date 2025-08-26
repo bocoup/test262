@@ -1,0 +1,18 @@
+features:
+- name: array-at
+  files:
+  # In WPT, every item in the `files` array is a string. This proposal extends
+  # the type to be a string *or* an object with string keys named `selector`
+  # and `pattern`. The string value is retained for backwards compatibility.
+  # The value "example value" desugars to
+  #
+  #     selector: filename
+  #     pattern: example value
+  - selector: metadata
+    pattern: Array.prototype.at
+  - selector: metadata
+    pattern: TypedArray.prototype.at
+- name: array-by-copy
+  files:
+  - selector: metadata
+    pattern: change-array-by-copy
