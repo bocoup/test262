@@ -4,6 +4,38 @@ import re
 
 features = [
   ['array-copywithin', 'copyWithin'],
+  ['array-fill', 'fill'],
+
+  # Should include:
+  # - test/built-ins/TypedArray/prototype/findIndex
+  # - test/built-ins/TypedArray/prototype/find/BigInt
+  # - test/built-ins/TypedArrayConstructors/prototype/find
+  # Should NOT include:
+  # - test/built-ins/Iterator/prototype/find
+  # - test/built-ins/TypeArray/prototype/findLast
+  #['array-find', '.*/(Array|TypedArray|TypedArrayConstructors)/.*/(find|findIndex)(/|$)'],
+  ['array-find', '**(Array|TypedArray|TypedArrayConstructors)**(find|findIndex)**'],
+
+  # Test262 maintains a "features" flag named `Array.prototype.includes`, but
+  # is too expansive for this purpose--used to label tests that incidentally
+  # rely on the API without meaningfully verifying its semantics (e.g.
+  # `test/intl402/Intl/supportedValuesOf/collations.js`)
+  ['array-includes', '**Array/prototype/includes**'],
+
+  # Description inadequate; inferred from source:
+  # web-features/features/array-iteration-methods.yml
+  ['array-iteration-methods', '**Array**(every|filter|forEach|indexOf|lastIndexOf|map|reduce|reduceRight|some)**'],
+
+  ['array-iterators', '**Array**(Symbol.iterator|entries|keys|values)**'],
+  ['array-splice', '**Array**splice**'],
+
+  # Should include
+  # - test/annexB/built-ins/Array/from
+  # - test/annexB/built-ins/TypedArrayConstructors/from
+  ['array-from', '**(Array|TypedArray|TypedArrayConstructors)**from**'],
+
+  ['array-isarray', '**isArray**'],
+  ['array-of', '**(Array|TypedArray|TypedArrayConstructors)**of**'],
 ]
 
 for feature in features:

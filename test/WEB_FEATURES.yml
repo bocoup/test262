@@ -6,3 +6,16 @@ features:
 - name: array-by-copy
   frontmatter-keys:
   - change-array-by-copy
+- name: array-findlast
+  frontmatter-keys:
+  - array-find-from-last
+- name: array-flat
+  frontmatter-keys:
+  - Array.prototype.flat
+  - Array.prototype.flatMap
+- name: array-group
+  frontmatter-keys:
+  - array-grouping
+- name: array-fromasync
+  frontmatter-keys:
+  - Array.fromAsync
