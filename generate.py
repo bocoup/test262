@@ -3,8 +3,8 @@ import os
 import re
 
 features = [
-  ['array-copywithin', 'copyWithin'],
-  ['array-fill', 'fill'],
+  ['array-copywithin', '**/copyWithin'],
+  ['array-fill', '**/fill'],
 
   # Should include:
   # - test/built-ins/TypedArray/prototype/findIndex
@@ -41,7 +41,7 @@ features = [
 for feature in features:
     feature[1] = re.sub('/', os.path.sep, feature[1])
     feature[1] = re.sub('\*\*', f'(^|^.*{os.path.sep}|{os.path.sep}|{os.path.sep}.*{os.path.sep}|{os.path.sep}.*$|$)', feature[1])
-    feature[1] = re.compile(feature[1])
+    feature[1] = re.compile('^' + feature[1] + '$')
 
 for root, _, _ in os.walk('test'):
     for name, pattern in features:
