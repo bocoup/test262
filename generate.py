@@ -36,6 +36,10 @@ features = [
 
   ['array-isarray', '**isArray**'],
   ['array-of', '**(Array|TypedArray|TypedArrayConstructors)**of**'],
+
+  ['async-functions', '**(async-function|async-arrow-function|async-method|async-method-static)**'],
+  ['async-functions', '**await', '!async-iteration'],
+  ['async-functions', '**method-definition', 'async-functions', '!class-methods-private'],
 ]
 
 for feature in features:
@@ -44,7 +48,11 @@ for feature in features:
     feature[1] = re.compile('^' + feature[1] + '$')
 
 for root, _, _ in os.walk('test'):
-    for name, pattern in features:
+    for name, pattern, *filters in features:
         if pattern.search(root):
+            if len(filters) == 0:
+                filters_string = 'files: \'**\''
+            else:
+                filters_string = f'frontmatter-keys: [{", ".join(filters)}]'
             # TODO: write a WEB_FEATURES.yml file to `root`
-            print(name, root)
+            print(name, root, f'({filters_string})')
