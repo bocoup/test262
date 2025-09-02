@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import re
+import yaml
 
 features = [
   ['array-copywithin', '**/copyWithin'],
@@ -56,3 +57,11 @@ for root, _, _ in os.walk('test'):
                 filters_string = f'frontmatter-keys: [{", ".join(filters)}]'
             # TODO: write a WEB_FEATURES.yml file to `root`
             print(name, root, f'({filters_string})')
+
+features_from_subdirectories = set(map(lambda item: item[0], features))
+with open('./test/WEB_FEATURES.yml', 'r') as f:
+    web_features = yaml.safe_load(f)
+features_from_top_level = set(map(lambda feature: feature['name'], web_features['features']))
+
+print(len(features_from_subdirectories), 'features from subdirectories')
+print(len(features_from_top_level), 'features from top level')
