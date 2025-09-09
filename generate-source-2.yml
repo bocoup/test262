@@ -1,0 +1,8 @@
+# 2-dimensional array where each item has the following string elements:
+#
+# - feature name
+# - directory "glob" pattern
+#
+# ...followed by zero or more tag patterns to match within that directory (with
+# zero tag patterns, it's assumed that all files in the directory match).
+[]
