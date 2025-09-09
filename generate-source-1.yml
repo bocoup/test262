@@ -39,6 +39,6 @@
 - ['array-isarray', '**isArray**']
 - ['array-of', '**(Array|TypedArray|TypedArrayConstructors)**of**']
 
-- ['async-functions', '**(async-function|async-arrow-function|async-method|async-method-static)**']
-- ['async-functions', '**await', '!async-iteration']
-- ['async-functions', '**method-definition', 'async-functions', '!class-methods-private']
+- ['async-await', '**(async-function|async-arrow-function|async-method|async-method-static)**']
+- ['async-await', '**await', '!async-iteration']
+- ['async-await', '**method-definition', 'async-functions', '!class-methods-private']
