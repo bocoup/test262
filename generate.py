@@ -117,12 +117,12 @@ for feature in features:
     feature[1] = re.compile('^' + feature[1] + '$')
 
 for root, _, _ in os.walk('test'):
-    for name, pattern, *filters in features:
+    for name, pattern, *rest in features:
         if pattern.search(root):
-            if len(filters) == 0:
+            if len(rest) == 0:
                 filters_string = 'files: \'**\''
             else:
-                filters_string = f'frontmatter-keys: [{", ".join(filters)}]'
+                filters_string = f'{rest[0]}: [{", ".join(rest[1:])}]'
             # TODO: write a WEB_FEATURES.yml file to `root`
             print(name, root, f'({filters_string})')
 

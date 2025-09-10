@@ -5,6 +5,29 @@
 #
 # ...followed by zero or more tag patterns to match within that directory (with
 # zero tag patterns, it's assumed that all files in the directory match).
+- [
+    'arguments-callee',
+    'test/language/arguments-object',
+    'files',
+    'S10.6_A1.js',
+    'S10.6_A2.js',
+    'S10.6_A3_T1.js',
+    'S10.6_A3_T2.js',
+    'S10.6_A3_T3.js',
+    'S10.6_A3_T4.js',
+    'S10.6_A4.js',
+    'S10.6_A5_T1.js',
+    'S10.6_A5_T2.js',
+    'S10.6_A5_T3.js',
+    'S10.6_A5_T4.js',
+    'S10.6_A6.js',
+    'S10.6_A7.js'
+  ]
+- ['arguments-callee', 'test/built-ins/ThrowTypeError']
+- ['arguments-callee', 'test/language/expressions/delete', 'files', '11.4.1-4.a-11.js']
+- ['arguments-callee', 'test/language/statements/class/strict-mode', 'files', 'arguments-callee.js']
+- ['arguments-callee', 'test/language/statements/function', 'files', 'S13.2.2_A18_T*']
+
 - ['array-copywithin', '**/copyWithin']
 - ['array-fill', '**/fill']
 
@@ -40,5 +63,9 @@
 - ['array-of', '**(Array|TypedArray|TypedArrayConstructors)**of**']
 
 - ['async-await', '**(async-function|async-arrow-function|async-method|async-method-static)**']
-- ['async-await', '**await', '!async-iteration']
-- ['async-await', '**method-definition', 'async-functions', '!class-methods-private']
+- ['async-await', '**await', 'tags', '!async-iteration']
+- [
+    'async-await',
+    '**method-definition',
+    'tags', 'async-functions', '!class-methods-private'
+  ]
