@@ -23,27 +23,40 @@ def match(file_path, tag_filters):
     for tag_filter in tag_filters:
         if tag_filter.startswith('!'):
             if tag_filter[1:] in tags:
-                return False
+                return None
         else:
             if tag_filter not in tags:
-                return False
-    return True
+                return None
+    return tags or ['(none)']
+
+def group(tags):
+    counts = dict()
+    for tag in tags:
+        counts.setdefault(tag, 0)
+        counts[tag] += 1
+    return counts
 
 def main(directory, *tag_filters):
     included = set()
     excluded = set()
+    tags = []
 
     for entry in os.scandir(directory):
         if not entry.is_file():
             continue
         file_path = entry.path
 
-        if match(file_path, tag_filters):
+        entry_tags = match(file_path, tag_filters)
+        if entry_tags:
             included.add(file_path)
+            tags.extend(entry_tags)
         else:
             excluded.add(file_path)
 
-    for file_path in included:
-        print(file_path)
+    print(f'{len(included)} matching test(s)')
+    print(f'{len(excluded)} excluded test(s)')
+    print('tag counts for matching tests:')
+    for name, count in group(tags).items():
+        print(f'  {count} {name}')
 
 main(*sys.argv[1:])
