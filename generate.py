@@ -133,5 +133,9 @@ with open('./test/WEB_FEATURES.yml', 'r') as f:
     web_features = yaml.safe_load(f)
 features_from_top_level = set(map(lambda feature: feature['name'], web_features['features']))
 
+feature_names_completed = features_from_subdirectories.union(features_from_top_level)
+for feature_name in sorted(feature_names.difference(feature_names_completed)):
+    print(f"https://webstatus.dev/features/{feature_name}")
+
 print(len(features_from_subdirectories), 'features from subdirectories')
 print(len(features_from_top_level), 'features from top level')
