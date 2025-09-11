@@ -168,6 +168,7 @@
 - [
     'async-generators',
     'test/language/expressions/class/elements/syntax/early-errors',
+    'tags',
     'async-iteration',
     '!class-methods-private',
     '!class-static-methods-private'
