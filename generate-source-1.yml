@@ -28,6 +28,58 @@
 - ['arguments-callee', 'test/language/statements/class/strict-mode', 'files', 'arguments-callee.js']
 - ['arguments-callee', 'test/language/statements/function', 'files', 'S13.2.2_A18_T*']
 
+- [
+    'array',
+    'test/built-ins/Array',
+    'files',
+    '15.4.5*',
+    'constructor.js',
+    'is-a-constructor.js',
+    'length.js',
+    'name.js',
+    'prop-desc.js',
+    'property-cast-*',
+    'S15.4*'
+  ]
+- [
+    'array',
+    'test/built-ins/Array/length',
+    'files',
+    'define-own-prop-length-error.js',
+    'define-own-prop-length-overflow-order.js',
+    '*15.4*'
+  ]
+- [
+    'array',
+    'test/built-ins/Array/prototype',
+    'files',
+    'constructor.js',
+    'exotic-array.js',
+    'length.js',
+    'prop-desc.js'
+  ]
+- ['array', 'test/built-ins/Array/prototype/toLocaleString']
+- ['array', 'test/built-ins/Array/prototype/toString']
+- ['array', 'test/built-ins/Array/prototype/concat']
+- ['array', 'test/built-ins/Array/prototype/join']
+- ['array', 'test/built-ins/Array/prototype/pop']
+- ['array', 'test/built-ins/Array/prototype/push']
+- ['array', 'test/built-ins/Array/prototype/reverse']
+- ['array', 'test/built-ins/Array/prototype/shift']
+- ['array', 'test/built-ins/Array/prototype/slice']
+- ['array', 'test/built-ins/Array/prototype/sort', 'tags', '!stable-array-sort']
+- ['array', 'test/built-ins/Array/prototype/splice']
+- ['array', 'test/built-ins/Array/prototype/unshift']
+- ['array', 'test/built-ins/Array/prototype/indexOf']
+- ['array', 'test/built-ins/Array/prototype/lastIndexOf']
+- ['array', 'test/built-ins/Array/prototype/every']
+- ['array', 'test/built-ins/Array/prototype/some']
+- ['array', 'test/built-ins/Array/prototype/forEach']
+- ['array', 'test/built-ins/Array/prototype/map']
+- ['array', 'test/built-ins/Array/prototype/filter']
+- ['array', 'test/built-ins/Array/prototype/reduce']
+- ['array', 'test/built-ins/Array/prototype/reduceRight']
+
 - ['array-copywithin', '**/copyWithin']
 - ['array-fill', '**/fill']
 
@@ -68,4 +120,49 @@
     'async-await',
     '**method-definition',
     'tags', 'async-functions', '!class-methods-private'
+  ]
+
+# Everything involving async generators in
+# test/language/expressions/class/elements and
+# test/language/statements/class/elements is for class fields
+- ['async-generators', 'test/language/expressions/async-generator']
+- ['async-generators', 'test/language/expressions/class/async-gen-method']
+- ['async-generators', 'test/language/expressions/class/async-gen-method-static']
+- ['async-generators', 'test/language/statements/async-generator']
+- ['async-generators', 'test/language/statements/class/async-gen-method']
+- ['async-generators', 'test/language/statements/class/async-gen-method-static']
+- ['async-generators', 'test/language/expressions/await', 'tags', 'async-iteration']
+- ['async-generators', 'test/language/block-scope/syntax/redeclaration', 'tags', 'async-iteration']
+- [
+    'async-generators',
+    'test/language/expressions/class/dstr',
+    'tags',
+    'async-iteration',
+  ]
+- [
+    'async-generators',
+    'test/language/expressions/object/dstr',
+    'tags',
+    'async-iteration',
+  ]
+- [
+    'async-generators',
+    'test/language/expressions/object/method-definition ',
+    'tags',
+    'async-iteration',
+    '!class-methods-private'
+  ]
+- [
+    'async-generators',
+    'test/language/expressions/class/elements/syntax/valid/',
+    'tags',
+    'async-iteration',
+    '!class-static-methods-private'
+  ]
+- [
+    'async-generators',
+    'test/language/expressions/class/elements/syntax/early-errors',
+    'async-iteration',
+    '!class-methods-private',
+    '!class-static-methods-private'
   ]
