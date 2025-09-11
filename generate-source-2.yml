@@ -11,4 +11,35 @@
 #
 # Omitting a filtering rule implies that all files in the directory and its
 # subdirectories are matches.
-[]
+
+- ["with", "test/language/statements/with"]
+# With statement identifier usage - tests that "with" can be used as an identifier
+# in non-strict contexts, which is part of the with statement's language semantics
+- [
+    "with",
+    "test/language/identifiers",
+    "files",
+    "val-with.js",
+    "val-with-via-escape-hex.js",
+    "val-with-via-escape-hex4.js",
+  ]
+
+# WeakSet constructor and all prototype methods (add, delete, has)
+- ["weakset", "test/built-ins/WeakSet"]
+
+# WeakSet subclassing tests - these verify that class inheritance syntax
+# works correctly with WeakSet as a superclass and that instanceof
+# relationships are preserved, which is part of the WeakSet feature's
+# integration with the class system
+- [
+    "weakset",
+    "test/language/statements/class/subclass-builtins",
+    "files",
+    "subclass-WeakSet.js",
+  ]
+- [
+    "weakset",
+    "test/language/expressions/class/subclass-builtins",
+    "files",
+    "subclass-WeakSet.js",
+  ]
