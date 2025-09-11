@@ -3,8 +3,14 @@
 # - feature name
 # - directory "glob" pattern
 #
-# ...followed by zero or more tag patterns to match within that directory (with
-# zero tag patterns, it's assumed that all files in the directory match).
+# This can optionally be followed by a filtering rule--either:
+#
+# - an item with the literal value "files" followed by at least one file
+#   pattern, or
+# - an item with the literal value "tags" followed by at least one tag pattern
+#
+# Omitting a filtering rule implies that all files in the directory and its
+# subdirectories are matches.
 - [
     'arguments-callee',
     'test/language/arguments-object',
