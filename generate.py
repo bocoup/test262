@@ -122,6 +122,8 @@ for root, _, _ in os.walk('test'):
             if len(rest) == 0:
                 filters_string = 'files: \'**\''
             else:
+                assert len(rest) > 1
+                assert rest[0] in ['files', 'tags']
                 filters_string = f'{rest[0]}: [{", ".join(rest[1:])}]'
             # TODO: write a WEB_FEATURES.yml file to `root`
             print(name, root, f'({filters_string})')
