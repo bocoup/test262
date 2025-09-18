@@ -98,8 +98,8 @@ feature_names = set([
   'typed-array-iterators',
   'typed-arrays',
   'uint8array-base64-hex',
-  'unicode-point-escapes',
-  'wasm-bigint',
+  'unicode-point-escapes', 
+#   'wasm-bigint', Currently, no apparent test coverage for WebAssembly BigInt integration
   'weakmap',
   'weak-references',
   'weakset',
