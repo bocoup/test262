@@ -60,3 +60,43 @@
     "subclass-WeakMap.js",
   ]
 - ["weakmap", "test/language/statements/class/subclass/builtin-objects/WeakMap"]
+
+# Unicode point escapes (\u{xxxxxx}) in identifiers - includes escape sequences
+# for Unicode characters in identifier names and parts
+- ["unicode-point-escapes", "test/language/identifiers", "files", "*escape*"]
+
+# Unicode point escapes in staging tests - SpiderMonkey tests specifically
+# for \u{xxxxxx} syntax in strings and regular expressions
+- ["unicode-point-escapes", "test/staging/sm", "files", "*unicode*"]
+
+# Unicode point escapes in string literals - tests for \u{xxxxxx} syntax
+- [
+    "unicode-point-escapes",
+    "test/language/literals/string",
+    "files",
+    "*unicode*",
+  ]
+
+# Unicode point escapes in template literals - tests for \u{xxxxxx} syntax
+- [
+    "unicode-point-escapes",
+    "test/language/expressions/template-literal",
+    "files",
+    "*unicode*",
+  ]
+
+# Unicode point escapes in regular expression literals - tests for \u{xxxxxx} syntax
+- [
+    "unicode-point-escapes",
+    "test/language/literals/regexp",
+    "files",
+    "*unicode*",
+  ]
+
+# Unicode point escapes in RegExp built-ins - specific tests for \u{xxxxxx} in RegExp patterns
+- [
+    "unicode-point-escapes",
+    "test/built-ins/RegExp",
+    "files",
+    "*unicode_restricted_identity_escape*",
+  ]
