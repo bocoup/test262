@@ -100,3 +100,20 @@
     "files",
     "*unicode_restricted_identity_escape*",
   ]
+
+# Uint8Array base64 conversion methods - fromBase64() static method
+- ["uint8array-base64-hex", "test/built-ins/Uint8Array/fromBase64"]
+
+# Uint8Array hex conversion methods - fromHex() static method  
+- ["uint8array-base64-hex", "test/built-ins/Uint8Array/fromHex"]
+
+# Uint8Array base64 conversion prototype methods - toBase64() and setFromBase64()
+- ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/toBase64"]
+- ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/setFromBase64"]
+
+# Uint8Array hex conversion prototype methods - toHex() and setFromHex()  
+- ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/toHex"]
+- ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/setFromHex"]
+
+# Uint8Array base64/hex staging tests
+- ["uint8array-base64-hex", "test/staging/Uint8Array"]
