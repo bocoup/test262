@@ -33,13 +33,30 @@
 # integration with the class system
 - [
     "weakset",
-    "test/language/statements/class/subclass-builtins",
+    "test/language/{statements,expressions}/class/subclass-builtins",
     "files",
     "subclass-WeakSet.js",
   ]
+
+# WeakRef constructor and prototype method (deref)
+- ["weak-references", "test/built-ins/WeakRef"]
+
+# WeakRef subclassing syntax tests
 - [
-    "weakset",
-    "test/language/expressions/class/subclass-builtins",
+    "weak-references",
+    "test/language/{statements,expressions}/class/subclass-builtins",
     "files",
-    "subclass-WeakSet.js",
+    "subclass-WeakRef.js",
   ]
+
+# WeakMap constructor and all prototype methods (set, get, has, delete)
+- ["weakmap", "test/built-ins/WeakMap"]
+
+# WeakMap subclassing tests
+- [
+    "weakmap",
+    "test/language/{statements,expressions}/class/subclass-builtins",
+    "files",
+    "subclass-WeakMap.js",
+  ]
+- ["weakmap", "test/language/statements/class/subclass/builtin-objects/WeakMap"]
