@@ -33,7 +33,7 @@
 # integration with the class system
 - [
     "weakset",
-    "test/language/{statements,expressions}/class/subclass-builtins",
+    "test/language/(statements|expressions)/class/subclass-builtins",
     "files",
     "subclass-WeakSet.js",
   ]
@@ -44,7 +44,7 @@
 # WeakRef subclassing syntax tests
 - [
     "weak-references",
-    "test/language/{statements,expressions}/class/subclass-builtins",
+    "test/language/(statements|expressions)/class/subclass-builtins",
     "files",
     "subclass-WeakRef.js",
   ]
@@ -55,7 +55,7 @@
 # WeakMap subclassing tests
 - [
     "weakmap",
-    "test/language/{statements,expressions}/class/subclass-builtins",
+    "test/language/(statements|expressions)/class/subclass-builtins",
     "files",
     "subclass-WeakMap.js",
   ]
@@ -104,16 +104,47 @@
 # Uint8Array base64 conversion methods - fromBase64() static method
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/fromBase64"]
 
-# Uint8Array hex conversion methods - fromHex() static method  
+# Uint8Array hex conversion methods - fromHex() static method
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/fromHex"]
 
 # Uint8Array base64 conversion prototype methods - toBase64() and setFromBase64()
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/toBase64"]
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/setFromBase64"]
 
-# Uint8Array hex conversion prototype methods - toHex() and setFromHex()  
+# Uint8Array hex conversion prototype methods - toHex() and setFromHex()
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/toHex"]
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/setFromHex"]
 
 # Uint8Array base64/hex staging tests
 - ["uint8array-base64-hex", "test/staging/Uint8Array"]
+
+# TypedArray constructor and prototype methods (shared functionality) and all typed array constructors
+- ["typed-arrays", "test/built-ins/(TypedArray|TypedArrayConstructors)"]
+
+# ArrayBuffer and Dataview tests specifically related to TypedArray functionality
+- [
+    "typed-arrays",
+    "test/built-ins/(ArrayBuffer|DataView)",
+    "tags",
+    "TypedArray",
+  ]
+
+# Subclassing tests for typed arrays
+- [
+    "typed-arrays",
+    "test/language/(expressions| statements)/class/subclass-builtins",
+    "tags",
+    "TypedArray",
+  ]
+
+# TypedArray tests in built-in object subclassing
+- [
+    "typed-arrays",
+    "test/language/statements/class/subclass/builtin-objects/TypedArray",
+  ]
+
+# Language feature tests with TypedArray tags
+- ["typed-arrays", "test/language/statements/for-in", "tags", "TypedArray"]
+
+# Typed arrays staging tests from SpiderMonkey
+- ["typed-arrays", "test/staging/sm/TypedArray"]
