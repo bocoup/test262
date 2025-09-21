@@ -148,3 +148,47 @@
 
 # Typed arrays staging tests from SpiderMonkey
 - ["typed-arrays", "test/staging/sm/TypedArray"]
+
+# TypedArray iterator methods - keys(), values(), entries(), and Symbol.iterator
+- [
+    "typed-array-iterators",
+    "test/built-ins/TypedArray/prototype/(keys|values|entries)",
+    "files",
+    "iter-prototype.js",
+    "return-itor.js",
+  ]
+- [
+    "typed-array-iterators",
+    "test/built-ins/TypedArray/prototype/Symbol.iterator",
+  ]
+
+# ArrayIteratorPrototype tests specific to TypedArrays
+- [
+    "typed-array-iterators",
+    "test/built-ins/ArrayIteratorPrototype/next",
+    "files",
+    "*Array.js",
+    "detach-typedarray-in-progress.js",
+  ]
+
+# TypedArray.from iterator-related functionality
+- ["typed-array-iterators", "test/built-ins/TypedArray/from", "files", "*iter*"]
+
+# Language integration tests for TypedArray iterators
+- [
+    "typed-array-iterators",
+    "test/language/statements/for-of",
+    "tags",
+    "Symbol.iterator",
+  ]
+
+# Staging tests for TypedArray iterators
+- [
+    "typed-array-iterators",
+    "test/staging/sm/TypedArray",
+    "files",
+    "*iterator*",
+    "keys.js",
+    "values.js",
+    "entries.js",
+  ]
