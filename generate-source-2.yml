@@ -192,3 +192,17 @@
     "values.js",
     "entries.js",
   ]
+
+# Top-level await core functionality and syntax
+- ["top-level-await", "test/language/module-code/top-level-await"]
+
+# Language tests tagged with top-level-await feature
+- [
+    "top-level-await",
+    "test/language/(import|expressions|statements)",
+    "tags",
+    "top-level-await",
+  ]
+
+# Staging tests for top-level await
+- ["top-level-await", "test/staging/top-level-await"]
