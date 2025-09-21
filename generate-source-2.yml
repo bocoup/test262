@@ -206,3 +206,21 @@
 
 # Staging tests for top-level await
 - ["top-level-await", "test/staging/top-level-await"]
+
+# Core Temporal built-ins - all Temporal objects and their methods
+- ["temporal", "test/built-ins/Temporal"]
+
+# Date.prototype.toTemporalInstant - method to convert Date to Temporal.Instant
+- ["temporal", "test/built-ins/Date/prototype/toTemporalInstant"]
+
+# Temporal internationalization support
+- ["temporal", "test/intl402/Temporal"]
+
+# Temporal staging tests - additional test coverage
+- ["temporal", "test/staging/Temporal"]
+
+# SpiderMonkey Temporal tests
+- ["temporal", "test/staging/sm/Temporal"]
+
+# Intl402 staging tests for Temporal
+- ["temporal", "test/staging/Intl402/Temporal"]
