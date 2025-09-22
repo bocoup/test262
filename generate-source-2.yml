@@ -224,3 +224,12 @@
 
 # Intl402 staging tests for Temporal
 - ["temporal", "test/staging/Intl402/Temporal"]
+
+# Core template literal syntax and evaluation
+- ["template-literals", "test/language/expressions/template-literal"]
+
+# Annex B legacy features for template literals
+- ["template-literals", "test/annexB/language/expressions/template-literal"]
+
+# Language features tagged with template
+- ["template-literals", "test/language", "tags", "template"]
