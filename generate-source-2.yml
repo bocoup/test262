@@ -233,3 +233,27 @@
 
 # Language features tagged with template
 - ["template-literals", "test/language", "tags", "template"]
+
+# Core Symbol constructor and methods
+- ["symbol", "test/built-ins/Symbol"]
+
+# Object.getOwnPropertySymbols method
+- ["symbol", "test/built-ins/Object/getOwnPropertySymbols"]
+
+# Symbol subclassing tests
+- ["symbol", "test/language/statements/class/subclass/builtin-objects/Symbol"]
+
+# All Symbol.* tags across built-ins (Symbol.iterator, Symbol.species, etc.)
+- ["symbol", "test/built-ins", "tags", "Symbol*"]
+
+# All Symbol.* features in annexB tests
+- ["symbol", "test/annexB", "tags", "Symbol*"]
+
+# Language features that use Symbol functionality
+- ["symbol", "test/language", "tags", "Symbol*"]
+
+# Staging tests for Symbol functionality
+- ["symbol", "test/staging/sm/Symbol"]
+
+# Explicit resource management Symbol tests (may be more appropriate for the explicit-resource-management feature)
+- ["symbol", "test/staging/explicit-resource-management/Symbol"]
