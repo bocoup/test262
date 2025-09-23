@@ -257,3 +257,9 @@
 
 # Explicit resource management Symbol tests (may be more appropriate for the explicit-resource-management feature)
 - ["symbol", "test/staging/explicit-resource-management/Symbol"]
+
+# String.prototype.isWellFormed method
+- ["string-wellformed", "test/built-ins/String/prototype/isWellFormed"]
+
+# String.prototype.toWellFormed method
+- ["string-wellformed", "test/built-ins/String/prototype/toWellFormed"]
