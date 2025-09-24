@@ -173,3 +173,30 @@
     '!class-methods-private',
     '!class-static-methods-private'
   ]
+- ['async-iterators', 'test/built-ins/AsyncIteratorPrototype/Symbol.asyncIterator']
+- [
+    'async-iterators',
+    'test/language/statements/for-await-of',
+    'tags',
+    '!explicit-resource-management'
+  ]
+- ['atomics-wait-async', 'test/built-ins/Atomics/waitAsync']
+- ['bigint', 'test/built-ins/BigInt']
+- ['bigint', 'test/language/literals/bigint']
+- ['bigint64array', 'test/built-ins/TypedArrayConstructors/BigInt64Array']
+- ['bigint64array', 'test/built-ins/TypedArrayConstructors/BigUint64Array']
+- [
+    'class-syntax',
+    'test/language/statements/class/',
+    'tags',
+    '!top-level-await',
+    '!exponentiation',
+    '!logical-assignment-operators',
+    '!class-static-methods-private',
+    '!class-methods-private',
+    '!class-fields-private',
+    '!class-fields-public',
+    '!class-static-fields-public',
+    '!class-static-block'
+  ]
+- ['class-syntax', 'test/language/statements/class/name-binding']
