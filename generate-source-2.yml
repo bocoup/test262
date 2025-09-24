@@ -11,6 +11,9 @@
 #
 # Omitting a filtering rule implies that all files in the directory and its
 # subdirectories are matches.
+#
+# Classification Guidelines:
+# - Ignore the staging directory.
 
 - ["with", "test/language/statements/with"]
 # With statement identifier usage - tests that "with" can be used as an identifier
@@ -65,10 +68,6 @@
 # for Unicode characters in identifier names and parts
 - ["unicode-point-escapes", "test/language/identifiers", "files", "*escape*"]
 
-# Unicode point escapes in staging tests - SpiderMonkey tests specifically
-# for \u{xxxxxx} syntax in strings and regular expressions
-- ["unicode-point-escapes", "test/staging/sm", "files", "*unicode*"]
-
 # Unicode point escapes in string literals - tests for \u{xxxxxx} syntax
 - [
     "unicode-point-escapes",
@@ -115,9 +114,6 @@
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/toHex"]
 - ["uint8array-base64-hex", "test/built-ins/Uint8Array/prototype/setFromHex"]
 
-# Uint8Array base64/hex staging tests
-- ["uint8array-base64-hex", "test/staging/Uint8Array"]
-
 # TypedArray constructor and prototype methods (shared functionality) and all typed array constructors
 - ["typed-arrays", "test/built-ins/(TypedArray|TypedArrayConstructors)"]
 
@@ -145,9 +141,6 @@
 
 # Language feature tests with TypedArray tags
 - ["typed-arrays", "test/language/statements/for-in", "tags", "TypedArray"]
-
-# Typed arrays staging tests from SpiderMonkey
-- ["typed-arrays", "test/staging/sm/TypedArray"]
 
 # TypedArray iterator methods - keys(), values(), entries(), and Symbol.iterator
 - [
@@ -182,17 +175,6 @@
     "Symbol.iterator",
   ]
 
-# Staging tests for TypedArray iterators
-- [
-    "typed-array-iterators",
-    "test/staging/sm/TypedArray",
-    "files",
-    "*iterator*",
-    "keys.js",
-    "values.js",
-    "entries.js",
-  ]
-
 # Top-level await core functionality and syntax
 - ["top-level-await", "test/language/module-code/top-level-await"]
 
@@ -204,9 +186,6 @@
     "top-level-await",
   ]
 
-# Staging tests for top-level await
-- ["top-level-await", "test/staging/top-level-await"]
-
 # Core Temporal built-ins - all Temporal objects and their methods
 - ["temporal", "test/built-ins/Temporal"]
 
@@ -215,15 +194,6 @@
 
 # Temporal internationalization support
 - ["temporal", "test/intl402/Temporal"]
-
-# Temporal staging tests - additional test coverage
-- ["temporal", "test/staging/Temporal"]
-
-# SpiderMonkey Temporal tests
-- ["temporal", "test/staging/sm/Temporal"]
-
-# Intl402 staging tests for Temporal
-- ["temporal", "test/staging/Intl402/Temporal"]
 
 # Core template literal syntax and evaluation
 - ["template-literals", "test/language/expressions/template-literal"]
@@ -251,12 +221,6 @@
 
 # Language features that use Symbol functionality
 - ["symbol", "test/language", "tags", "Symbol*"]
-
-# Staging tests for Symbol functionality
-- ["symbol", "test/staging/sm/Symbol"]
-
-# Explicit resource management Symbol tests (may be more appropriate for the explicit-resource-management feature)
-- ["symbol", "test/staging/explicit-resource-management/Symbol"]
 
 # String.prototype.isWellFormed method
 - ["string-wellformed", "test/built-ins/String/prototype/isWellFormed"]
