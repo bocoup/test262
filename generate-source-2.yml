@@ -117,42 +117,16 @@
 # TypedArray constructor and prototype methods (shared functionality) and all typed array constructors
 - ["typed-arrays", "test/built-ins/(TypedArray|TypedArrayConstructors)"]
 
-# ArrayBuffer and Dataview tests specifically related to TypedArray functionality
+# inferred from features/typed-array-iteration-methods.yml
 - [
-    "typed-arrays",
-    "test/built-ins/(ArrayBuffer|DataView)",
-    "tags",
-    "TypedArray",
+    "typed-array-iteration-methods",
+    "**TypedArray**(every|filter|forEach|indexOf|lastIndexOf|map|reduce|reduceRight|some)**",
   ]
-
-# Subclassing tests for typed arrays
-- [
-    "typed-arrays",
-    "test/language/(expressions| statements)/class/subclass-builtins",
-    "tags",
-    "TypedArray",
-  ]
-
-# TypedArray tests in built-in object subclassing
-- [
-    "typed-arrays",
-    "test/language/statements/class/subclass/builtin-objects/TypedArray",
-  ]
-
-# Language feature tests with TypedArray tags
-- ["typed-arrays", "test/language/statements/for-in", "tags", "TypedArray"]
 
 # TypedArray iterator methods - keys(), values(), entries(), and Symbol.iterator
 - [
     "typed-array-iterators",
-    "test/built-ins/TypedArray/prototype/(keys|values|entries)",
-    "files",
-    "iter-prototype.js",
-    "return-itor.js",
-  ]
-- [
-    "typed-array-iterators",
-    "test/built-ins/TypedArray/prototype/Symbol.iterator",
+    "test/built-ins/TypedArray/prototype/(Symbol.iterator|keys|values|entries)**",
   ]
 
 # ArrayIteratorPrototype tests specific to TypedArrays
@@ -166,14 +140,6 @@
 
 # TypedArray.from iterator-related functionality
 - ["typed-array-iterators", "test/built-ins/TypedArray/from", "files", "*iter*"]
-
-# Language integration tests for TypedArray iterators
-- [
-    "typed-array-iterators",
-    "test/language/statements/for-of",
-    "tags",
-    "Symbol.iterator",
-  ]
 
 # Top-level await core functionality and syntax
 - ["top-level-await", "test/language/module-code/top-level-await"]
@@ -207,20 +173,14 @@
 # Core Symbol constructor and methods
 - ["symbol", "test/built-ins/Symbol"]
 
-# Object.getOwnPropertySymbols method
-- ["symbol", "test/built-ins/Object/getOwnPropertySymbols"]
-
 # Symbol subclassing tests
 - ["symbol", "test/language/statements/class/subclass/builtin-objects/Symbol"]
 
-# All Symbol.* tags across built-ins (Symbol.iterator, Symbol.species, etc.)
-- ["symbol", "test/built-ins", "tags", "Symbol*"]
-
 # All Symbol.* features in annexB tests
-- ["symbol", "test/annexB", "tags", "Symbol*"]
+- ["symbol", "test/annexB", "tags", "Symbol"]
 
 # Language features that use Symbol functionality
-- ["symbol", "test/language", "tags", "Symbol*"]
+- ["symbol", "test/language", "tags", "Symbol"]
 
 # String.prototype.isWellFormed method
 - ["string-wellformed", "test/built-ins/String/prototype/isWellFormed"]
