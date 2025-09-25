@@ -181,22 +181,132 @@
     '!explicit-resource-management'
   ]
 - ['atomics-wait-async', 'test/built-ins/Atomics/waitAsync']
-- ['bigint', 'test/built-ins/BigInt']
-- ['bigint', 'test/language/literals/bigint']
+
+# TODO(jugglinmike): figure out why `bigint` was omitted in the initial scrape
+#- ['bigint', 'test/built-ins/BigInt']
+#- ['bigint', 'test/language/literals/bigint']
 - ['bigint64array', 'test/built-ins/TypedArrayConstructors/BigInt64Array']
 - ['bigint64array', 'test/built-ins/TypedArrayConstructors/BigUint64Array']
+
+# TODO(jugglinmike): finish classifying class-syntax
+  #- [
+  #    'class-syntax',
+  #    'test/language/statements/class/',
+  #    'tags',
+  #    '!top-level-await',
+  #    '!exponentiation',
+  #    '!logical-assignment-operators',
+  #    '!class-static-methods-private',
+  #    '!class-methods-private',
+  #    '!class-fields-private',
+  #    '!class-fields-public',
+  #    '!class-static-fields-public',
+  #    '!class-static-block'
+  #  ]
+  #- ['class-syntax', 'test/language/statements/class/name-binding']
+
+# TODO(jugglinmike): figure out why `date` was omitted in the initial scrape
+#- ['date', 'test/built-ins/Date']
+
+- ['date-get-year-set-year', 'test/annexB/built-ins/Date/prototype/getYear']
+- ['date-get-year-set-year', 'test/annexB/built-ins/Date/prototype/setYear']
+
+- ['destructuring', 'test/language/destructuring']
+- ['destructuring', 'test/language/expressions/assignment/destructuring']
+- ['destructuring', 'test/language/destructuring/binding/']
+- ['destructuring', 'test/language/expressions/arrow-function/dstr/']
+- ['destructuring', 'test/language/expressions/assignment/dstr/']
+- ['destructuring', 'test/language/expressions/function/dstr/']
+- ['destructuring', 'test/language/expressions/object/']
+- ['destructuring', 'test/language/expressions/object/dstr/']
+- ['destructuring', 'test/language/rest-parameters/']
+- ['destructuring', 'test/language/statements/class/dstr/']
+- ['destructuring', 'test/language/statements/class/elements/syntax/early-errors/']
+- ['destructuring', 'test/language/statements/for/dstr/']
+- ['destructuring', 'test/language/statements/for-in/dstr/']
+- ['destructuring', 'test/language/statements/for-of/dstr/']
+- ['destructuring', 'test/language/statements/function/dstr/']
+- ['destructuring', 'test/language/statements/try/dstr/']
+- ['destructuring', 'test/language/statements/variable/dstr/']
+
+- ['escape-unescape', 'test/annexB/built-ins/escape']
+- ['escape-unescape', 'test/annexB/built-ins/unescape']
+
+- ['exponentiation', 'test/language/expressions/exponentiation', 'tags', '!BigInt']
+
+- ['float16array', 'test/built-ins/DataView/prototype/getFloat16']
+- ['float16array', 'test/built-ins/DataView/prototype/setFloat16']
+- ['float16array', 'test/built-ins/Math/f16round']
+# All typed array constructors are testted in parallel. It's not clear whether
+# it's better to include them (and risk false negatives) or exclude them (and
+# risk false positives)
+- ['float16array', 'test/built-ins/TypedArray']
+- ['float16array', 'test/built-ins/TypedArrayConstructors']
+
 - [
-    'class-syntax',
-    'test/language/statements/class/',
+    'functions',
+    'test/language/expressions/function',
     'tags',
-    '!top-level-await',
-    '!exponentiation',
-    '!logical-assignment-operators',
-    '!class-static-methods-private',
-    '!class-methods-private',
+    '!generators',
     '!class-fields-private',
-    '!class-fields-public',
-    '!class-static-fields-public',
     '!class-static-block'
   ]
-- ['class-syntax', 'test/language/statements/class/name-binding']
+- [
+    'functions',
+    'test/language/statements/function',
+    'tags',
+    '!generators',
+    '!class-fields-private',
+    '!class-static-block'
+  ]
+- [
+    'functions',
+    'test/built-ins/Function',
+    'tags',
+    '!class-fields-private',
+    '!Proxy',
+    '!class',
+    '!Reflect',
+    '!resizable-arraybuffer',
+    '!Reflect.construct',
+    '!arrow-function',
+    '!Symbol.hasInstance',
+    '!generators',
+    '!class-methods-private',
+    '!class-static-methods-private',
+    '!async-iteration'
+  ]
+
+- [
+    'functions-caller-arguments',
+    'test/built-ins/Function',
+    'files',
+    '15.3.5*',
+    'StrictFunction_restricted-properties.js'
+  ]
+- [
+    'functions-caller-arguments',
+    'test/built-ins/Function/prototype/bind',
+    'files',
+    '15.3.4.5-20-*',
+    '15.3.4.5-21-*',
+    'BoundFunction_restricted-properties.js',
+    'S15.3.4.5_A1.js',
+    'S15.3.4.5_A2.js'
+  ]
+
+- [
+    'generators',
+    'test/language/expressions/generators',
+    'tags',
+    '!class-static-block'
+  ]
+- ['generators', 'test/language/statements/generators']
+- [
+    'generators',
+    'test/language/expressions/object/method-definition',
+    'tags',
+    'generators'
+  ]
+- ['generators', 'test/built-ins/GeneratorFunction']
+- ['generators', 'test/built-ins/GeneratorPrototype']
