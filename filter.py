@@ -57,6 +57,6 @@ def main(directory, *tag_filters):
     print(f'{len(excluded)} excluded test(s)')
     print('tag counts for matching tests:')
     for name, count in group(tags).items():
-        print(f'  {count} {name}')
+        print('  {:4d} {}'.format(count, name))
 
 main(*sys.argv[1:])
