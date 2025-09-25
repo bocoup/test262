@@ -182,8 +182,32 @@
 # Language features that use Symbol functionality
 - ["symbol", "test/language", "tags", "Symbol"]
 
-# String.prototype.isWellFormed method
-- ["string-wellformed", "test/built-ins/String/prototype/isWellFormed"]
+- ["string-wellformed", "**String/prototype/(isWellFormed|toWellFormed)"]
 
-# String.prototype.toWellFormed method
-- ["string-wellformed", "test/built-ins/String/prototype/toWellFormed"]
+- ["string-trim-startend", "**String/prototype/(trimEnd|trimStart)"]
+
+- ["string-startsends-with", "**String/prototype/(endsWith|startsWith)"]
+
+# TODO: inferred from web-features/features/strings.yml
+# - ["string"]
+
+- ["string-replaceall", "**String/prototype/replaceAll"]
+
+- ["string-repeat", "**String/prototype/repeat"]
+
+- ["string-raw", "test/built-ins/String/raw"]
+
+- ["string-pad", "**String/prototype/(padEnd|padStart)"]
+
+- ["string-normalize", "test/built-ins/String/prototype/normalize"]
+
+- ["string-matchall", "**String/prototype/matchAll"]
+
+- ["string-includes", "test/built-ins/String/prototype/includes"]
+
+- [
+    "string-codepoint",
+    "test/built-ins/String/prototype/(codePointAt|fromCodePoint)",
+  ]
+
+- ["string-at", "test/built-ins/String/prototype/at"]
