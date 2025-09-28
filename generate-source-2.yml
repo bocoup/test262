@@ -243,3 +243,5 @@
 - ["promise-try", "test/built-ins/Promise/try"]
 
 - ["promise-finally", "test/built-ins/Promise/prototype/finally"]
+
+- ["promise-any", "test/built-ins/Promise/any"]
