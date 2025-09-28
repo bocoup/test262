@@ -247,3 +247,10 @@
 - ["promise-any", "test/built-ins/Promise/any"]
 
 - ["promise-allsettled", "test/built-ins/Promise/allSettled"]
+
+- [
+    "optional-catch-binding",
+    "test/language/statements/try",
+    "files",
+    "optional-catch-binding**",
+  ]
