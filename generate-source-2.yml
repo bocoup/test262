@@ -231,4 +231,9 @@
 # primitives (wait, waitAsync, notify, isLockFree, pause)
 - ["shared-memory", "test/built-ins/Atomics"]
 
-- ["set-methods", "test/built-ins/Set/prototype/(difference|intersection|union|symmetricDifference|isDisjointFrom|isSubsetOf|isSupersetOf)"]
+- [
+    "set-methods",
+    "test/built-ins/Set/prototype/(difference|intersection|union|symmetricDifference|isDisjointFrom|isSubsetOf|isSupersetOf)",
+  ]
+
+- ["proxy-reflect", "test/built-ins/(Proxy|Reflect)"]
