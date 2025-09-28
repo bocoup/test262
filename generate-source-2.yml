@@ -239,3 +239,5 @@
 - ["proxy-reflect", "test/built-ins/(Proxy|Reflect)"]
 
 - ["promise-withresolvers", "test/built-ins/Promise/withResolvers"]
+
+- ["promise-try", "test/built-ins/Promise/try"]
