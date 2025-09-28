@@ -241,3 +241,5 @@
 - ["promise-withresolvers", "test/built-ins/Promise/withResolvers"]
 
 - ["promise-try", "test/built-ins/Promise/try"]
+
+- ["promise-finally", "test/built-ins/Promise/prototype/finally"]
