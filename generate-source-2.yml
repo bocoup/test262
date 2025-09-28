@@ -213,3 +213,12 @@
 - ["string-at", "test/built-ins/String/prototype/at"]
 
 - ["stable-array-sort", "test/built-ins/Array/prototype/sort/stability**"]
+
+# Spread syntax in array literals, function & constructor calls - core functionality
+- ["spread", "test/language/expressions/(array|call|new)/spread**"]
+
+# Spread syntax in super() calls - core functionality
+- ["spread", "test/language/expressions/super/call-spread-**"]
+
+# Spread syntax in object literals - object spread
+- ["spread", "test/language/expressions/object", "files", "object-spread-**"]
