@@ -222,3 +222,11 @@
 
 # Spread syntax in object literals - object spread
 - ["spread", "test/language/expressions/object", "files", "object-spread-**"]
+
+# SharedArrayBuffer constructor and all prototype methods (byteLength, grow, growable, maxByteLength, slice)
+- ["shared-memory", "test/built-ins/SharedArrayBuffer"]
+
+# All Atomics static methods - core atomic operations (add, and,
+# compareExchange, exchange, load, store, sub, xor, or) and synchronization
+# primitives (wait, waitAsync, notify, isLockFree, pause)
+- ["shared-memory", "test/built-ins/Atomics"]
