@@ -254,3 +254,5 @@
     "files",
     "optional-catch-binding**",
   ]
+
+- ["numeric-separators", "test/language/literals/numeric/numeric-separators"]
