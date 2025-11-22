@@ -82,6 +82,9 @@ jobs:
         run: |
           ./tools/web-features/lint.py --manifest WEB_FEATURES-manifest-base.json
 
+      - name: debug
+        run: ls -lah
+
       # Checking out the original branch ensure that if the patch under review
       # modified `check-coverage.py` itself, that modified version is used.
       - name: Checkout original branch
@@ -90,6 +93,9 @@ jobs:
           # The `clean` option must be unset in order to retain the manifest
           # files.
           clean: false
+
+      - name: debug
+        run: ls -lah
 
       - name: Verify absence of regressions in classification coverage
         run: |
