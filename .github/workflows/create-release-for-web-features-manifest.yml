@@ -37,10 +37,14 @@ jobs:
         run: |
           tar --zstd -cvf WEB_FEATURES_MANIFEST.json.zst WEB_FEATURES_MANIFEST.json
 
+      - name: Debug
+        run: ls -lah
+
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create \
               --repo="$GITHUB_REPOSITORY" \
+              --title="WEB_FEATURES $GITHUB_REF" \
               WEB_FEATURES_MANIFEST.json.*
